@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
+import { LanguageProvider } from "@/lib/language-context";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -18,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="bg" className={cn("h-full", "font-sans", geist.variable)}>
       <body className="min-h-screen max-w-480 m-auto! flex flex-col bg-primary overflow-x-hidden">
-        {children}
+        <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>
   );

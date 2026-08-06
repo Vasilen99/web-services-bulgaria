@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { type VariantProps } from 'class-variance-authority';
+import { type VariantProps } from "class-variance-authority";
 
 import {
   FlipButton as FlipButtonPrimitive,
@@ -8,15 +7,15 @@ import {
   type FlipButtonProps as FlipButtonPrimitiveProps,
   type FlipButtonFrontProps as FlipButtonFrontPrimitiveProps,
   type FlipButtonBackProps as FlipButtonBackPrimitiveProps,
-} from '@/components/animate-ui/primitives/buttons/flip';
-import { getStrictContext } from '@/lib/get-strict-context';
-import { buttonVariants } from '@/components/animate-ui/components/buttons/button';
-import { cn } from '@/lib/utils';
+} from "@/components/animate-ui/primitives/buttons/flip";
+import { getStrictContext } from "@/lib/get-strict-context";
+import { buttonVariants } from "@/components/animate-ui/components/buttons/button";
+import { cn } from "@/lib/utils";
 
 type FlipButtonContextType = VariantProps<typeof buttonVariants>;
 
 const [FlipButtonProvider, useFlipButton] =
-  getStrictContext<FlipButtonContextType>('FlipButtonContext');
+  getStrictContext<FlipButtonContextType>("FlipButtonContext");
 
 type FlipButtonProps = FlipButtonPrimitiveProps &
   VariantProps<typeof buttonVariants>;

@@ -31,8 +31,8 @@ export default function SelectedWork() {
     <section id="work" className="bg-primary py-24 px-6 lg:px-12">
       <div className="max-w-7xl mx-auto">
         {/* Heading row */}
-        <div className="flex items-end justify-between mb-14 border-t border-primary-content/10 pt-10">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary-content">
+        <div className="flex items-end justify-between mb-14 border-t border-primary pt-10">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary-foreground">
             Избрани проекти
           </h2>
           <Link

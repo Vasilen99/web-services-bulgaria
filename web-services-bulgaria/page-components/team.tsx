@@ -1,0 +1,87 @@
+"use client";
+
+import {
+  FlipCard,
+  FlipCardData,
+} from "@/components/animate-ui/components/community/flip-card";
+
+const TEAM_MEMBERS: FlipCardData[] = [
+  {
+    name: "Василен Минков",
+    title: "CEO & Founder",
+    image: "/team/vasilen-snimka.png",
+    bio: "Софтуерен инженер с над 5 години професионален опит в разработката на уеб базирани решения. Комбинира техническа експертиза със стратегическо мислене и визия за бъдещето на дигиталните продукти.",
+    socialLinks: {
+      linkedin: "https://www.linkedin.com/in/vasilen-minkov-9117011b0/",
+      facebook: "https://www.facebook.com/vasilen.minkov.1",
+      instagram: "https://www.instagram.com/vasilenminkovv/",
+    },
+  },
+  {
+    name: "Галя Ненчева",
+    title: "Graphic Designer",
+    image: "/team/galq-snimka.png",
+    bio: "С години опит в разработването на SaaS и B2B решения, тя се фокусира се върху ясни, функционални дизайни, които подпомагат ефективната работа на потребителите и отговарят на конкретни бизнес цели.",
+    socialLinks: {
+      linkedin: "https://www.linkedin.com/in/galyanencheva/",
+      facebook: "https://www.facebook.com/galya.nencheva",
+      instagram: "https://www.instagram.com/beeluvdpublishing/?hl=bg",
+    },
+  },
+  {
+    name: "Мирослав Димитров",
+    title: "Software Engineer",
+    image: "/team/miro-snimka.jpg",
+    bio: "Бекенд разработчик с дълъг опит в разработката на скалируеми и сигурни приложения.",
+
+    socialLinks: {
+      linkedin: "https://www.linkedin.com/in/miroslav-dimitrov-534805263/",
+      facebook: "https://www.facebook.com/png.insta",
+      instagram: "https://www.instagram.com/21_mir0slav/",
+    },
+  },
+  {
+    name: "Наталия Лазарова",
+    title: "Marketing Specialist",
+    image: "/team/natalq-snimka.png",
+    bio: "Проектен мениджър с специализация в управление на цифрови проекти и team coordination.",
+
+    socialLinks: {
+      linkedin: "https://linkedin.com/in/elena-ivanova",
+      facebook: "https://facebook.com/elena.ivanova",
+      instagram: "https://instagram.com/elena_ivanova",
+    },
+  },
+];
+
+export default function Team() {
+  return (
+    <section id="team" className="bg-primary py-24 px-6 lg:px-12">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="flex flex-col gap-6 mb-20">
+          <div>
+            <p className="text-primary-foreground text-xs uppercase tracking-widest font-semibold mb-4">
+              ● Екип
+            </p>
+            <h2 className="text-5xl lg:text-6xl font-serif text-primary-foreground">
+              Запознайте се с нашият екип
+            </h2>
+          </div>
+        </div>
+
+        {/* Team Members Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {TEAM_MEMBERS.map((member) => (
+            <div key={member.name} className="flex justify-center">
+              <FlipCard data={member} />
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom accent line */}
+        <div className="mt-20 h-1 bg-linear-to-r from-primary-foreground to-transparent" />
+      </div>
+    </section>
+  );
+}
