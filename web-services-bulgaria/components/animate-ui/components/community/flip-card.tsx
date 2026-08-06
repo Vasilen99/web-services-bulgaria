@@ -53,40 +53,42 @@ export function FlipCard({ data }: FlipCardProps) {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {/* FRONT: Profile Image with Name/Title at top */}
+      {/* FRONT: Name/Title on top, Image below */}
       <motion.div
-        className="absolute inset-0 backface-hidden rounded-4xl flex flex-col items-center justify-start text-center overflow-hidden"
+        className="absolute inset-0 backface-hidden rounded-4xl flex flex-col bg-[#EDE8DD] overflow-hidden"
         style={{
           transformStyle: "preserve-3d",
         }}
         animate={isFlipped ? "back" : "front"}
         variants={cardVariants}
       >
-        {/* Name and Title overlay at top */}
-        <div className="absolute top-0 left-0 right-0 w-full px-4 py-4 z-10 flex items-center gap-4 justify-between mix-blend-difference">
-          <h2 className="text-lg font-bold text-border text-start max-w-26">
+        {/* Name and Title header */}
+        <div className="w-full px-6 pt-6 pb-4 flex items-start justify-between">
+          <h2 className="text-2xl font-bold text-[#5A5A5A] text-start">
             {data.name}
           </h2>
           {data.title && (
-            <p className="text-xs text-end uppercase tracking-widest text-border font-semibold">
+            <p className="text-xs text-end uppercase tracking-widest text-[#A0A0A0] font-semibold">
               {data.title}
             </p>
           )}
         </div>
 
-        {/* Next Image as background */}
-        <Image
-          src={data.image}
-          alt={data.name}
-          fill
-          className="object-cover rounded-lg"
-          priority
-        />
+        {/* Image container */}
+        <div className="relative flex-1 w-full">
+          <Image
+            src={data.image}
+            alt={data.name}
+            fill
+            className="object-cover object-top"
+            priority
+          />
+        </div>
       </motion.div>
 
       {/* BACK: Bio + Socials */}
       <motion.div
-        className="absolute inset-0 backface-hidden rounded-lg p-6 flex flex-col justify-between items-center bg-white"
+        className="absolute inset-0 backface-hidden rounded-4xl p-6 flex flex-col justify-between items-center bg-white"
         initial={{ rotateY: 180 }}
         animate={isFlipped ? "front" : "back"}
         variants={cardVariants}
