@@ -1,8 +1,8 @@
 export const ServifyFullLogo = () => {
   return (
     <svg
-      width="136"
-      height="36"
+      width="400"
+      height="350"
       viewBox="0 0 136 36"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

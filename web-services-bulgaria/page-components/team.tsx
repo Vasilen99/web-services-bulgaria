@@ -56,7 +56,7 @@ const TEAM_MEMBERS: FlipCardData[] = [
 
 export default function Team() {
   return (
-    <section id="team" className="bg-primary py-24 px-6 lg:px-12">
+    <section id="team" className="bg-primary py-12 px-6 lg:px-12">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex flex-col gap-6 mb-20">

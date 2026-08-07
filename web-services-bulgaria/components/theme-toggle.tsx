@@ -54,7 +54,7 @@ export function ThemeToggle() {
         className="absolute transition-opacity duration-300"
         style={{ opacity: isDark ? 0 : 1 }}
       >
-        <Sun className="size-5 text-primary" />
+        <Sun className="size-5 text-primary-foreground" />
       </div>
     </Button>
   );

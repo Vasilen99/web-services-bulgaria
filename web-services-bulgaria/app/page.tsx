@@ -1,23 +1,21 @@
-import Header from "@/page-components/header";
-import Services from "@/page-components/services";
-import SelectedWork from "@/page-components/selected-work";
-import Process from "@/page-components/process";
-import MarqueeGallery from "@/page-components/marquee-gallery";
+import HeroSection from "@/page-components/hero-section";
+import PartnersGallery from "@/page-components/partners-gallery";
 import Team from "@/page-components/team";
-import Testimonials from "@/page-components/testimonials";
-import Footer from "@/page-components/footer";
+// import Services from "@/page-components/services";
+// import SelectedWork from "@/page-components/selected-work";
+// import Process from "@/page-components/process";
+// import Testimonials from "@/page-components/testimonials";
 
 export default function Home() {
   return (
-    <main className="bg-primary">
-      <Header />
-      <MarqueeGallery />
+    <main className="bg-background">
+      <HeroSection />
+      <PartnersGallery />
       <Team />
-      <Services />
+      {/* <Services />
       <SelectedWork />
       <Process />
-      <Testimonials />
-      <Footer />
+      <Testimonials /> */}
     </main>
   );
 }

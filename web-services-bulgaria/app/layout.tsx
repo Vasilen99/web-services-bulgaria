@@ -3,6 +3,8 @@ import "./globals.css";
 import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { LanguageProvider } from "@/lib/language-context";
+import Header from "@/page-components/header";
+import Footer from "@/page-components/footer";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -18,8 +20,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="bg" className={cn("h-full", "font-sans", geist.variable)}>
-      <body className="min-h-screen max-w-480 m-auto! flex flex-col bg-primary overflow-x-hidden">
-        <LanguageProvider>{children}</LanguageProvider>
+      <body
+        suppressHydrationWarning
+        className="min-h-screen max-w-480 m-auto! flex flex-col overflow-x-hidden"
+      >
+        <LanguageProvider>
+          <Header />
+          {children}
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );

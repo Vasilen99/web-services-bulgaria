@@ -7,6 +7,7 @@ import { InstagramIcon } from "@/components/icons/instagram";
 import { LinkedinIcon } from "@/components/icons/linkedin";
 import Image from "next/image";
 import Link from "next/link";
+import { GlassCard } from "react-glass-ui";
 export interface FlipCardData {
   name: string;
   title?: string;
@@ -25,6 +26,11 @@ interface FlipCardProps {
 
 export function FlipCard({ data }: FlipCardProps) {
   const [isFlipped, setIsFlipped] = React.useState(false);
+  const [isMounted, setIsMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const isTouchDevice =
     typeof window !== "undefined" && "ontouchstart" in window;
@@ -55,27 +61,59 @@ export function FlipCard({ data }: FlipCardProps) {
     >
       {/* FRONT: Name/Title on top, Image below */}
       <motion.div
-        className="absolute inset-0 backface-hidden rounded-4xl flex flex-col bg-[#EDE8DD] overflow-hidden"
+        className="absolute inset-0 backface-hidden rounded-4xl flex flex-col"
         style={{
           transformStyle: "preserve-3d",
         }}
         animate={isFlipped ? "back" : "front"}
         variants={cardVariants}
       >
-        {/* Name and Title header */}
-        <div className="w-full px-6 pt-6 pb-4 flex items-start justify-between">
-          <h2 className="text-2xl font-bold text-[#5A5A5A] text-start">
-            {data.name}
-          </h2>
-          {data.title && (
-            <p className="text-xs text-end uppercase tracking-widest text-[#A0A0A0] font-semibold">
-              {data.title}
-            </p>
+        {/* Name and Title header - positioned absolutely over image */}
+        <div
+          className="w-full flex items-center justify-between overflow-hidden"
+          style={{
+            borderTopLeftRadius: "32px",
+            borderTopRightRadius: "32px",
+            borderBottomLeftRadius: "0px",
+            borderBottomRightRadius: "0px",
+          }}
+        >
+          {isMounted && (
+            <GlassCard
+              blur={3}
+              distortion={2}
+              borderSize={0}
+              borderOpacity={0.1}
+              backgroundOpacity={0.1}
+              innerLightSpread={3}
+              innerLightBlur={20}
+              innerLightOpacity={0.4}
+              outerLightSpread={4}
+              outerLightBlur={10}
+              outerLightOpacity={0.9}
+              chromaticAberration={22.3}
+              onHoverScale={0.85}
+              saturation={46}
+              brightness={1}
+              backgroundColor="var(--primary-foreground)"
+              innerLightColor="var(--primary-foreground)"
+              className="w-full"
+            >
+              <div className="flex items-center justify-between gap-14 w-full px-2 py-3">
+                <h4 className="text-primary-foreground text-start">
+                  {data.name}
+                </h4>
+                {data.title && (
+                  <p className="text-xs text-end uppercase text-primary-foreground font-bold">
+                    {data.title}
+                  </p>
+                )}
+              </div>
+            </GlassCard>
           )}
         </div>
-
         {/* Image container */}
-        <div className="relative flex-1 w-full">
+        <div className="relative bottom-2 flex-1 w-full rounded-b-4xl overflow-hidden">
           <Image
             src={data.image}
             alt={data.name}
@@ -88,26 +126,26 @@ export function FlipCard({ data }: FlipCardProps) {
 
       {/* BACK: Bio + Socials */}
       <motion.div
-        className="absolute inset-0 backface-hidden rounded-4xl p-6 flex flex-col justify-between items-center bg-white"
-        initial={{ rotateY: 180 }}
+        className="absolute inset-0 backface-hidden rounded-4xl p-6 flex flex-col justify-between items-center backdrop-blur-xs bg-primary-foreground/5 border border-primary-foreground/15 shadow-2xl shadow-black/20 before:absolute before:inset-0 before:bg-linear-to-b before:from-white/1 before:to-transparent before:pointer-events-none before:rounded-4xl"
+        initial={{ rotateY: 90 }}
         animate={isFlipped ? "front" : "back"}
         variants={cardVariants}
         style={{ transformStyle: "preserve-3d", rotateY: 180 }}
       >
-        <div className="flex flex-col items-center justify-center flex-1">
-          <p className="text-sm text-slate-700 text-center leading-relaxed">
+        <div className="flex flex-col items-center justify-center flex-1 relative z-10">
+          <p className="text-sm text-primary-foreground text-center leading-relaxed">
             {data.bio}
           </p>
         </div>
 
         {/* Social Media Icons */}
-        <div className="flex items-center justify-center gap-4 pt-4">
+        <div className="flex items-center justify-center gap-4 pt-4 relative z-10">
           {data.socialLinks?.linkedin && (
             <Link
               href={data.socialLinks.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:scale-110 transition-transform text-slate-600 hover:text-slate-900"
+              className="hover:scale-110 transition-transform text-primary-foreground/70 hover:text-primary-foreground"
               aria-label="LinkedIn"
             >
               <LinkedinIcon size={20} />
@@ -118,7 +156,7 @@ export function FlipCard({ data }: FlipCardProps) {
               href={data.socialLinks.facebook}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:scale-110 transition-transform text-slate-600 hover:text-slate-900"
+              className="hover:scale-110 transition-transform text-primary-foreground/70 hover:text-primary-foreground"
               aria-label="Facebook"
             >
               <FacebookIcon size={20} />
@@ -129,7 +167,7 @@ export function FlipCard({ data }: FlipCardProps) {
               href={data.socialLinks.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:scale-110 transition-transform text-slate-600 hover:text-slate-900"
+              className="hover:scale-110 transition-transform text-primary-foreground/70 hover:text-primary-foreground"
               aria-label="Instagram"
             >
               <InstagramIcon size={20} />
