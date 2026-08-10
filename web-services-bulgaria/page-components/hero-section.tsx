@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import Image from "next/image";
 import {
   FlipButton,
   FlipButtonBack,
@@ -9,7 +8,7 @@ import {
 import { Globe } from "@/components/globe";
 import { useLanguage } from "@/lib/language-context";
 import { translations } from "@/lib/translations";
-
+import { StarsBackground } from "@/components/animate-ui/components/backgrounds/stars";
 export default function HeroSection() {
   const { t } = useLanguage();
 
@@ -20,13 +19,7 @@ export default function HeroSection() {
     >
       {/* Background Image */}
       <div className="absolute inset-0 w-full h-full">
-        <Image
-          src="/image-hero.jpg"
-          alt="Hero Background"
-          fill
-          className="object-cover"
-          priority
-        />
+        <StarsBackground starColor="var(--primary)" />
         {/* Gradient overlay for text readability */}
         <div className="absolute inset-0 bg-linear-to-r from-primary-foreground via-primary-foreground/50 to-primary-foreground/20" />
       </div>

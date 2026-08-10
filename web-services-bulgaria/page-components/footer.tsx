@@ -9,9 +9,7 @@ import { useLanguage } from "@/lib/language-context";
 import { translations } from "@/lib/translations";
 import { Button } from "@/components/animate-ui/components/buttons/button";
 import { ArrowUp } from "lucide-react";
-import { InstagramIcon } from "@/components/icons/instagram";
-import { FacebookIcon } from "@/components/icons/facebook";
-import { LinkedinIcon } from "@/components/icons/linkedin";
+import { FacebookIcon, InstagramIcon, LinkedinIcon } from "@/components/icons";
 const NAV_LINKS = [
   { name: "Начало", href: "#hero" },
   { name: "Услуги", href: "#services" },

@@ -1,7 +1,7 @@
 "use client";
 
-import { ServifyFullLogo } from "@/components/icons/servify";
 import { GalleryCard } from "@/components/gallery-card";
+import { ServifyFullLogo } from "@/components/icons";
 
 // Logos from /public/logos
 const IMAGES_DATA = [
@@ -10,12 +10,14 @@ const IMAGES_DATA = [
     logo: "/logos/logo-bfs.png",
     alt: "BFT Logo",
     type: "image" as const,
+    slug: "bft",
   },
   {
     site: "https://servify.bg/",
     component: ServifyFullLogo,
     alt: "Servify Logo",
     type: "component" as const,
+    slug: "servify",
   },
 ];
 
@@ -36,7 +38,7 @@ export default function PartnersGallery() {
         </div>
       </div>
 
-      <div className="space-y-3 flex lg:flex-row flex-col justify-center items-center gap-16">
+      <div className="space-y-3 flex lg:flex-row flex-col justify-center items-center gap-16 mx-4">
         {IMAGES_DATA.map((item) => (
           <GalleryCard
             key={item.alt}
@@ -44,6 +46,7 @@ export default function PartnersGallery() {
             logo={item.logo}
             alt={item.alt}
             component={item.component}
+            href={`/partners/${item.slug}`}
           />
         ))}
       </div>

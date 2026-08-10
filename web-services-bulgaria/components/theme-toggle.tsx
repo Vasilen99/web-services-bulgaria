@@ -41,14 +41,14 @@ export function ThemeToggle() {
   return (
     <Button
       onClick={toggleTheme}
-      className="relative bg-primary/5 hover:bg-primary/20 rounded-lg flex border border-primary-foreground size-10 p-0 overflow-hidden transition-all duration-300 backdrop-blur-md"
+      className="relative bg-primary-foreground/5 hover:bg-primary-foreground/20 rounded-lg flex border border-primary size-10 p-0 overflow-hidden transition-all duration-300 backdrop-blur-md"
       title={isDark ? "Switch to dark mode" : "Switch to light mode"}
     >
       <div
         className="absolute transition-opacity duration-300"
         style={{ opacity: isDark ? 1 : 0 }}
       >
-        <Moon className="size-5 text-primary-foreground" />
+        <Moon className="size-5 text-primary" />
       </div>
       <div
         className="absolute transition-opacity duration-300"

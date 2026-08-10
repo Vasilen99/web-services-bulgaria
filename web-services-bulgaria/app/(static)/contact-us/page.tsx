@@ -17,11 +17,65 @@ export default function ContactUsPage() {
     subject: "",
     message: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState<{
+    type: "success" | "error";
+    text: string;
+  } | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle form submission
-    console.log(formData);
+    setIsLoading(true);
+    setSubmitMessage(null);
+
+    try {
+      const formDataObj = new FormData(e.currentTarget);
+      formDataObj.append(
+        "access_key",
+        process.env.NEXT_PUBLIC_WEB_3_ACCESS_KEY || "",
+      );
+
+      const object = Object.fromEntries(formDataObj);
+      const json = JSON.stringify(object);
+
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: json,
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSubmitMessage({
+          type: "success",
+          text: "Message sent successfully! We'll get back to you soon.",
+        });
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+        });
+      } else {
+        setSubmitMessage({
+          type: "error",
+          text: "Failed to send message. Please try again.",
+        });
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setSubmitMessage({
+        type: "error",
+        text: "An error occurred. Please try again later.",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleChange = (
@@ -65,6 +119,17 @@ export default function ContactUsPage() {
         {/* Right side - Form */}
         <div className="w-full lg:w-1/2 max-w-xl">
           <div className="backdrop-blur-md bg-primary-foreground/10 border border-primary-foreground/20 rounded-2xl p-8 shadow-2xl shadow-black/20 relative before:absolute before:inset-0 before:bg-linear-to-b before:from-white/10 before:to-transparent before:pointer-events-none before:rounded-2xl">
+            {submitMessage && (
+              <div
+                className={`mb-6 p-4 rounded-lg ${
+                  submitMessage.type === "success"
+                    ? "bg-green-500/20 border border-green-500/50 text-green-100"
+                    : "bg-red-500/20 border border-red-500/50 text-red-100"
+                }`}
+              >
+                {submitMessage.text}
+              </div>
+            )}
             <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
               {/* Name */}
               <div className="space-y-2">
@@ -167,7 +232,11 @@ export default function ContactUsPage() {
 
               {/* Submit Button */}
               <div className="flex justify-center">
-                <Button>{t(translations.sendMessage)}</Button>
+                <Button disabled={isLoading}>
+                  {isLoading
+                    ? t(translations.sendingEmail)
+                    : t(translations.sendMessage)}
+                </Button>
               </div>
             </form>
           </div>

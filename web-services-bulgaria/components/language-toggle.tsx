@@ -41,12 +41,12 @@ export function LanguageToggle() {
   return (
     <Button
       onClick={toggleLanguage}
-      className="relative bg-primary/5 hover:bg-primary/20 rounded-lg flex border border-primary-foreground size-10 p-0 overflow-hidden transition-all duration-300 backdrop-blur-md"
+      className="relative bg-primary-foreground/5 hover:bg-primary-foreground/20 rounded-lg flex border border-primary size-10 p-0 overflow-hidden transition-all duration-300 backdrop-blur-md"
       title={language === "bg" ? "Switch to English" : "Превключи на български"}
     >
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="flex items-center justify-center gap-1">
-          <span className="text-xs font-bold text-primary-content">
+          <span className="text-xs font-bold text-primary">
             {language.toUpperCase()}
           </span>
         </div>

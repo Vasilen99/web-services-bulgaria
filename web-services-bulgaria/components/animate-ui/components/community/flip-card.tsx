@@ -2,9 +2,7 @@
 
 import { easeOut, motion } from "motion/react";
 import * as React from "react";
-import { FacebookIcon } from "@/components/icons/facebook";
-import { InstagramIcon } from "@/components/icons/instagram";
-import { LinkedinIcon } from "@/components/icons/linkedin";
+import { FacebookIcon, InstagramIcon, LinkedinIcon } from "@/components/icons";
 import Image from "next/image";
 import Link from "next/link";
 import { GlassCard } from "react-glass-ui";
