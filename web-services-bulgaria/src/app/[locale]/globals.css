@@ -1,0 +1,465 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=TASA+Explorer:wght@400..800&display=swap");
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+  COOL GRAPHITE — SHADCN + TAILWIND CSS v4
+
+  Font pairing:
+  - Headings: Montserrat
+  - Body/UI: Inter
+
+  Load the font files separately in your framework or HTML document.
+  The fallback stack keeps the page usable if the web fonts fail to load.
+*/
+
+:root {
+  /* ---------------------------------------------------------------------- */
+  /* Shape                                                                  */
+  /* ---------------------------------------------------------------------- */
+
+  --radius: 0.5rem;
+
+  /* ---------------------------------------------------------------------- */
+  /* Typography                                                             */
+  /* ---------------------------------------------------------------------- */
+
+  --font-heading:
+    "Montserrat", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+
+  --font-body:
+    "Montserrat", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+
+  /* Body and utility text */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+
+  /* Heading scale — mobile first */
+  --font-size-h1: 2.5rem;
+  --font-size-h2: 2rem;
+  --font-size-h3: 1.625rem;
+  --font-size-h4: 1.375rem;
+  --font-size-h5: 1.125rem;
+  --font-size-h6: 1rem;
+
+  /* Unitless line heights scale with each element's font size */
+  --line-height-tight: 1.08;
+  --line-height-heading: 1.2;
+  --line-height-body: 1.65;
+  --line-height-ui: 1.4;
+
+  --tracking-tight: -0.03em;
+  --tracking-heading: -0.018em;
+  --tracking-ui: 0.01em;
+
+  /* ---------------------------------------------------------------------- */
+  /* Light theme colors                                                     */
+  /* ---------------------------------------------------------------------- */
+
+  --background: #101216;
+  --foreground: #f1f3f6;
+
+  --card: #181b21;
+  --card-foreground: #f1f3f6;
+
+  --popover: #181b21;
+  --popover-foreground: #f1f3f6;
+
+  --primary: #f1f3f6;
+  --primary-foreground: #101216;
+
+  --secondary: #22262e;
+  --secondary-foreground: #f1f3f6;
+
+  --muted: #22262e;
+  --muted-foreground: #a3a9b3;
+
+  --accent: #292e37;
+  --accent-foreground: #f1f3f6;
+
+  --destructive: #e05a54;
+  --destructive-foreground: #101216;
+
+  --border: #30353e;
+  --input: #30353e;
+  --ring: #a3a9b3;
+
+  --chart-1: #f1f3f6;
+  --chart-2: #c8ccd3;
+  --chart-3: #a3a9b3;
+  --chart-4: #737984;
+  --chart-5: #474d57;
+
+  --sidebar: #15181d;
+  --sidebar-foreground: #f1f3f6;
+  --sidebar-primary: #f1f3f6;
+  --sidebar-primary-foreground: #101216;
+  --sidebar-accent: #292e37;
+  --sidebar-accent-foreground: #f1f3f6;
+  --sidebar-border: #30353e;
+  --sidebar-ring: #a3a9b3;
+  --success: #1d5036;
+  --success-content: #d2fae3;
+}
+
+/* Responsive typography — all sizes remain rem-based */
+@media (min-width: 48rem) {
+  :root {
+    --font-size-h1: 3.5rem;
+    --font-size-h2: 2.625rem;
+    --font-size-h3: 2rem;
+    --font-size-h4: 1.5rem;
+    --font-size-h5: 1.25rem;
+    --font-size-h6: 1rem;
+  }
+}
+
+@media (min-width: 80rem) {
+  :root {
+    --font-size-h1: 4.5rem;
+    --font-size-h2: 3.25rem;
+    --font-size-h3: 2.25rem;
+    --font-size-h4: 1.625rem;
+    --font-size-h5: 1.25rem;
+    --font-size-h6: 1rem;
+  }
+}
+
+.dark {
+  --background: #f6f7f9;
+  --foreground: #17191d;
+
+  --card: #ffffff;
+  --card-foreground: #17191d;
+
+  --popover: #ffffff;
+  --popover-foreground: #17191d;
+
+  --primary: #17191d;
+  --primary-foreground: #f6f7f9;
+
+  --secondary: #eceef2;
+  --secondary-foreground: #24272d;
+
+  --muted: #eceef2;
+  --muted-foreground: #686e78;
+
+  --accent: #e4e7ec;
+  --accent-foreground: #17191d;
+
+  --destructive: #c93c37;
+  --destructive-foreground: #ffffff;
+
+  --border: #d9dde3;
+  --input: #d9dde3;
+  --ring: #686e78;
+
+  --chart-1: #17191d;
+  --chart-2: #3d424b;
+  --chart-3: #686e78;
+  --chart-4: #969ca6;
+  --chart-5: #c7cbd2;
+
+  --sidebar: #f1f3f6;
+  --sidebar-foreground: #17191d;
+  --sidebar-primary: #17191d;
+  --sidebar-primary-foreground: #f6f7f9;
+  --sidebar-accent: #e4e7ec;
+  --sidebar-accent-foreground: #17191d;
+  --sidebar-border: #d9dde3;
+  --sidebar-ring: #686e78;
+  --success: #d2f2e1;
+  --success-content: #175835;
+}
+
+@theme inline {
+  /* Colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-success: var(--success);
+  --color-success-content: var(--success-content);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Fonts: enables font-sans, font-heading, and font-mono utilities */
+  --font-sans: var(--font-body);
+  --font-heading: var(--font-heading);
+  --font-mono: var(--font-mono);
+
+  /* Type utilities: enables text-h1 through text-h6 */
+  --text-h1: var(--font-size-h1);
+  --text-h1--line-height: var(--line-height-tight);
+  --text-h2: var(--font-size-h2);
+  --text-h2--line-height: var(--line-height-tight);
+  --text-h3: var(--font-size-h3);
+  --text-h3--line-height: var(--line-height-heading);
+  --text-h4: var(--font-size-h4);
+  --text-h4--line-height: var(--line-height-heading);
+  --text-h5: var(--font-size-h5);
+  --text-h5--line-height: var(--line-height-heading);
+  --text-h6: var(--font-size-h6);
+  --text-h6--line-height: var(--line-height-heading);
+
+  /* Radius */
+  --radius-sm: calc(var(--radius) - 0.25rem);
+  --radius-md: calc(var(--radius) - 0.125rem);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 0.25rem);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    /* Respect the user's browser font-size preference */
+    font-size: 100%;
+    color-scheme: light;
+    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    min-height: 100vh;
+    font-family: var(--font-body);
+    font-size: var(--font-size-base);
+    font-weight: 400;
+    line-height: var(--line-height-body);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ---------------------------------------------------------------------- */
+  /* Semantic typography                                                    */
+  /* ---------------------------------------------------------------------- */
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    line-height: var(--line-height-heading);
+    letter-spacing: var(--tracking-heading);
+    text-wrap: balance;
+  }
+
+  h1 {
+    font-size: var(--font-size-h1);
+    line-height: var(--line-height-tight);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  h2 {
+    font-size: var(--font-size-h2);
+    line-height: var(--line-height-tight);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  h3 {
+    font-size: var(--font-size-h3);
+  }
+
+  h4 {
+    font-size: var(--font-size-h4);
+  }
+
+  h5 {
+    font-size: var(--font-size-h5);
+  }
+
+  h6 {
+    font-size: var(--font-size-h6);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  p {
+    max-width: 68ch;
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-body);
+    text-wrap: pretty;
+  }
+
+  span {
+    font-size: inherit;
+    line-height: inherit;
+  }
+
+  small {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-ui);
+  }
+
+  strong,
+  b {
+    font-weight: 600;
+  }
+
+  em,
+  i {
+    font-style: italic;
+  }
+
+  a {
+    color: inherit;
+    font-size: inherit;
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.2em;
+  }
+
+  blockquote {
+    max-width: 62ch;
+    font-size: var(--font-size-lg);
+    line-height: 1.6;
+  }
+
+  ul,
+  ol {
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-body);
+  }
+
+  li + li {
+    margin-top: 0.375rem;
+  }
+
+  code,
+  kbd,
+  samp,
+  pre {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  button,
+  label {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-ui);
+  }
+
+  /*
+    Keep form fields at 1rem. This improves readability and helps prevent
+    automatic zooming on some mobile browsers.
+  */
+  input,
+  textarea,
+  select {
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-ui);
+  }
+
+  caption,
+  figcaption {
+    color: var(--muted-foreground);
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+  }
+
+  table {
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+  }
+
+  sup,
+  sub {
+    font-size: 0.75em;
+    line-height: 0;
+  }
+}
+
+@layer utilities {
+  .text-display {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-h1);
+    font-weight: 600;
+    line-height: var(--line-height-tight);
+    letter-spacing: var(--tracking-tight);
+    text-wrap: balance;
+  }
+
+  .text-lead {
+    max-width: 60ch;
+    color: var(--muted-foreground);
+    font-size: var(--font-size-lg);
+    line-height: 1.6;
+  }
+
+  .text-caption {
+    color: var(--muted-foreground);
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+  }
+
+  .text-overline {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    line-height: var(--line-height-ui);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+}
