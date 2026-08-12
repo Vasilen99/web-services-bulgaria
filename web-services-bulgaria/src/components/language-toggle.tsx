@@ -7,7 +7,7 @@ export function LanguageToggle() {
   const pathname = usePathname();
   const params = useParams();
   const currentLocale = (params.locale as string) || "bg";
-  
+
   const language = (currentLocale as "bg" | "en") || "bg";
 
   const toggleLanguage = () => {

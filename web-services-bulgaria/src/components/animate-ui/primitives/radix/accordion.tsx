@@ -53,12 +53,14 @@ function AccordionItem(props: AccordionItemProps) {
   const [isOpen, setIsOpen] = React.useState(
     value?.includes(props?.value) ?? false,
   );
-  
+
   // Use controlled value when provided, otherwise use internal state
   const computedIsOpen = value?.includes(props?.value) ?? isOpen;
 
   return (
-    <AccordionItemProvider value={{ isOpen: computedIsOpen, setIsOpen, value: props.value }}>
+    <AccordionItemProvider
+      value={{ isOpen: computedIsOpen, setIsOpen, value: props.value }}
+    >
       <AccordionPrimitive.Item data-slot="accordion-item" {...props} />
     </AccordionItemProvider>
   );

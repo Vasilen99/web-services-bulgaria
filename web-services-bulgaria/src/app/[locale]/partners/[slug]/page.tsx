@@ -16,7 +16,10 @@ import {
 } from "@/utility/icons";
 
 // Map technology keys to their display components
-const TECH_ICONS: Record<string, React.ComponentType<React.SVGProps<SVGSVGElement>>> = {
+const TECH_ICONS: Record<
+  string,
+  React.ComponentType<React.SVGProps<SVGSVGElement>>
+> = {
   nextjs: NextIcon,
   react: ReactIcon,
   typescript: TypescriptIcon,

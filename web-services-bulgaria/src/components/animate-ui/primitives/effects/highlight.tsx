@@ -173,7 +173,7 @@ function Highlight<T extends React.ElementType = "div">({
   const [activeValue, setActiveValue] = React.useState<string | null>(
     value ?? defaultValue ?? null,
   );
-  
+
   // Use controlled value when provided, otherwise use internal state
   const computedActiveValue = value ?? activeValue;
   const [boundsState, setBoundsState] = React.useState<Bounds | null>(null);
