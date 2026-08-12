@@ -9,6 +9,7 @@ import "./globals.css";
 import { LanguageProvider } from "@/lib/language-context";
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
+import { ScrollToTop } from "@/components/scroll-to-top";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -60,6 +61,7 @@ export default async function RootLayout({ children, params }: Props) {
           <Header />
           {children}
           <Footer />
+          <ScrollToTop />
         </LanguageProvider>
       </body>
     </html>

@@ -98,24 +98,18 @@ export default function ContactUsPage() {
         {/* Left side - Globe and Text */}
         <div className="flex flex-col items-center lg:items-start w-full lg:w-1/2 gap-8">
           <div className="flex flex-col gap-4 max-w-xl">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-success-content animate-pulse" />
-              <span className="text-xs text-primary uppercase tracking-widest font-medium">
-                {t(translations.available)}
-              </span>
-            </div>
 
-            <h1 className="text-4xl lg:text-6xl font-bold text-primary">
+            <h1 className="text-4xl lg:text-6xl text-center lg:text-left font-bold text-primary">
               {t(translations.contactHeadline)}
             </h1>
 
-            <p className="text-base lg:text-lg text-primary leading-relaxed">
+            <p className="text-base lg:text-lg text-center lg:text-left text-primary leading-relaxed">
               {t(translations.contactDescription)}
             </p>
           </div>
 
           {/* Globe */}
-          <div className="w-full flex justify-center lg:justify-center">
+          <div className="w-full hidden lg:flex justify-center lg:justify-center">
             <Globe />
           </div>
         </div>

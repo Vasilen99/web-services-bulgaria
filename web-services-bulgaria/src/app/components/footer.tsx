@@ -2,8 +2,7 @@
 import Link from "next/link";
 import { useLanguage } from "@/lib/language-context";
 import { translations } from "@/lib/translations";
-import { ArrowUp, Mail } from "lucide-react";
-import { LiquidButton } from "@/components/animate-ui/components/buttons/liquid";
+import { Mail } from "lucide-react";
 const NAV_LINKS = [
   { name: "Начало", href: "#hero" },
   { name: "Услуги", href: "#services" },
@@ -16,8 +15,8 @@ const NAV_LINKS = [
 const SOCIAL_LINKS = [
   {
     icon: <Mail />,
-    href: "mailto:vadlsilenminkov@gmail.com",
-    name: "vadlsilenminkov@gmail.com",
+    href: "mailto:info@webservicesbg.com",
+    name: "info@webservicesbg.com",
   },
 ];
 
@@ -25,15 +24,6 @@ export default function Footer() {
   const { t } = useLanguage();
   return (
     <footer id="contact" className="bg-background">
-      {/* Big Headline */}
-      <div className="border-t border-primary-foreground px-6 lg:px-12 py-20 bg-transparent">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-5xl lg:text-8xl font-bold text-primary leading-tight">
-            Уебсайт, който оставя трайно впечатление!
-          </h2>
-        </div>
-      </div>
-
       {/* Footer Nav + Socials */}
       <div className="border-t border-primary px-6 lg:px-12 py-10">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-start lg:justify-between gap-12">
@@ -91,18 +81,11 @@ export default function Footer() {
 
       {/* Copyright */}
       <div className="border-t border-primary-foreground bg-primary-foreground px-6 lg:px-12 py-6">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto flex items-center justify-center">
           <p className="text-primary text-xs">
             © {new Date().getFullYear()} Web Services Bulgaria.{" "}
             {t(translations.allRightsReserved)}
           </p>
-          <LiquidButton
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="text-primary text-xs uppercase cursor-pointer transition-colors bg-primary-foreground"
-          >
-            <ArrowUp className="w-4 h-4" />
-            <p className="text-xs">Към началото</p>
-          </LiquidButton>
         </div>
       </div>
     </footer>

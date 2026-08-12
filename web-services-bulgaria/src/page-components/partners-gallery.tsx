@@ -3,6 +3,8 @@
 import { PartnerCard } from "@/components/partner-card";
 import { ServifyFullLogo } from "@/utility/icons";
 import { PARTNERS_DATA } from "@/lib/partners-data";
+import Link from "next/link";
+import { ArrowRight, Sparkles } from "lucide-react";
 
 // Map partners data for cards
 const PARTNERS_LIST = [
@@ -51,16 +53,45 @@ export default function PartnersGallery() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
             {PARTNERS_LIST.map((partner) => (
-              <PartnerCard
-                key={partner.slug}
-                name={partner.name}
-                shortDescription={partner.shortDescription}
-                logo={partner.logo}
-                logoComponent={partner.logoComponent}
-                slug={partner.slug}
-                type={partner.type}
-              />
+              <Link key={partner.slug} href={`/projects/${partner.slug}`} className="group block">
+                <PartnerCard
+                  name={partner.name}
+                  shortDescription={partner.shortDescription}
+                  logo={partner.logo}
+                  logoComponent={partner.logoComponent}
+                  slug={partner.slug}
+                  type={partner.type}
+                />
+              </Link>
             ))}
+
+            {/* Marketing CTA Card */}
+            <Link href="#contact" className="group block">
+              <div className="relative rounded-2xl border-2 border-dashed border-primary-foreground/30 hover:border-primary-foreground/60 bg-primary-foreground/5 hover:bg-primary-foreground/10 transition-all duration-300 p-8 h-full min-h-64 flex flex-col items-center justify-center text-center gap-6 overflow-hidden cursor-pointer">
+                {/* Subtle animated glow */}
+                <div className="absolute inset-0 bg-linear-to-br from-primary-foreground/5 via-transparent to-primary-foreground/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                <div className="relative z-10 flex flex-col items-center gap-4">
+                  <div className="flex items-center justify-center w-14 h-14 rounded-full bg-primary-foreground/10 group-hover:bg-primary-foreground/20 transition-colors duration-300">
+                    <Sparkles className="size-6 text-primary-foreground/60 group-hover:text-primary-foreground transition-colors duration-300" />
+                  </div>
+
+                  <div className="space-y-2">
+                    <h3 className="text-2xl font-bold text-primary-foreground/60 group-hover:text-primary-foreground transition-colors duration-300">
+                      Тук може да е вашият софтуер
+                    </h3>
+                    <p className="text-primary-foreground/40 group-hover:text-primary-foreground/70 text-sm max-w-xs leading-relaxed transition-colors duration-300">
+                      Имате идея? Нека я превърнем в реалност
+                    </p>
+                  </div>
+
+                  <div className="flex items-center gap-2 text-primary-foreground/50 group-hover:text-primary-foreground font-medium text-sm transition-all duration-300 group-hover:gap-3">
+                    <span>Свържете се с нас</span>
+                    <ArrowRight className="size-4" />
+                  </div>
+                </div>
+              </div>
+            </Link>
           </div>
         </div>
       </div>

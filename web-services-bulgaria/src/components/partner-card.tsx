@@ -1,12 +1,6 @@
-"use client";
-
 import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
 import { motion } from "motion/react";
-import { ArrowRightIcon } from "lucide-react";
-import { useLanguage } from "@/lib/language-context";
-import { translations } from "@/lib/translations";
 interface PartnerCardProps {
   name: string;
   shortDescription: string;
@@ -21,11 +15,9 @@ export function PartnerCard({
   shortDescription,
   logo,
   logoComponent: LogoComponent,
-  slug,
   type = "image",
 }: PartnerCardProps) {
   const [isHovered, setIsHovered] = useState(false);
-  const { t, locale } = useLanguage();
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -43,7 +35,7 @@ export function PartnerCard({
         <motion.div
           animate={isHovered ? { opacity: 0.1 } : { opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="absolute inset-0 bg-gradient-to-br from-primary-foreground via-transparent to-primary-foreground pointer-events-none"
+          className="absolute inset-0 from-primary-foreground via-transparent to-primary-foreground pointer-events-none"
         />
 
         {/* Pulsing dots animation - top right */}
@@ -88,7 +80,7 @@ export function PartnerCard({
           <motion.div
             animate={isHovered ? { scaleX: 1 } : { scaleX: 0.6 }}
             transition={{ duration: 0.3 }}
-            className="h-0.5 bg-gradient-to-r from-transparent via-primary-foreground to-transparent origin-left"
+            className="h-0.5 from-transparent via-primary-foreground to-transparent origin-left"
           />
 
           {/* Content Section */}
@@ -105,8 +97,7 @@ export function PartnerCard({
 
             {/* Description - appears on hover with letter reveal effect */}
             <motion.p
-              initial={{ opacity: 0 }}
-              animate={isHovered ? { opacity: 1 } : { opacity: 0 }}
+              initial={{ opacity: 1 }}
               transition={{ duration: 0.3, delay: 0.1 }}
               className="text-sm text-primary-foreground/70 leading-relaxed"
             >
@@ -115,31 +106,6 @@ export function PartnerCard({
           </div>
         </div>
       </div>
-
-      {/* Learn More Button */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        className="mt-4"
-      >
-        <Link
-          className="hover:cursor-pointer w-full px-6 py-2.5 text-sm font-medium text-primary-foreground border border-primary-foreground/30 rounded-lg hover:border-primary-foreground/60 hover:bg-primary-foreground/5 transition-all duration-300 inline-flex items-center justify-center gap-2 group"
-          href={`/${locale}/partners/${slug}`}
-        >
-          {t(translations.learnMoreAboutProject)}
-          <motion.span
-            animate={isHovered ? { x: 3 } : { x: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <ArrowRightIcon
-              stroke="2"
-              className="stroke-primary-foreground"
-              size={16}
-            />
-          </motion.span>
-        </Link>
-      </motion.div>
     </motion.div>
   );
 }

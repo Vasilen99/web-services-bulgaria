@@ -54,23 +54,22 @@ export default function Technologies() {
   const { t } = useLanguage();
 
   return (
-    <div className="relative w-full overflow-hidden bg-foreground">
-      <div className="relative flex items-center justify-center py-12 px-4">
-        <div className="grid lg:grid-cols-3 grid-cols-1 lg:grid-rows-2 grid-rows-1 gap-6">
-          {ICONS_CONFIG.map((config) => {
-            const IconComponent = config.icon;
-            return (
-              <TechCard
-                key={config.name}
-                icon={IconComponent}
-                name={config.name}
-                description={t(config.description)}
-                slug={config.slug}
-              />
-            );
-          })}
-        </div>
+    <section id="technologies" className="py-12 px-4 bg-foreground">
+      <h2 className="text-primary-foreground text-center mb-14">{t(translations.technologies)}</h2>
+      <div className="grid lg:grid-cols-3 grid-cols-1 lg:grid-rows-2 grid-rows-1 gap-6">
+        {ICONS_CONFIG.map((config) => {
+          const IconComponent = config.icon;
+          return (
+            <TechCard
+              key={config.name}
+              icon={IconComponent}
+              name={config.name}
+              description={t(config.description)}
+              slug={config.slug}
+            />
+          );
+        })}
       </div>
-    </div>
+    </section>
   );
 }

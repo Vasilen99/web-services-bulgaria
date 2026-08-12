@@ -21,11 +21,10 @@ import { useLanguage } from "@/lib/language-context";
 import { translations } from "@/lib/translations";
 import { contactUsLinks, technologiesMainLink } from "@/utility/links";
 import { GlassCard } from "react-glass-ui";
-import { LiquidButton } from "@/components/animate-ui/components/buttons/liquid";
 import Image from "next/image";
 const NAVIGATION_DATA = [
-  { name: "services", href: "#services" },
-  { name: "projects", href: "#work" },
+  // { name: "services", href: "#services" },
+  // { name: "projects", href: "#work" },
   { name: "technologies", href: technologiesMainLink },
   { name: "contact", href: contactUsLinks },
 ] as const;
@@ -75,12 +74,12 @@ export default function Header() {
             {NAVIGATION_DATA.map((item) => (
               <FlipButton variant="link" key={item.name}>
                 <FlipButtonFront>
-                  <Link className="text-primary text-base" href={item.href}>
+                  <Link className="text-primary text-base" href={`/${locale}${item.href}`}>
                     {t(translations[item.name])}
                   </Link>
                 </FlipButtonFront>
                 <FlipButtonBack>
-                  <Link className="text-primary text-base" href={item.href}>
+                  <Link className="text-primary text-base" href={`/${locale}${item.href}`}>
                     {t(translations[item.name])}
                   </Link>
                 </FlipButtonBack>
@@ -100,9 +99,6 @@ export default function Header() {
                   {t(translations.letsStart)}
                 </FlipButtonBack>
               </FlipButton> */}
-            <LiquidButton variant={"ghost"}>
-              {t(translations.letsStart)}
-            </LiquidButton>
             <DropdownMenu open={isMenuOpen} onOpenChange={setIsMenuOpen}>
               <DropdownMenuTrigger asChild>
                 <Button className="bg-white/10 hover:bg-white/20 rounded-lg lg:hidden flex border border-white/30 size-10 p-0 overflow-hidden transition-all duration-300 backdrop-blur-md">
