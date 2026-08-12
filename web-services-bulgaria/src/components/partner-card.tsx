@@ -25,7 +25,7 @@ export function PartnerCard({
   type = "image",
 }: PartnerCardProps) {
   const [isHovered, setIsHovered] = useState(false);
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -75,9 +75,9 @@ export function PartnerCard({
               <Image
                 src={logo}
                 alt={name}
-                width={80}
-                height={80}
-                className="object-contain"
+                width={100}
+                height={100}
+                className="object-contain w-auto h-auto"
               />
             ) : LogoComponent ? (
               <LogoComponent />
@@ -123,24 +123,21 @@ export function PartnerCard({
         transition={{ duration: 0.6, delay: 0.2 }}
         className="mt-4"
       >
-        <Link href={`/partners/${slug}`}>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="w-full px-6 py-2.5 text-sm font-medium text-primary-foreground border border-primary-foreground/30 rounded-lg hover:border-primary-foreground/60 hover:bg-primary-foreground/5 transition-all duration-300 inline-flex items-center justify-center gap-2 group"
+        <Link
+          className="hover:cursor-pointer w-full px-6 py-2.5 text-sm font-medium text-primary-foreground border border-primary-foreground/30 rounded-lg hover:border-primary-foreground/60 hover:bg-primary-foreground/5 transition-all duration-300 inline-flex items-center justify-center gap-2 group"
+          href={`/${locale}/partners/${slug}`}
+        >
+          {t(translations.learnMoreAboutProject)}
+          <motion.span
+            animate={isHovered ? { x: 3 } : { x: 0 }}
+            transition={{ duration: 0.3 }}
           >
-            {t(translations.learnMore)}
-            <motion.span
-              animate={isHovered ? { x: 3 } : { x: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <ArrowRightIcon
-                stroke="2"
-                className="stroke-primary-foreground"
-                size={16}
-              />
-            </motion.span>
-          </motion.button>
+            <ArrowRightIcon
+              stroke="2"
+              className="stroke-primary-foreground"
+              size={16}
+            />
+          </motion.span>
         </Link>
       </motion.div>
     </motion.div>

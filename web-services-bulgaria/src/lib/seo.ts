@@ -57,13 +57,3 @@ export function createMetadata(
     },
   };
 }
-
-/**
- * Generates static parameters for all locales
- * Use this in your page.tsx files with generateStaticParams()
- */
-export function generateLocaleStaticParams() {
-  return ["bg", "en"].map((locale) => ({
-    locale,
-  }));
-}

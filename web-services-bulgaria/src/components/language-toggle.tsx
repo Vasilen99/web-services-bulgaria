@@ -19,10 +19,13 @@ export function LanguageToggle() {
 
   const toggleLanguage = () => {
     const newLanguage = language === "bg" ? "en" : "bg";
-    
+
     // Replace the current locale in the pathname with the new one
-    const newPathname = pathname.replace(`/${currentLocale}`, `/${newLanguage}`);
-    
+    const newPathname = pathname.replace(
+      `/${currentLocale}`,
+      `/${newLanguage}`,
+    );
+
     // Navigate to the new locale
     router.push(newPathname || `/${newLanguage}`);
   };
@@ -45,4 +48,3 @@ export function LanguageToggle() {
     </Button>
   );
 }
-

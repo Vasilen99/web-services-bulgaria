@@ -20,6 +20,13 @@ const PARTNERS_LIST = [
     slug: "servify",
     type: "component" as const,
   },
+  {
+    name: PARTNERS_DATA.mmbuilding.name,
+    shortDescription: PARTNERS_DATA.mmbuilding.shortDescription,
+    logo: PARTNERS_DATA.mmbuilding.logo,
+    slug: "mmbuilding",
+    type: "image" as const,
+  },
 ];
 
 export default function PartnersGallery() {

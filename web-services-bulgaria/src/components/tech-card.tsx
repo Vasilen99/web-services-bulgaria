@@ -22,9 +22,8 @@ export const TechCard: React.FC<TechCardProps> = ({
   const [isHovered, setIsHovered] = React.useState(false);
   const [isTapped, setIsTapped] = React.useState(false);
   const isTouchable = useIsTouchable();
-  const { t } = useLanguage();
-
-  const commonClassName = "w-8 h-8 fill-primary";
+  const { t, locale } = useLanguage();
+  const commonClassName = "w-8 h-8 fill-primary-foreground";
 
   // Desktop: show on hover
   // Mobile: show only after tap
@@ -42,13 +41,13 @@ export const TechCard: React.FC<TechCardProps> = ({
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
       onClick={handleCardClick}
-      className="relative h-full overflow-hidden rounded-xl border border-primary/20 bg-linear-to-br from-primary/5 to-primary/10 cursor-pointer group"
-      whileHover={!isTouchable ? { borderColor: "var(--primary)" } : {}}
+      className="relative h-full overflow-hidden rounded-xl border border-primary-foreground/20 bg-linear-to-br from-primary-foreground/5 to-primary-foreground/10 cursor-pointer group"
+      whileHover={{ borderColor: "var(--primary-foreground)" }}
       transition={{ duration: 0.3 }}
     >
       {/* Animated background gradient */}
       <motion.div
-        className="absolute inset-0 bg-linear-to-br from-primary/10 via-transparent to-primary/5 opacity-0"
+        className="absolute inset-0 bg-linear-to-br from-primary-foreground/10 via-transparent to-primary-foreground/5 opacity-0"
         animate={
           isHovered
             ? {
@@ -63,7 +62,7 @@ export const TechCard: React.FC<TechCardProps> = ({
 
       {/* Floating gradient orb background */}
       <motion.div
-        className="absolute -top-20 -right-20 w-40 h-40 bg-linear-to-br from-primary/20 to-primary/0 rounded-full blur-3xl"
+        className="absolute -top-20 -right-20 w-40 h-40 bg-linear-to-br from-primary-foreground/20 to-primary-foreground/0 rounded-full blur-3xl"
         animate={
           isHovered
             ? {
@@ -116,18 +115,20 @@ export const TechCard: React.FC<TechCardProps> = ({
           >
             <Link
               className="px-4 py-2 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-colors duration-300 inline-block"
-              href={`/technologies/${slug}`}
+              href={`${locale}/technologies/${slug}`}
             >
               {t(translations.learnMore)}
             </Link>
           </motion.div>
         </div>
         {/* Title */}
-        <span className="text-primary font-bold text-lg">{name}</span>
+        <span className="text-primary-foreground font-bold text-lg">
+          {name}
+        </span>
 
         {/* Description with fade-in effect */}
         <motion.p
-          className="text-sm text-foreground/70 leading-relaxed"
+          className="text-sm text-background/70 leading-relaxed"
           initial={{ opacity: 0.7, filter: "blur(2px)" }}
           animate={
             shouldShowDescription
@@ -148,7 +149,7 @@ export const TechCard: React.FC<TechCardProps> = ({
 
       {/* Subtle shine effect on hover */}
       <motion.div
-        className="absolute inset-0 bg-linear-to-r from-transparent via-white to-transparent opacity-0"
+        className="absolute inset-0 bg-linear-to-r from-transparent via-primary-foreground to-transparent opacity-0"
         animate={
           isHovered
             ? {

@@ -116,6 +116,7 @@ export function FlipCard({ data }: FlipCardProps) {
             src={data.image}
             alt={data.name}
             fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 400px"
             className="object-cover object-top"
             priority
           />

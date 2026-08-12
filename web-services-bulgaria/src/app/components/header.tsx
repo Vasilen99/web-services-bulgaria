@@ -19,14 +19,14 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { LanguageToggle } from "@/components/language-toggle";
 import { useLanguage } from "@/lib/language-context";
 import { translations } from "@/lib/translations";
-import { contactUsLinks } from "@/utility/links";
+import { contactUsLinks, technologiesMainLink } from "@/utility/links";
 import { GlassCard } from "react-glass-ui";
 import { LiquidButton } from "@/components/animate-ui/components/buttons/liquid";
-
+import Image from "next/image";
 const NAVIGATION_DATA = [
   { name: "services", href: "#services" },
   { name: "projects", href: "#work" },
-  { name: "about", href: "#about" },
+  { name: "technologies", href: technologiesMainLink },
   { name: "contact", href: contactUsLinks },
 ] as const;
 
@@ -66,9 +66,13 @@ export default function Header() {
           <div className="px-8 flex items-center justify-between gap-4 w-full">
             <div className="flex gap-3 items-center shrink-0 relative z-10">
               <Link className="" href={`/${locale}`}>
-                <span className="text-primary text-2xl font-heading font-semibold">
-                  Web Services Bulgaria
-                </span>
+                <Image
+                  src="/logos/WS-logo-correct.png"
+                  alt="Web Services Bulgaria Logo"
+                  width={50}
+                  height={50}
+                  className="w-auto h-auto"
+                />
               </Link>
             </div>
 

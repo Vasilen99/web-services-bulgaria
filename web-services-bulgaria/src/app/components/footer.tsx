@@ -1,14 +1,8 @@
 "use client";
 import Link from "next/link";
-import {
-  FlipButton,
-  FlipButtonBack,
-  FlipButtonFront,
-} from "@/components/animate-ui/components/buttons/flip";
 import { useLanguage } from "@/lib/language-context";
 import { translations } from "@/lib/translations";
-import { ArrowUp } from "lucide-react";
-import { FacebookIcon, InstagramIcon, LinkedinIcon } from "@/utility/icons";
+import { ArrowUp, Mail } from "lucide-react";
 import { LiquidButton } from "@/components/animate-ui/components/buttons/liquid";
 const NAV_LINKS = [
   { name: "Начало", href: "#hero" },
@@ -20,9 +14,11 @@ const NAV_LINKS = [
 ];
 
 const SOCIAL_LINKS = [
-  { name: "INSTAGRAM", href: "#", icon: <InstagramIcon /> },
-  { name: "FACEBOOK", href: "#", icon: <FacebookIcon /> },
-  { name: "LINKEDIN", href: "#", icon: <LinkedinIcon /> },
+  {
+    icon: <Mail />,
+    href: "mailto:vadlsilenminkov@gmail.com",
+    name: "vadlsilenminkov@gmail.com",
+  },
 ];
 
 export default function Footer() {
@@ -60,6 +56,7 @@ export default function Footer() {
               {NAV_LINKS.map((link) => (
                 <li key={link.name}>
                   <Link
+                    type="email"
                     href={link.href}
                     className="text-primary text-sm hover:text-primary-content transition-colors"
                   >
@@ -73,7 +70,7 @@ export default function Footer() {
           {/* Socials */}
           <div>
             <p className="text-primary-content/40 text-xs uppercase tracking-widest font-medium mb-4">
-              Социални мрежи
+              Контакти
             </p>
             <ul className="space-y-2">
               {SOCIAL_LINKS.map((link) => (

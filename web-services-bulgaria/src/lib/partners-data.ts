@@ -93,6 +93,53 @@ export const PARTNERS_DATA = {
       "Scalable architecture for growth",
     ],
   },
+  mmbuilding: {
+    id: "mmBuilding",
+    name: "MM Building",
+    shortDescription: "Construction and real estate development",
+    description:
+      "MM Building is a leading company in the construction and real estate development sector. They specialize in creating high-quality residential and commercial properties, ensuring sustainable and innovative solutions.",
+    longDescription:
+      "MM Building leverages modern construction techniques and project management practices to deliver exceptional results. The company provides comprehensive services from initial planning and design to construction and final handover. With a focus on quality, safety, and sustainability, MM Building is committed to exceeding client expectations.",
+    website: "https://mmbuilding.bg/",
+    logo: "/logos/mmbuilding-logo.png",
+    whatItDoes: [
+      "Service booking and scheduling",
+      "Provider and customer management",
+      "Real-time service tracking",
+      "Payment integration and processing",
+      "Review and rating system",
+      "Notification and communication system",
+      "Service history and analytics",
+      "Admin dashboard for oversight",
+    ],
+    technologies: ["nextjs", "react", "typescript", "tailwind", "shadcn"],
+    carouselImages: [
+      {
+        src: "/partners/servify-home.png",
+        alt: "Servify Homepage",
+      },
+      {
+        src: "/partners/servify-booking.png",
+        alt: "Servify Booking Interface",
+      },
+      {
+        src: "/partners/servify-dashboard.png",
+        alt: "Servify Dashboard",
+      },
+    ],
+    timeline: {
+      started: "2023",
+      completed: "2024",
+      description: "Full-stack development and deployment",
+    },
+    achievements: [
+      "Seamless booking experience",
+      "Secure payment processing",
+      "High user satisfaction ratings",
+      "Scalable architecture for growth",
+    ],
+  },
 };
 
 export type PartnerId = keyof typeof PARTNERS_DATA;

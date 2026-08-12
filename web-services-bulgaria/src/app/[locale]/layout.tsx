@@ -19,12 +19,6 @@ type Props = {
   }>;
 };
 
-export async function generateStaticParams() {
-  return locales.map((locale) => ({
-    locale,
-  }));
-}
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
 
@@ -58,7 +52,10 @@ export default async function RootLayout({ children, params }: Props) {
       className={cn("h-full", "font-sans", geist.variable)}
       suppressHydrationWarning
     >
-      <body className="min-h-screen max-w-480 m-auto! flex flex-col overflow-x-hidden">
+      <body
+        className="min-h-screen max-w-480 m-auto! flex flex-col overflow-x-hidden"
+        suppressHydrationWarning
+      >
         <LanguageProvider initialLocale={locale as Locale}>
           <Header />
           {children}

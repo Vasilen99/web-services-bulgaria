@@ -12,7 +12,7 @@ import type { Locale } from "@/i18n/config";
 interface LanguageContextType {
   locale: Locale;
   setLocale: (locale: Locale) => void;
-  t: (translations: { bg: string; en: string }) => string;
+  t: (translations: { bg: string; en: string } | undefined) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(
@@ -44,18 +44,23 @@ export function LanguageProvider({
   };
 
   // Translation helper function
-  const t = (translations: { bg: string; en: string }) => {
+  const t = (translations: { bg: string; en: string } | undefined) => {
+    if (!translations) return "";
     return translations[locale] || translations.bg;
   };
 
   if (!mounted) {
     // Return with default language during SSR
+    const defaultLocale = initialLocale || "bg";
     return (
       <LanguageContext.Provider
         value={{
-          locale: initialLocale,
+          locale: defaultLocale as Locale,
           setLocale: () => {},
-          t: (translations) => translations[initialLocale] || translations.bg,
+          t: (translations) => {
+            if (!translations) return "";
+            return translations[defaultLocale] || translations.bg;
+          },
         }}
       >
         {children}

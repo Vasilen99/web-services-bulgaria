@@ -1,8 +1,9 @@
 export const translations = {
   // Navigation
+  about: { bg: "За нас", en: "About" },
   services: { bg: "Услуги", en: "Services" },
   projects: { bg: "Проекти", en: "Projects" },
-  about: { bg: "За нас", en: "About Us" },
+  technologies: { bg: "Технологии", en: "Technologies" },
   contact: { bg: "Контакти", en: "Contact" },
 
   // Header
@@ -27,6 +28,14 @@ export const translations = {
 
   // Common
   learnMore: { bg: "Научете повече", en: "Learn More" },
+  learnMoreAboutProject: {
+    bg: "Научете повече за проекта",
+    en: "Learn more about the Project",
+  },
+  learnMoreAbout: {
+    bg: "Научете повече за",
+    en: "Learn more about",
+  },
   readMore: { bg: "Прочетете повече", en: "Read More" },
   viewAll: { bg: "Виж всички", en: "View All" },
   getStarted: { bg: "Започнете", en: "Get Started" },

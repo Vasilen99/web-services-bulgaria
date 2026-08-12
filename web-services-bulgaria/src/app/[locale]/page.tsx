@@ -5,20 +5,13 @@ import { createMetadata } from "@/lib/seo";
 import HeroSection from "@/page-components/hero-section";
 import PartnersGallery from "@/page-components/partners-gallery";
 import Team from "@/page-components/team";
-import Technologies from "@/page-components/technologies";
+import TechnologiesLanding from "@/page-components/technologies-landing";
 import FAQSection from "@/page-components/faq-section";
-
 type Props = {
   params: Promise<{
     locale: string;
   }>;
 };
-
-export async function generateStaticParams() {
-  return locales.map((locale) => ({
-    locale,
-  }));
-}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
@@ -50,7 +43,7 @@ export default async function Home({ params }: Props) {
   return (
     <main className="bg-background">
       <HeroSection />
-      <Technologies />
+      <TechnologiesLanding />
       <PartnersGallery />
       <Team />
       <FAQSection />

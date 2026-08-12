@@ -54,7 +54,7 @@ export default function Technologies() {
   const { t } = useLanguage();
 
   return (
-    <div className="relative w-full overflow-hidden">
+    <div className="relative w-full overflow-hidden bg-foreground">
       <div className="relative flex items-center justify-center py-12 px-4">
         <div className="grid lg:grid-cols-3 grid-cols-1 lg:grid-rows-2 grid-rows-1 gap-6">
           {ICONS_CONFIG.map((config) => {
