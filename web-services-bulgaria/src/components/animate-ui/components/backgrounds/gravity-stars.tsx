@@ -284,17 +284,17 @@ function GravityStarsBackground({
     [dpr, glowIntensity, readColor],
   );
 
-  const animate = React.useCallback(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-    updateStars();
-    drawStars(ctx);
-    animRef.current = requestAnimationFrame(animate);
-  }, [updateStars, drawStars]);
-
   React.useEffect(() => {
+    const animate = () => {
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+      updateStars();
+      drawStars(ctx);
+      animRef.current = requestAnimationFrame(animate);
+    };
+
     resizeCanvas();
     const container = containerRef.current;
     const ro =
@@ -304,44 +304,18 @@ function GravityStarsBackground({
     if (container && ro) ro.observe(container);
     const onResize = () => resizeCanvas();
     window.addEventListener('resize', onResize);
+    
+    // Start animation
+    if (animRef.current) cancelAnimationFrame(animRef.current);
+    animRef.current = requestAnimationFrame(animate);
+    
     return () => {
       window.removeEventListener('resize', onResize);
       if (ro && container) ro.disconnect();
-    };
-  }, [resizeCanvas]);
-
-  React.useEffect(() => {
-    if (starsRef.current.length === 0) {
-      initStars(canvasSize.width, canvasSize.height);
-    } else {
-      starsRef.current.forEach((p) => {
-        p.baseOpacity = starsOpacity;
-        p.opacity = starsOpacity;
-        const spd = Math.hypot(p.vx, p.vy);
-        if (spd > 0) {
-          const ratio = movementSpeed / spd;
-          p.vx *= ratio;
-          p.vy *= ratio;
-        }
-      });
-    }
-  }, [
-    starsCount,
-    starsOpacity,
-    movementSpeed,
-    canvasSize.width,
-    canvasSize.height,
-    initStars,
-  ]);
-
-  React.useEffect(() => {
-    if (animRef.current) cancelAnimationFrame(animRef.current);
-    animRef.current = requestAnimationFrame(animate);
-    return () => {
       if (animRef.current) cancelAnimationFrame(animRef.current);
       animRef.current = null;
     };
-  }, [animate]);
+  }, [resizeCanvas, updateStars, drawStars]);
 
   return (
     <div

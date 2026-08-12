@@ -139,17 +139,18 @@ function DropdownMenuSubTrigger({
   ...props
 }: DropdownMenuSubTriggerProps) {
   const { setHighlightedValue } = useDropdownMenu();
-  const [, highlightedRef] = useDataState<HTMLDivElement>(
+  const [highlightedValue, highlightedRef] = useDataState<HTMLDivElement>(
     "highlighted",
     undefined,
-    (value) => {
-      if (value === true) {
-        const el = highlightedRef.current;
-        const v = el?.dataset.value || el?.id || null;
-        if (v) setHighlightedValue(v);
-      }
-    },
   );
+
+  React.useEffect(() => {
+    if (highlightedValue === true) {
+      const el = highlightedRef.current;
+      const v = el?.dataset.value || el?.id || null;
+      if (v) setHighlightedValue(v);
+    }
+  }, [highlightedValue, highlightedRef, setHighlightedValue]);
 
   return (
     <DropdownMenuPrimitive.SubTrigger
@@ -354,17 +355,18 @@ function DropdownMenuItem({
   ...props
 }: DropdownMenuItemProps) {
   const { setHighlightedValue } = useDropdownMenu();
-  const [, highlightedRef] = useDataState<HTMLDivElement>(
+  const [highlightedValue, highlightedRef] = useDataState<HTMLDivElement>(
     "highlighted",
     undefined,
-    (value) => {
-      if (value === true) {
-        const el = highlightedRef.current;
-        const v = el?.dataset.value || el?.id || null;
-        if (v) setHighlightedValue(v);
-      }
-    },
   );
+
+  React.useEffect(() => {
+    if (highlightedValue === true) {
+      const el = highlightedRef.current;
+      const v = el?.dataset.value || el?.id || null;
+      if (v) setHighlightedValue(v);
+    }
+  }, [highlightedValue, highlightedRef, setHighlightedValue]);
 
   return (
     <DropdownMenuPrimitive.Item
@@ -398,17 +400,18 @@ function DropdownMenuCheckboxItem({
   ...props
 }: DropdownMenuCheckboxItemProps) {
   const { setHighlightedValue } = useDropdownMenu();
-  const [, highlightedRef] = useDataState<HTMLDivElement>(
+  const [highlightedValue, highlightedRef] = useDataState<HTMLDivElement>(
     "highlighted",
     undefined,
-    (value) => {
-      if (value === true) {
-        const el = highlightedRef.current;
-        const v = el?.dataset.value || el?.id || null;
-        if (v) setHighlightedValue(v);
-      }
-    },
   );
+
+  React.useEffect(() => {
+    if (highlightedValue === true) {
+      const el = highlightedRef.current;
+      const v = el?.dataset.value || el?.id || null;
+      if (v) setHighlightedValue(v);
+    }
+  }, [highlightedValue, highlightedRef, setHighlightedValue]);
 
   return (
     <DropdownMenuPrimitive.CheckboxItem
@@ -443,17 +446,18 @@ function DropdownMenuRadioItem({
   ...props
 }: DropdownMenuRadioItemProps) {
   const { setHighlightedValue } = useDropdownMenu();
-  const [, highlightedRef] = useDataState<HTMLDivElement>(
+  const [highlightedValue, highlightedRef] = useDataState<HTMLDivElement>(
     "highlighted",
     undefined,
-    (value) => {
-      if (value === true) {
-        const el = highlightedRef.current;
-        const v = el?.dataset.value || el?.id || null;
-        if (v) setHighlightedValue(v);
-      }
-    },
   );
+
+  React.useEffect(() => {
+    if (highlightedValue === true) {
+      const el = highlightedRef.current;
+      const v = el?.dataset.value || el?.id || null;
+      if (v) setHighlightedValue(v);
+    }
+  }, [highlightedValue, highlightedRef, setHighlightedValue]);
 
   return (
     <DropdownMenuPrimitive.RadioItem

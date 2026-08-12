@@ -4,25 +4,35 @@ import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/animate-ui/components/buttons/button";
 
 export function ThemeToggle() {
-  const [mounted, setMounted] = useState(false);
-  const [isDark, setIsDark] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
+  const [isDark, setIsDark] = useState(() => {
     // Check initial theme from localStorage or system preference
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme) {
       const isDarkTheme = savedTheme === "dark";
-      setIsDark(isDarkTheme);
       document.documentElement.classList.toggle("dark", isDarkTheme);
-    } else {
-      // Check system preference
-      const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)",
-      ).matches;
-      setIsDark(prefersDark);
-      document.documentElement.classList.toggle("dark", prefersDark);
+      return isDarkTheme;
     }
+    // Check system preference
+    const prefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)",
+    ).matches;
+    document.documentElement.classList.toggle("dark", prefersDark);
+    return prefersDark;
+  });
+
+  useEffect(() => {
+    // Listen for storage changes from other tabs/windows
+    const handleStorageChange = () => {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme) {
+        const isDarkTheme = savedTheme === "dark";
+        setIsDark(isDarkTheme);
+        document.documentElement.classList.toggle("dark", isDarkTheme);
+      }
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
 
   const toggleTheme = () => {
@@ -35,8 +45,6 @@ export function ThemeToggle() {
     // Apply theme
     document.documentElement.classList.toggle("dark", newIsDark);
   };
-
-  if (!mounted) return null;
 
   return (
     <Button

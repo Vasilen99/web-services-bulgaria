@@ -10,6 +10,9 @@ import {
   CarouselPrevious,
   CarouselNext,
 } from "@/components/ui/carousel";
+import type { UseEmblaCarouselType } from "embla-carousel-react";
+
+type CarouselApi = UseEmblaCarouselType[1];
 
 interface CarouselImage {
   src: string;
@@ -21,11 +24,13 @@ interface PartnerCarouselProps {
   partnerName: string;
 }
 
-export function PartnerCarousel({ images, partnerName }: PartnerCarouselProps) {
-  const plugin = React.useRef(
-    Autoplay({ delay: 5000, stopOnInteraction: true }),
+export function PartnerCarousel({ images }: PartnerCarouselProps) {
+  const plugin = React.useMemo(
+    () => Autoplay({ delay: 5000, stopOnInteraction: true }),
+    [],
   );
-  const [api, setApi] = React.useState<any>(null);
+  // setApi is passed to Carousel but api value itself is not used
+  const [, setApi] = React.useState<CarouselApi | undefined>(undefined);
 
   return (
     <Carousel
@@ -33,7 +38,7 @@ export function PartnerCarousel({ images, partnerName }: PartnerCarouselProps) {
         align: "start",
         loop: true,
       }}
-      plugins={[plugin.current]}
+      plugins={[plugin]}
       setApi={setApi}
       className="w-full"
     >

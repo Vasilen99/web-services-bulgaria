@@ -11,7 +11,7 @@ interface PartnerCardProps {
   name: string;
   shortDescription: string;
   logo?: string;
-  logoComponent?: React.ComponentType<any>;
+  logoComponent?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   slug: string;
   type?: "image" | "component";
 }

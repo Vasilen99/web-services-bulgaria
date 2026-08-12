@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { GlassCard } from "react-glass-ui";
-import { useEffect, useState } from "react";
 
 interface GalleryCardProps {
   type: "image" | "component";
@@ -20,16 +19,6 @@ export function GalleryCard({
   component: Component,
   href,
 }: GalleryCardProps) {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) {
-    return <div className="w-100 h-85" />;
-  }
-
   const content = (
     <div className="max-w-100 max-h-85 flex items-center justify-center">
       <GlassCard

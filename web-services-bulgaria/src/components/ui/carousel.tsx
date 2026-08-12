@@ -108,14 +108,17 @@ const Carousel = React.forwardRef<
         return;
       }
 
-      onSelect(api);
+      // Set initial state
+      setTimeout(() => onSelect(api), 0);
+      
       api.on("reInit", onSelect);
       api.on("select", onSelect);
 
       return () => {
         api?.off("select", onSelect);
+        api?.off("reInit", onSelect);
       };
-    }, [api, onSelect]);
+    }, [api, onSelect, setApi]);
 
     return (
       <CarouselContext.Provider

@@ -3,6 +3,11 @@ import { useEffect, useRef, useState } from "react";
 import createGlobe from "cobe";
 import { useIsTouchable } from "@/hooks/use-is-touchable";
 
+interface GlobeInstance {
+  destroy: () => void;
+  update: (config: Record<string, unknown>) => void;
+}
+
 const getGlobeConfig = (isDark: boolean) => {
   if (isDark) {
     return {
@@ -30,7 +35,7 @@ const getGlobeConfig = (isDark: boolean) => {
 export function Globe() {
   const [isDarkTheme, setIsDarkTheme] = useState(true);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const globeRef = useRef<any>(null);
+  const globeRef = useRef<GlobeInstance | null>(null);
   const animationIdRef = useRef<number | undefined>(undefined);
   const isMobile = useIsTouchable(1024);
   // Detect theme changes
@@ -95,7 +100,7 @@ export function Globe() {
         cancelAnimationFrame(animationIdRef.current);
       }
     };
-  }, [isDarkTheme]);
+  }, [isDarkTheme, isMobile]);
 
   return (
     <div className="relative flex items-center justify-center">

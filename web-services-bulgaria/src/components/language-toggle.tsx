@@ -1,21 +1,14 @@
 "use client";
-import { useEffect, useState } from "react";
-import { Languages } from "lucide-react";
 import { Button } from "@/components/animate-ui/components/buttons/button";
 import { useParams, usePathname, useRouter } from "next/navigation";
 
 export function LanguageToggle() {
-  const [mounted, setMounted] = useState(false);
-  const [language, setLanguage] = useState<"bg" | "en">("bg");
   const router = useRouter();
   const pathname = usePathname();
   const params = useParams();
   const currentLocale = (params.locale as string) || "bg";
-
-  useEffect(() => {
-    setMounted(true);
-    setLanguage(currentLocale as "bg" | "en");
-  }, [currentLocale]);
+  
+  const language = (currentLocale as "bg" | "en") || "bg";
 
   const toggleLanguage = () => {
     const newLanguage = language === "bg" ? "en" : "bg";
@@ -29,8 +22,6 @@ export function LanguageToggle() {
     // Navigate to the new locale
     router.push(newPathname || `/${newLanguage}`);
   };
-
-  if (!mounted) return null;
 
   return (
     <Button

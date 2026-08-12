@@ -5,22 +5,17 @@ import { useEffect, useState } from "react";
 type Theme = "light" | "dark";
 
 export function useTheme() {
-  const [theme, setTheme] = useState<Theme>("light");
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-
-    // Check initial theme from localStorage or DOM
+  const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof window === "undefined") return "light";
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme) {
-      const isDarkTheme = savedTheme === "dark";
-      setTheme(isDarkTheme ? "dark" : "light");
-    } else {
-      const isDark = document.documentElement.classList.contains("dark");
-      setTheme(isDark ? "dark" : "light");
+      return savedTheme === "dark" ? "dark" : "light";
     }
+    const isDark = document.documentElement.classList.contains("dark");
+    return isDark ? "dark" : "light";
+  });
 
+  useEffect(() => {
     // Listen for localStorage changes
     const handleStorageChange = (e: StorageEvent) => {
       if (e.key === "theme") {
@@ -51,5 +46,5 @@ export function useTheme() {
     };
   }, []);
 
-  return { theme, mounted };
+  return { theme };
 }

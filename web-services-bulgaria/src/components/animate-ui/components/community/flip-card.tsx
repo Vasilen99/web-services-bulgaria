@@ -24,11 +24,6 @@ interface FlipCardProps {
 
 export function FlipCard({ data }: FlipCardProps) {
   const [isFlipped, setIsFlipped] = React.useState(false);
-  const [isMounted, setIsMounted] = React.useState(false);
-
-  React.useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   const isTouchDevice =
     typeof window !== "undefined" && "ontouchstart" in window;
@@ -76,39 +71,37 @@ export function FlipCard({ data }: FlipCardProps) {
             borderBottomRightRadius: "0px",
           }}
         >
-          {isMounted && (
-            <GlassCard
-              blur={3}
-              distortion={2}
-              borderSize={0}
-              borderOpacity={0.1}
-              backgroundOpacity={0.1}
-              innerLightSpread={3}
-              innerLightBlur={20}
-              innerLightOpacity={0.4}
-              outerLightSpread={4}
-              outerLightBlur={10}
-              outerLightOpacity={0.9}
-              chromaticAberration={22.3}
-              onHoverScale={0.85}
-              saturation={46}
-              brightness={1}
-              backgroundColor="var(--primary-foreground)"
-              innerLightColor="var(--primary-foreground)"
-              className="w-full"
-            >
-              <div className="flex items-center justify-between gap-14 w-full px-2 py-3">
-                <h4 className="text-primary-foreground text-start">
-                  {data.name}
-                </h4>
-                {data.title && (
-                  <p className="text-xs text-end uppercase text-primary-foreground font-bold">
-                    {data.title}
-                  </p>
-                )}
-              </div>
-            </GlassCard>
-          )}
+          <GlassCard
+            blur={3}
+            distortion={2}
+            borderSize={0}
+            borderOpacity={0.1}
+            backgroundOpacity={0.1}
+            innerLightSpread={3}
+            innerLightBlur={20}
+            innerLightOpacity={0.4}
+            outerLightSpread={4}
+            outerLightBlur={10}
+            outerLightOpacity={0.9}
+            chromaticAberration={22.3}
+            onHoverScale={0.85}
+            saturation={46}
+            brightness={1}
+            backgroundColor="var(--primary-foreground)"
+            innerLightColor="var(--primary-foreground)"
+            className="w-full"
+          >
+            <div className="flex items-center justify-between gap-14 w-full px-2 py-3">
+              <h4 className="text-primary-foreground text-start">
+                {data.name}
+              </h4>
+              {data.title && (
+                <p className="text-xs text-end uppercase text-primary-foreground font-bold">
+                  {data.title}
+                </p>
+              )}
+            </div>
+          </GlassCard>
         </div>
         {/* Image container */}
         <div className="relative bottom-2 flex-1 w-full rounded-b-4xl overflow-hidden">

@@ -2,7 +2,6 @@
 import {
   createContext,
   useContext,
-  useEffect,
   useState,
   ReactNode,
 } from "react";
@@ -26,17 +25,17 @@ export function LanguageProvider({
   children: ReactNode;
   initialLocale?: Locale;
 }) {
-  const [locale, setLocaleState] = useState<Locale>(initialLocale);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    // Get current locale from pathname
+  // Initialize locale from pathname on client side
+  const [locale, setLocaleState] = useState<Locale>(() => {
+    if (typeof window === "undefined") {
+      return initialLocale || "bg";
+    }
     const pathLocale = window.location.pathname.split("/")[1];
     if (pathLocale === "bg" || pathLocale === "en") {
-      setLocaleState(pathLocale as Locale);
+      return pathLocale as Locale;
     }
-  }, []);
+    return initialLocale || "bg";
+  });
 
   const setLocale = (newLocale: Locale) => {
     setLocaleState(newLocale);
@@ -48,25 +47,6 @@ export function LanguageProvider({
     if (!translations) return "";
     return translations[locale] || translations.bg;
   };
-
-  if (!mounted) {
-    // Return with default language during SSR
-    const defaultLocale = initialLocale || "bg";
-    return (
-      <LanguageContext.Provider
-        value={{
-          locale: defaultLocale as Locale,
-          setLocale: () => {},
-          t: (translations) => {
-            if (!translations) return "";
-            return translations[defaultLocale] || translations.bg;
-          },
-        }}
-      >
-        {children}
-      </LanguageContext.Provider>
-    );
-  }
 
   return (
     <LanguageContext.Provider value={{ locale, setLocale, t }}>

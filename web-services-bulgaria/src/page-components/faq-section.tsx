@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { ChevronDown, Plus } from "lucide-react";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
