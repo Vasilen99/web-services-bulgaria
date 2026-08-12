@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import { DropdownMenu as DropdownMenuPrimitive } from 'radix-ui';
-import { AnimatePresence, motion, type HTMLMotionProps } from 'motion/react';
+import * as React from "react";
+import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
+import { AnimatePresence, motion, type HTMLMotionProps } from "motion/react";
 
 import {
   Highlight,
   HighlightItem,
   type HighlightItemProps,
   type HighlightProps,
-} from '@/components/animate-ui/primitives/effects/highlight';
-import { getStrictContext } from '@/lib/get-strict-context';
-import { useControlledState } from '@/hooks/use-controlled-state';
-import { useDataState } from '@/hooks/use-data-state';
+} from "@/components/animate-ui/primitives/effects/highlight";
+import { getStrictContext } from "@/lib/get-strict-context";
+import { useControlledState } from "@/hooks/use-controlled-state";
+import { useDataState } from "@/hooks/use-data-state";
 
 type DropdownMenuContextType = {
   isOpen: boolean;
@@ -27,10 +27,10 @@ type DropdownMenuSubContextType = {
 };
 
 const [DropdownMenuProvider, useDropdownMenu] =
-  getStrictContext<DropdownMenuContextType>('DropdownMenuContext');
+  getStrictContext<DropdownMenuContextType>("DropdownMenuContext");
 
 const [DropdownMenuSubProvider, useDropdownMenuSub] =
-  getStrictContext<DropdownMenuSubContextType>('DropdownMenuSubContext');
+  getStrictContext<DropdownMenuSubContextType>("DropdownMenuSubContext");
 
 type DropdownMenuProps = React.ComponentProps<
   typeof DropdownMenuPrimitive.Root
@@ -129,9 +129,9 @@ function DropdownMenuRadioGroup(props: DropdownMenuRadioGroupProps) {
 
 type DropdownMenuSubTriggerProps = Omit<
   React.ComponentProps<typeof DropdownMenuPrimitive.SubTrigger>,
-  'asChild'
+  "asChild"
 > &
-  HTMLMotionProps<'div'>;
+  HTMLMotionProps<"div">;
 
 function DropdownMenuSubTrigger({
   disabled,
@@ -140,7 +140,7 @@ function DropdownMenuSubTrigger({
 }: DropdownMenuSubTriggerProps) {
   const { setHighlightedValue } = useDropdownMenu();
   const [, highlightedRef] = useDataState<HTMLDivElement>(
-    'highlighted',
+    "highlighted",
     undefined,
     (value) => {
       if (value === true) {
@@ -152,21 +152,30 @@ function DropdownMenuSubTrigger({
   );
 
   return (
-    <DropdownMenuPrimitive.SubTrigger ref={highlightedRef} disabled={disabled} textValue={textValue} asChild>
-      <motion.div data-slot="dropdown-menu-sub-trigger" data-disabled={disabled} {...props} />
+    <DropdownMenuPrimitive.SubTrigger
+      ref={highlightedRef}
+      disabled={disabled}
+      textValue={textValue}
+      asChild
+    >
+      <motion.div
+        data-slot="dropdown-menu-sub-trigger"
+        data-disabled={disabled}
+        {...props}
+      />
     </DropdownMenuPrimitive.SubTrigger>
   );
 }
 
 type DropdownMenuSubContentProps = Omit<
   React.ComponentProps<typeof DropdownMenuPrimitive.SubContent>,
-  'forceMount' | 'asChild'
+  "forceMount" | "asChild"
 > &
   Omit<
     React.ComponentProps<typeof DropdownMenuPrimitive.Portal>,
-    'forceMount'
+    "forceMount"
   > &
-  HTMLMotionProps<'div'>;
+  HTMLMotionProps<"div">;
 
 function DropdownMenuSubContent({
   loop,
@@ -193,8 +202,33 @@ function DropdownMenuSubContent({
     <AnimatePresence>
       {isOpen && (
         <DropdownMenuPortal forceMount container={container}>
-          <DropdownMenuPrimitive.SubContent forceMount loop={loop} onEscapeKeyDown={onEscapeKeyDown} onPointerDownOutside={onPointerDownOutside} onFocusOutside={onFocusOutside} onInteractOutside={onInteractOutside} sideOffset={sideOffset} alignOffset={alignOffset} avoidCollisions={avoidCollisions} collisionBoundary={collisionBoundary} collisionPadding={collisionPadding} arrowPadding={arrowPadding} sticky={sticky} hideWhenDetached={hideWhenDetached} asChild>
-            <motion.div key="dropdown-menu-sub-content" data-slot="dropdown-menu-sub-content" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} transition={transition} style={{ willChange: 'opacity, transform', ...style }} {...props} />
+          <DropdownMenuPrimitive.SubContent
+            forceMount
+            loop={loop}
+            onEscapeKeyDown={onEscapeKeyDown}
+            onPointerDownOutside={onPointerDownOutside}
+            onFocusOutside={onFocusOutside}
+            onInteractOutside={onInteractOutside}
+            sideOffset={sideOffset}
+            alignOffset={alignOffset}
+            avoidCollisions={avoidCollisions}
+            collisionBoundary={collisionBoundary}
+            collisionPadding={collisionPadding}
+            arrowPadding={arrowPadding}
+            sticky={sticky}
+            hideWhenDetached={hideWhenDetached}
+            asChild
+          >
+            <motion.div
+              key="dropdown-menu-sub-content"
+              data-slot="dropdown-menu-sub-content"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={transition}
+              style={{ willChange: "opacity, transform", ...style }}
+              {...props}
+            />
           </DropdownMenuPrimitive.SubContent>
         </DropdownMenuPortal>
       )}
@@ -204,13 +238,13 @@ function DropdownMenuSubContent({
 
 type DropdownMenuHighlightProps = Omit<
   HighlightProps,
-  'controlledItems' | 'enabled' | 'hover'
+  "controlledItems" | "enabled" | "hover"
 > & {
   animateOnHover?: boolean;
 };
 
 function DropdownMenuHighlight({
-  transition = { type: 'spring', stiffness: 350, damping: 35 },
+  transition = { type: "spring", stiffness: 350, damping: 35 },
   ...props
 }: DropdownMenuHighlightProps) {
   const { highlightedValue } = useDropdownMenu();
@@ -229,13 +263,13 @@ function DropdownMenuHighlight({
 
 type DropdownMenuContentProps = Omit<
   React.ComponentProps<typeof DropdownMenuPrimitive.Content>,
-  'forceMount' | 'asChild'
+  "forceMount" | "asChild"
 > &
   Omit<
     React.ComponentProps<typeof DropdownMenuPrimitive.Portal>,
-    'forceMount'
+    "forceMount"
   > &
-  HTMLMotionProps<'div'>;
+  HTMLMotionProps<"div">;
 
 function DropdownMenuContent({
   loop,
@@ -265,8 +299,35 @@ function DropdownMenuContent({
     <AnimatePresence>
       {isOpen && (
         <DropdownMenuPortal forceMount container={container}>
-          <DropdownMenuPrimitive.Content loop={loop} onCloseAutoFocus={onCloseAutoFocus} onEscapeKeyDown={onEscapeKeyDown} onPointerDownOutside={onPointerDownOutside} onFocusOutside={onFocusOutside} onInteractOutside={onInteractOutside} side={side} sideOffset={sideOffset} align={align} alignOffset={alignOffset} avoidCollisions={avoidCollisions} collisionBoundary={collisionBoundary} collisionPadding={collisionPadding} arrowPadding={arrowPadding} sticky={sticky} hideWhenDetached={hideWhenDetached} asChild>
-            <motion.div key="dropdown-menu-content" data-slot="dropdown-menu-content" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} transition={transition} style={{ willChange: 'opacity, transform', ...style }} {...props} />
+          <DropdownMenuPrimitive.Content
+            loop={loop}
+            onCloseAutoFocus={onCloseAutoFocus}
+            onEscapeKeyDown={onEscapeKeyDown}
+            onPointerDownOutside={onPointerDownOutside}
+            onFocusOutside={onFocusOutside}
+            onInteractOutside={onInteractOutside}
+            side={side}
+            sideOffset={sideOffset}
+            align={align}
+            alignOffset={alignOffset}
+            avoidCollisions={avoidCollisions}
+            collisionBoundary={collisionBoundary}
+            collisionPadding={collisionPadding}
+            arrowPadding={arrowPadding}
+            sticky={sticky}
+            hideWhenDetached={hideWhenDetached}
+            asChild
+          >
+            <motion.div
+              key="dropdown-menu-content"
+              data-slot="dropdown-menu-content"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={transition}
+              style={{ willChange: "opacity, transform", ...style }}
+              {...props}
+            />
           </DropdownMenuPrimitive.Content>
         </DropdownMenuPortal>
       )}
@@ -282,9 +343,9 @@ function DropdownMenuHighlightItem(props: DropdownMenuHighlightItemProps) {
 
 type DropdownMenuItemProps = Omit<
   React.ComponentProps<typeof DropdownMenuPrimitive.Item>,
-  'asChild'
+  "asChild"
 > &
-  HTMLMotionProps<'div'>;
+  HTMLMotionProps<"div">;
 
 function DropdownMenuItem({
   disabled,
@@ -294,7 +355,7 @@ function DropdownMenuItem({
 }: DropdownMenuItemProps) {
   const { setHighlightedValue } = useDropdownMenu();
   const [, highlightedRef] = useDataState<HTMLDivElement>(
-    'highlighted',
+    "highlighted",
     undefined,
     (value) => {
       if (value === true) {
@@ -306,17 +367,27 @@ function DropdownMenuItem({
   );
 
   return (
-    <DropdownMenuPrimitive.Item ref={highlightedRef} disabled={disabled} onSelect={onSelect} textValue={textValue} asChild>
-      <motion.div data-slot="dropdown-menu-item" data-disabled={disabled} {...props} />
+    <DropdownMenuPrimitive.Item
+      ref={highlightedRef}
+      disabled={disabled}
+      onSelect={onSelect}
+      textValue={textValue}
+      asChild
+    >
+      <motion.div
+        data-slot="dropdown-menu-item"
+        data-disabled={disabled}
+        {...props}
+      />
     </DropdownMenuPrimitive.Item>
   );
 }
 
 type DropdownMenuCheckboxItemProps = Omit<
   React.ComponentProps<typeof DropdownMenuPrimitive.CheckboxItem>,
-  'asChild'
+  "asChild"
 > &
-  HTMLMotionProps<'div'>;
+  HTMLMotionProps<"div">;
 
 function DropdownMenuCheckboxItem({
   checked,
@@ -328,7 +399,7 @@ function DropdownMenuCheckboxItem({
 }: DropdownMenuCheckboxItemProps) {
   const { setHighlightedValue } = useDropdownMenu();
   const [, highlightedRef] = useDataState<HTMLDivElement>(
-    'highlighted',
+    "highlighted",
     undefined,
     (value) => {
       if (value === true) {
@@ -340,17 +411,29 @@ function DropdownMenuCheckboxItem({
   );
 
   return (
-    <DropdownMenuPrimitive.CheckboxItem ref={highlightedRef} checked={checked} onCheckedChange={onCheckedChange} disabled={disabled} onSelect={onSelect} textValue={textValue} asChild>
-      <motion.div data-slot="dropdown-menu-checkbox-item" data-disabled={disabled} {...props} />
+    <DropdownMenuPrimitive.CheckboxItem
+      ref={highlightedRef}
+      checked={checked}
+      onCheckedChange={onCheckedChange}
+      disabled={disabled}
+      onSelect={onSelect}
+      textValue={textValue}
+      asChild
+    >
+      <motion.div
+        data-slot="dropdown-menu-checkbox-item"
+        data-disabled={disabled}
+        {...props}
+      />
     </DropdownMenuPrimitive.CheckboxItem>
   );
 }
 
 type DropdownMenuRadioItemProps = Omit<
   React.ComponentProps<typeof DropdownMenuPrimitive.RadioItem>,
-  'asChild'
+  "asChild"
 > &
-  HTMLMotionProps<'div'>;
+  HTMLMotionProps<"div">;
 
 function DropdownMenuRadioItem({
   value,
@@ -361,7 +444,7 @@ function DropdownMenuRadioItem({
 }: DropdownMenuRadioItemProps) {
   const { setHighlightedValue } = useDropdownMenu();
   const [, highlightedRef] = useDataState<HTMLDivElement>(
-    'highlighted',
+    "highlighted",
     undefined,
     (value) => {
       if (value === true) {
@@ -373,8 +456,19 @@ function DropdownMenuRadioItem({
   );
 
   return (
-    <DropdownMenuPrimitive.RadioItem ref={highlightedRef} value={value} disabled={disabled} onSelect={onSelect} textValue={textValue} asChild>
-      <motion.div data-slot="dropdown-menu-radio-item" data-disabled={disabled} {...props} />
+    <DropdownMenuPrimitive.RadioItem
+      ref={highlightedRef}
+      value={value}
+      disabled={disabled}
+      onSelect={onSelect}
+      textValue={textValue}
+      asChild
+    >
+      <motion.div
+        data-slot="dropdown-menu-radio-item"
+        data-disabled={disabled}
+        {...props}
+      />
     </DropdownMenuPrimitive.RadioItem>
   );
 }
@@ -402,7 +496,7 @@ function DropdownMenuSeparator(props: DropdownMenuSeparatorProps) {
   );
 }
 
-type DropdownMenuShortcutProps = React.ComponentProps<'span'>;
+type DropdownMenuShortcutProps = React.ComponentProps<"span">;
 
 function DropdownMenuShortcut(props: DropdownMenuShortcutProps) {
   return <span data-slot="dropdown-menu-shortcut" {...props} />;
@@ -410,13 +504,16 @@ function DropdownMenuShortcut(props: DropdownMenuShortcutProps) {
 
 type DropdownMenuItemIndicatorProps = Omit<
   React.ComponentProps<typeof DropdownMenuPrimitive.ItemIndicator>,
-  'asChild'
+  "asChild"
 > &
-  HTMLMotionProps<'div'>;
+  HTMLMotionProps<"div">;
 
 function DropdownMenuItemIndicator(props: DropdownMenuItemIndicatorProps) {
   return (
-    <DropdownMenuPrimitive.ItemIndicator data-slot="dropdown-menu-item-indicator" asChild>
+    <DropdownMenuPrimitive.ItemIndicator
+      data-slot="dropdown-menu-item-indicator"
+      asChild
+    >
       <motion.div {...props} />
     </DropdownMenuPrimitive.ItemIndicator>
   );
