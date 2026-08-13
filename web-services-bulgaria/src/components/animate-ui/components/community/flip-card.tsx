@@ -5,7 +5,7 @@ import * as React from "react";
 import { FacebookIcon, InstagramIcon, LinkedinIcon } from "@/utility/icons";
 import Image from "next/image";
 import Link from "next/link";
-import { GlassCard } from "react-glass-ui";
+import { GlassCardWrapper as GlassCard } from "@/components/glass-card-wrapper";
 export interface FlipCardData {
   name: string;
   title?: string;

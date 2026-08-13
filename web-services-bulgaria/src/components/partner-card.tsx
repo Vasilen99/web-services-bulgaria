@@ -8,6 +8,7 @@ interface PartnerCardProps {
   logoComponent?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   slug: string;
   type?: "image" | "component";
+  className?: string;
 }
 
 export function PartnerCard({
@@ -16,6 +17,7 @@ export function PartnerCard({
   logo,
   logoComponent: LogoComponent,
   type = "image",
+  className,
 }: PartnerCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   return (
@@ -29,15 +31,8 @@ export function PartnerCard({
       <div
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className="relative flex-1 bg-primary border border-primary-content/10 rounded-2xl p-6 overflow-hidden group transition-all duration-300"
+        className={`relative flex-1 bg-primary-foreground border border-primary rounded-2xl p-6 overflow-hidden group transition-all duration-300`}
       >
-        {/* Animated background gradient */}
-        <motion.div
-          animate={isHovered ? { opacity: 0.1 } : { opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          className="absolute inset-0 from-primary-foreground via-transparent to-primary-foreground pointer-events-none"
-        />
-
         {/* Pulsing dots animation - top right */}
         <motion.div
           animate={
@@ -46,14 +41,14 @@ export function PartnerCard({
               : { scale: 1, opacity: 0.3 }
           }
           transition={{ duration: 0.3 }}
-          className="absolute top-4 right-4 w-2 h-2 bg-primary-foreground rounded-full"
+          className="absolute top-4 right-4 w-2 h-2 bg-primary rounded-full"
         />
 
         {/* Border animation effect */}
         <motion.div
           animate={isHovered ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="absolute inset-0 rounded-2xl border-2 border-primary-foreground/60"
+          className="absolute inset-0 rounded-2xl border-2 border-secondary"
         />
 
         <div className="relative z-10 flex flex-col gap-4 h-full">
@@ -72,16 +67,9 @@ export function PartnerCard({
                 className="object-contain w-auto h-auto"
               />
             ) : LogoComponent ? (
-              <LogoComponent />
+              <LogoComponent className={className} />
             ) : null}
           </motion.div>
-
-          {/* Divider Line */}
-          <motion.div
-            animate={isHovered ? { scaleX: 1 } : { scaleX: 0.6 }}
-            transition={{ duration: 0.3 }}
-            className="h-0.5 from-transparent via-primary-foreground to-transparent origin-left"
-          />
 
           {/* Content Section */}
           <div className="flex-1 flex flex-col gap-3">
@@ -90,7 +78,7 @@ export function PartnerCard({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.4 }}
-              className="text-lg font-semibold text-primary-foreground"
+              className="text-lg font-semibold text-primary"
             >
               {name}
             </motion.h3>
@@ -99,7 +87,7 @@ export function PartnerCard({
             <motion.p
               initial={{ opacity: 1 }}
               transition={{ duration: 0.3, delay: 0.1 }}
-              className="text-sm text-primary-foreground/70 leading-relaxed"
+              className="text-sm text-primary leading-relaxed"
             >
               {shortDescription}
             </motion.p>

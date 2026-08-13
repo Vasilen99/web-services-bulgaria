@@ -46,7 +46,20 @@ export const translations = {
     bg: "Превключи на светъл режим",
     en: "Switch to light mode",
   },
-
+  // Team Landing
+  teamHeading: {
+    bg: "Екип",
+    en: "Team",
+  },
+  teamSubheading: {
+    bg: "Защото хората имат значение",
+    en: "Because people matter",
+  },
+  // Technologies
+  technologiesSubtitle: {
+    bg: "Модерен технологичен стек. Реални бизнес резултати.",
+    en: "Modern technology stack. Real business results.",
+  },
   // Language
   switchToEnglish: { bg: "Switch to English", en: "Switch to English" },
   switchToBulgarian: {
@@ -58,7 +71,15 @@ export const translations = {
     bg: "Всички права запазени.",
     en: "All rights reserved.",
   },
-
+  // Partners Landing Page
+  partnersHeading: {
+    bg: "От идея до реален продукт",
+    en: "From idea to real product.",
+  },
+  partnersSubheading: {
+    bg: "Вижте как превръщаме бизнес идеи в функционални, мащабируеми и добре проектирани дигитални решения.",
+    en: "See how we turn business ideas into functional, scalable, and well-designed digital solutions.",
+  },
   // Contact Page
   contactHeadline: {
     bg: "Нека се свържем.",

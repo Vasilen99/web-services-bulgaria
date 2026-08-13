@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { GlassCard } from "react-glass-ui";
+import { GlassCardWrapper as GlassCard } from "@/components/glass-card-wrapper";
 
 interface GalleryCardProps {
   type: "image" | "component";

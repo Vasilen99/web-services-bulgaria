@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import { useLocale, useTranslations } from "next-intl";
 import {
   NextIcon,
   ReactIcon,
@@ -12,8 +13,6 @@ import {
   MUIIcon,
   AnthropicIcon,
 } from "@/utility/icons";
-import { useLanguage } from "@/lib/language-context";
-import { translations } from "@/lib/translations";
 import Link from "next/link";
 import {
   Tilt,
@@ -22,6 +21,7 @@ import {
 import { server } from "@/utility/server";
 import { LiquidButton } from "@/components/animate-ui/components/buttons/liquid";
 import { technologiesMainLink } from "@/utility/links";
+import { useRouter } from "next/navigation";
 interface Technology {
   icon: React.ComponentType<{ className?: string }>;
   name: string;
@@ -255,8 +255,9 @@ const TECHNOLOGIES: Technology[] = [
 ];
 
 export default function MainTechnologies() {
-  const { locale, t } = useLanguage();
-
+  const locale = useLocale();
+  const t = useTranslations();
+  const router = useRouter();
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -333,7 +334,7 @@ export default function MainTechnologies() {
 
                           {/* Main Description - User Friendly */}
                           <p className="text-muted-foreground mb-6 leading-relaxed">
-                            {tech.description[locale]}
+                            {tech.description[locale as "bg" | "en"]}
                           </p>
 
                           {/* Divider */}
@@ -347,17 +348,19 @@ export default function MainTechnologies() {
                                 : "What this means for you"}
                             </h3>
                             <ul className="space-y-3">
-                              {tech.benefits[locale].map((benefit, idx) => (
-                                <li
-                                  key={idx}
-                                  className="flex items-start gap-3 text-sm"
-                                >
-                                  <span className="shrink-0 w-1.5 h-1.5 rounded-full bg-primary mt-2" />
-                                  <span className="text-foreground/80">
-                                    {benefit}
-                                  </span>
-                                </li>
-                              ))}
+                              {tech.benefits[locale as "bg" | "en"].map(
+                                (benefit: string, idx: number) => (
+                                  <li
+                                    key={idx}
+                                    className="flex items-start gap-3 text-sm"
+                                  >
+                                    <span className="shrink-0 w-1.5 h-1.5 rounded-full bg-primary mt-2" />
+                                    <span className="text-foreground/80">
+                                      {benefit}
+                                    </span>
+                                  </li>
+                                ),
+                              )}
                             </ul>
                           </div>
                         </div>
@@ -369,12 +372,14 @@ export default function MainTechnologies() {
                   className="pt-4 border-t border-primary/10"
                   style={{ transformStyle: "flat" }}
                 >
-                  <LiquidButton onClick={() => console.log("clicked")}>
-                    <Link
-                      href={`${server}/${locale}/${technologiesMainLink}/${tech.slug}`}
-                    >
-                      {t(translations.learnMore)} {tech.name}
-                    </Link>
+                  <LiquidButton
+                    onClick={() =>
+                      router.push(
+                        `${server}/${locale}/${technologiesMainLink}/${tech.slug}`,
+                      )
+                    }
+                  >
+                    {t("learnMore")} {tech.name}
                   </LiquidButton>
                 </div>
               </div>

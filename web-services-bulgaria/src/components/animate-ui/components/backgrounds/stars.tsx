@@ -19,11 +19,17 @@ type StarLayerProps = HTMLMotionProps<"div"> & {
   starColor: string;
 };
 
+// Seeded random number generator for consistent results
+function seededRandom(seed: number) {
+  const x = Math.sin(seed) * 10000;
+  return x - Math.floor(x);
+}
+
 function generateStars(count: number, starColor: string) {
   const shadows: string[] = [];
   for (let i = 0; i < count; i++) {
-    const x = Math.floor(Math.random() * 4000) - 2000;
-    const y = Math.floor(Math.random() * 4000) - 2000;
+    const x = Math.floor(seededRandom(i * 0.1) * 4000) - 2000;
+    const y = Math.floor(seededRandom(i * 0.2 + 42) * 4000) - 2000;
     shadows.push(`${x}px ${y}px ${starColor}`);
   }
   return shadows.join(", ");
@@ -37,6 +43,7 @@ function StarLayer({
   className,
   ...props
 }: StarLayerProps) {
+  // Generate stars once and cache them - consistent between server and client
   const boxShadow = React.useMemo(
     () => generateStars(count, starColor),
     [count, starColor],

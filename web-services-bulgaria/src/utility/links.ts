@@ -1,3 +1,4 @@
 const contactUsLinks = "/contact-us";
 const technologiesMainLink = "/technologies";
-export { contactUsLinks, technologiesMainLink };
+const projectsLink = "/projects";
+export { contactUsLinks, technologiesMainLink, projectsLink };

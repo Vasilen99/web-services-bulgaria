@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import {
   FlipButton,
   FlipButtonBack,
@@ -15,14 +16,12 @@ import {
 import { Button } from "@/components/animate-ui/components/buttons/button";
 import { AlignJustify, X } from "lucide-react";
 import { useState } from "react";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { ThemeTogglerButton } from "@/components/animate-ui/components/buttons/theme-toggler";
 import { LanguageToggle } from "@/components/language-toggle";
-import { useLanguage } from "@/lib/language-context";
-import { translations } from "@/lib/translations";
 import { contactUsLinks, technologiesMainLink } from "@/utility/links";
-import { GlassCard } from "react-glass-ui";
+import { GlassCardWrapper as GlassCard } from "@/components/glass-card-wrapper";
 import Image from "next/image";
-const NAVIGATION_DATA = [
+export const NAVIGATION_DATA = [
   // { name: "services", href: "#services" },
   // { name: "projects", href: "#work" },
   { name: "technologies", href: technologiesMainLink },
@@ -33,7 +32,7 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const params = useParams();
   const locale = params.locale as string;
-  const { t } = useLanguage();
+  const t = useTranslations();
 
   return (
     <header className="absolute top-0 left-0 right-0 w-full px-6 lg:px-12 py-6 max-w-screen z-50">
@@ -74,13 +73,19 @@ export default function Header() {
             {NAVIGATION_DATA.map((item) => (
               <FlipButton variant="link" key={item.name}>
                 <FlipButtonFront>
-                  <Link className="text-primary text-base" href={`/${locale}${item.href}`}>
-                    {t(translations[item.name])}
+                  <Link
+                    className="text-primary text-base"
+                    href={`/${locale}${item.href}`}
+                  >
+                    {t(item.name)}
                   </Link>
                 </FlipButtonFront>
                 <FlipButtonBack>
-                  <Link className="text-primary text-base" href={`/${locale}${item.href}`}>
-                    {t(translations[item.name])}
+                  <Link
+                    className="text-primary text-base"
+                    href={`/${locale}${item.href}`}
+                  >
+                    {t(item.name)}
                   </Link>
                 </FlipButtonBack>
               </FlipButton>
@@ -90,13 +95,18 @@ export default function Header() {
           {/* CTA + Mobile Menu */}
           <div className="lg:flex hidden gap-3">
             <LanguageToggle />
-            <ThemeToggle />
+            <ThemeTogglerButton
+              variant="outline"
+              size="icon"
+              className="bg-primary-foreground/5 hover:bg-primary-foreground/20 rounded-lg border border-primary size-10 p-0 overflow-hidden transition-all duration-300 backdrop-blur-md"
+              title="Toggle theme"
+            />
             {/* <FlipButton className="hidden lg:flex rounded-md border border-white/40 text-sm bg-primary-foreground transition-all">
                 <FlipButtonFront className="bg-transparent text-primary hover:bg-transparent cursor-pointer">
-                  {t(translations.letsStart)}
+                  {t("letsStart")}
                 </FlipButtonFront>
                 <FlipButtonBack className="bg-transparent text-primary hover:bg-transparent cursor-pointer">
-                  {t(translations.letsStart)}
+                  {t("letsStart")}
                 </FlipButtonBack>
               </FlipButton> */}
             <DropdownMenu open={isMenuOpen} onOpenChange={setIsMenuOpen}>
@@ -123,11 +133,16 @@ export default function Header() {
                     className="text-primary-content/80 hover:text-primary-content focus:bg-white/10 transition-colors"
                     onClick={() => (window.location.href = item.href)}
                   >
-                    <span>{t(translations[item.name])}</span>
+                    <span>{t(item.name)}</span>
                   </DropdownMenuItem>
                 ))}
                 <DropdownMenuItem>
-                  <ThemeToggle />
+                  <ThemeTogglerButton
+                    variant="outline"
+                    size="sm"
+                    className="w-full"
+                    modes={["light", "dark"]}
+                  />
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <LanguageToggle />

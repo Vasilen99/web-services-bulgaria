@@ -11,16 +11,6 @@ interface GlobeInstance {
 const getGlobeConfig = (isDark: boolean) => {
   if (isDark) {
     return {
-      dark: 0,
-      diffuse: 2.5,
-      mapSamples: 16000,
-      mapBrightness: 8,
-      baseColor: [1, 1, 1] as [number, number, number],
-      markerColor: [0.2, 0.4, 1] as [number, number, number],
-      glowColor: [0.9, 0.9, 1] as [number, number, number],
-    };
-  } else {
-    return {
       dark: 1,
       diffuse: 2.5,
       mapSamples: 16000,
@@ -28,6 +18,17 @@ const getGlobeConfig = (isDark: boolean) => {
       baseColor: [0.9, 0.9, 0.9] as [number, number, number],
       markerColor: [0.1, 0.8, 2] as [number, number, number],
       glowColor: [0.7, 0.7, 0.7] as [number, number, number],
+    };
+  } else {
+    return {
+      dark: 0,
+      diffuse: 2.5,
+      mapSamples: 16000,
+      mapBrightness: 8,
+
+      baseColor: [1, 1, 1] as [number, number, number],
+      markerColor: [0.2, 0.4, 1] as [number, number, number],
+      glowColor: [0.9, 0.9, 1] as [number, number, number],
     };
   }
 };

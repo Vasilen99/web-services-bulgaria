@@ -1,10 +1,8 @@
 "use client";
 
-import { useParams } from "next/navigation";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "motion/react";
-import { PARTNERS_DATA } from "@/lib/partners-data";
 import { PartnerCarousel } from "@/components/partner-carousel";
 import {
   NextIcon,
@@ -15,7 +13,6 @@ import {
   ZustandIcon,
 } from "@/utility/icons";
 
-// Map technology keys to their display components
 const TECH_ICONS: Record<
   string,
   React.ComponentType<React.SVGProps<SVGSVGElement>>
@@ -37,44 +34,35 @@ const TECH_NAMES: Record<string, string> = {
   zustand: "Zustand",
 };
 
-export default function PartnerPage() {
-  const params = useParams();
-  const slug = params?.slug as string;
-  const partner = PARTNERS_DATA[slug as keyof typeof PARTNERS_DATA];
+interface Partner {
+  id: string;
+  name: string;
+  shortDescription: string;
+  description: string;
+  longDescription: string;
+  website: string;
+  logo: string;
+  whatItDoes: string[];
+  technologies: string[];
+  carouselImages: Array<{
+    src: string;
+    alt: string;
+  }>;
+  timeline: {
+    started: string;
+    completed: string;
+    description: string;
+  };
+  achievements: string[];
+}
 
-  if (!partner) {
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center px-4">
-        <h1 className="text-4xl font-bold mb-4">Partner Not Found</h1>
-        <p className="text-xl mb-8">
-          The partner page you&apos;re looking for doesn&apos;t exist.
-        </p>
-        <Link href="/" className="text-primary hover:underline text-lg">
-          Back to Home
-        </Link>
-      </div>
-    );
-  }
+interface ProjectsPageProps {
+  partner: Partner;
+}
 
+export default function ProjectsPage({ partner }: ProjectsPageProps) {
   return (
     <div className="min-h-screen bg-background mt-28 py-12">
-      {/* Header with Back Link */}
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
-        className="sticky top-0 bg-background/95 backdrop-blur-sm border-b border-foreground/10 z-50"
-      >
-        <div className="max-w-6xl mx-auto px-6 py-4">
-          <Link
-            href="/"
-            className="text-foreground/60 hover:text-foreground transition-colors"
-          >
-            ← Back
-          </Link>
-        </div>
-      </motion.div>
-
       {/* Main Content */}
       <div className="max-w-6xl mx-auto px-6 py-16">
         {/* Title & Logo Section */}
