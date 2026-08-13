@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { FacebookIcon, InstagramIcon, LinkedinIcon } from "@/utility/icons";
 import { ACHIEVEMENTS } from "@/utility/constants";
 import TimelineAchievement from "@/components/timeline-achievements";
