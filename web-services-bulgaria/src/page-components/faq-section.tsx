@@ -1,56 +1,26 @@
 "use client";
 
-import Link from "next/link";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { ChevronDown, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 import { useState } from "react";
-import { usePathname } from "next/navigation";
-import { useLanguage } from "@/lib/language-context";
+import { useLocale, useTranslations } from "next-intl";
 import { LANDING_PAGE_FAQ } from "@/lib/faq-data";
+import { HeadingSection } from "@/components/heading-section";
 
 export default function FAQSection() {
-  const { t } = useLanguage();
-  const pathname = usePathname();
-  const locale = pathname.split("/")[1] || "bg";
+  const t = useTranslations();
+  const locale = useLocale();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="w-full py-16 lg:py-24 px-4 lg:px-12 bg-background">
+    <section className="w-full py-12 px-4 lg:px-12 bg-background">
+      <HeadingSection
+        title={t("faqHeadline")}
+        subtitle={t("faqDescription")}
+        textColor="primary"
+      />
       <div className="max-w-6xl mx-auto">
         {/* Two Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-          {/* Left Column - Header & Description */}
-          <div className="flex flex-col justify-center">
-            <div className="space-y-6">
-              <div>
-                <span className="text-sm font-semibold text-primary-content/60 uppercase tracking-widest">
-                  {t({ bg: "Често задавани въпроси", en: "FAQ" })}
-                </span>
-                <h2 className="text-3xl lg:text-4xl font-bold text-primary mt-3 leading-tight">
-                  {t({
-                    bg: "Отговори на вашите въпроси",
-                    en: "Answers to Your Questions",
-                  })}
-                </h2>
-              </div>
-              <p className="text-primary-content/70 text-base leading-relaxed max-w-md">
-                {t({
-                  bg: "Отговори на най-често задаваните въпроси. Ако не намерите отговора, свържете се с нас.",
-                  en: "Answers to the most common questions. If you don't find what you're looking for, feel free to reach out.",
-                })}
-              </p>
-              <Link
-                href={`/${locale}/faq`}
-                className="inline-flex items-center gap-3 text-primary hover:text-primary/80 transition-colors font-medium group"
-              >
-                {t({ bg: "Виж всички", en: "View All" })}
-                <span className="group-hover:translate-x-1 transition-transform">
-                  →
-                </span>
-              </Link>
-            </div>
-          </div>
-
+        <div className="grid grid-cols-1 gap-12 lg:gap-16">
           {/* Right Column - FAQ Accordion */}
           <div className="space-y-3">
             {LANDING_PAGE_FAQ.map((item, index) => {

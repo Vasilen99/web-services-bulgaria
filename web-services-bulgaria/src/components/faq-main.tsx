@@ -1,17 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
-import { useParams } from "next/navigation";
 import { ChevronDown, ArrowLeft } from "lucide-react";
-
-import { useLanguage } from "@/lib/language-context";
+import { useState } from "react";
 import { FULL_FAQ } from "@/lib/faq-data";
+import { Button } from "@/components/ui/button";
 
-export default function FAQPage() {
-  const { t } = useLanguage();
-  const params = useParams() as { locale: string };
-  const { locale } = params;
+export const FAQMain = () => {
+  const t = useTranslations();
+  const locale = useLocale();
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>(
     FULL_FAQ[0]?.id || "platform",
@@ -33,26 +31,17 @@ export default function FAQPage() {
             className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors text-sm font-medium mb-8"
           >
             <ArrowLeft className="w-4 h-4" />
-            {t({
-              bg: "Назад",
-              en: "Back",
-            })}
+            {t("about")}
           </Link>
 
           {/* Hero Section */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl lg:text-5xl font-bold text-primary mb-6 leading-tight">
-                {t({
-                  bg: "Всички отговори на един екран",
-                  en: "All Answers in One Place",
-                })}
+                {t("faqPageHeadline")}
               </h1>
               <p className="text-lg text-primary-content/70 leading-relaxed">
-                {t({
-                  bg: "Намерете отговори на всички въпроси относно платформата, процеса на разработка и нашите услуги.",
-                  en: "Find answers to all your questions about our platform, development process, and services.",
-                })}
+                {t("faqPageDescription")}
               </p>
             </div>
             <div className="hidden lg:block">
@@ -82,7 +71,7 @@ export default function FAQPage() {
             <aside className="lg:col-span-1">
               <div className="space-y-2">
                 <p className="text-xs font-semibold text-primary-content/60 uppercase tracking-widest mb-6 pl-4">
-                  {t({ bg: "Категории", en: "Categories" })}
+                  {t("faqCategoryPlatform")}
                 </p>
                 <div className="space-y-2">
                   {FULL_FAQ.map((category) => (
@@ -125,7 +114,7 @@ export default function FAQPage() {
                       const isExpanded = expandedId === item.id;
 
                       return (
-                        <button
+                        <Button
                           key={item.id}
                           onClick={() =>
                             setExpandedId(isExpanded ? null : item.id)
@@ -173,7 +162,7 @@ export default function FAQPage() {
                               </p>
                             </div>
                           </div>
-                        </button>
+                        </Button>
                       );
                     })}
                   </div>
@@ -187,16 +176,10 @@ export default function FAQPage() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 items-center">
               <div className="lg:col-span-2">
                 <h3 className="text-3xl font-bold text-primary mb-4">
-                  {t({
-                    bg: "Нека се свържем.",
-                    en: "Let's get in touch.",
-                  })}
+                  {t("contactHeadline")}
                 </h3>
                 <p className="text-primary-content/70 text-base leading-relaxed max-w-lg">
-                  {t({
-                    bg: "Имате проект или идея? Свържете се с нас и нека го обсъдим.",
-                    en: "Have a project or idea? Get in touch with us and let's discuss it.",
-                  })}
+                  {t("contactDescription")}
                 </p>
               </div>
               <div className="flex items-center lg:justify-end">
@@ -204,11 +187,7 @@ export default function FAQPage() {
                   href={`/${locale}/contact-us`}
                   className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium"
                 >
-                  {t({
-                    bg: "Нека говорим",
-                    en: "Let's talk",
-                  })}{" "}
-                  →
+                  {t("letsTalk")} →
                 </Link>
               </div>
             </div>
@@ -217,4 +196,4 @@ export default function FAQPage() {
       </div>
     </main>
   );
-}
+};

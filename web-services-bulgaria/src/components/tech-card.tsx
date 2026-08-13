@@ -4,25 +4,26 @@ import { motion } from "motion/react";
 import React from "react";
 import { useIsTouchable } from "@/hooks/use-is-touchable";
 import Link from "next/link";
-import { useLanguage } from "@/lib/language-context";
-import { translations } from "@/lib/translations";
+import { useLocale, useTranslations } from "next-intl";
 interface TechCardProps {
   icon: React.ComponentType<{ className?: string }>;
   name: string;
-  description: string;
+  descriptionKey: string;
   slug: string; // URL slug for the technology page
 }
 
 export const TechCard: React.FC<TechCardProps> = ({
   icon: IconComponent,
   name,
-  description,
+  descriptionKey,
   slug,
 }) => {
   const [isHovered, setIsHovered] = React.useState(false);
   const [isTapped, setIsTapped] = React.useState(false);
   const isTouchable = useIsTouchable();
-  const { t, locale } = useLanguage();
+  const t = useTranslations();
+  const locale = useLocale();
+  const description = t(descriptionKey);
   const commonClassName = "w-8 h-8 fill-primary-foreground";
 
   // Desktop: show on hover
@@ -115,9 +116,9 @@ export const TechCard: React.FC<TechCardProps> = ({
           >
             <Link
               className="px-4 py-2 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-colors duration-300 inline-block"
-              href={`${locale}/technologies/${slug}`}
+              href={`/${locale}/technologies/${slug}`}
             >
-              {t(translations.learnMore)}
+              {t("learnMore")}
             </Link>
           </motion.div>
         </div>
