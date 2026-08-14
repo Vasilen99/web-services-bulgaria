@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/animate-ui/components/buttons/button";
 import { translations } from "@/lib/translations";
 import { GravityStarsBackground } from "@/components/animate-ui/components/backgrounds/gravity-stars";
-
+import { commonInnerPageSectionStyles } from "@/utility/constants";
 export default function ContactUsSection() {
   const locale = useLocale() as "bg" | "en";
 
@@ -95,12 +95,14 @@ export default function ContactUsSection() {
   };
 
   return (
-    <section className="relative w-full min-h-screen overflow-hidden pt-24 bg-background">
+    <section
+      className={`${commonInnerPageSectionStyles} min-h-screen bg-background`}
+    >
       <div className="absolute inset-0 w-full h-full">
         <GravityStarsBackground starsSize={5} starsCount={120} />
       </div>
       {/* Content */}
-      <div className="flex flex-col lg:flex-row w-full items-center justify-center gap-12 px-6 lg:px-12 py-16">
+      <div className="flex flex-col lg:flex-row w-full items-center justify-center gap-12 px-6 lg:px-12">
         {/* Left side - Globe and Text */}
         <div className="flex flex-col items-center lg:items-start w-full lg:w-1/2 gap-8">
           <div className="flex flex-col gap-4 max-w-xl">

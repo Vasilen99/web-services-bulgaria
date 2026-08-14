@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { motion } from "motion/react";
 import {
   NextIcon,
   ReactIcon,
@@ -62,16 +63,23 @@ export default function Technologies() {
       />
 
       <div className="grid lg:grid-cols-3 grid-cols-1 lg:grid-rows-2 grid-rows-1 gap-6">
-        {ICONS_CONFIG.map((config) => {
+        {ICONS_CONFIG.map((config, index) => {
           const IconComponent = config.icon;
           return (
-            <TechCard
+            <motion.div
               key={config.name}
-              icon={IconComponent}
-              name={config.name}
-              descriptionKey={config.descriptionKey}
-              slug={config.slug}
-            />
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              <TechCard
+                icon={IconComponent}
+                name={config.name}
+                descriptionKey={config.descriptionKey}
+                slug={config.slug}
+              />
+            </motion.div>
           );
         })}
       </div>

@@ -65,7 +65,7 @@ export function AIFeatureItem({
           <h3 className={`text-2xl lg:text-3xl font-bold ${textColor}`}>
             {t(feature.titleKey)}
           </h3>
-          <p className={`${textColor}/80 text-sm lg:text-base leading-relaxed`}>
+          <p className={`${textColor} text-sm lg:text-base leading-relaxed`}>
             {t(feature.descriptionKey)}
           </p>
         </div>

@@ -7,8 +7,25 @@ import {
   StripeIcon,
   ShadcnIcon,
   MUIIcon,
+  OpenAIIcon,
+  AnthropicIcon,
 } from "../icons";
+import type { FlipCardData } from "@/components/animate-ui/components/community/flip-card";
+import type { AIWorkflow, AIModel } from "@/page-components/ai-details";
 
+interface Technology {
+  icon: React.ComponentType<{ className?: string }>;
+  name: string;
+  slug: string;
+  description: {
+    bg: string;
+    en: string;
+  };
+  benefits: {
+    bg: string[];
+    en: string[];
+  };
+}
 export const TECHNOLOGIES_DATA = {
   nextjs: {
     name: "Next.js",
@@ -542,3 +559,352 @@ export const ACHIEVEMENTS = [
     year: "2024",
   },
 ];
+
+export const TEAM_MEMBERS: FlipCardData[] = [
+  {
+    keyFirstName: "vasilen",
+    keyLastName: "minkov",
+    title: "CEO & Founder",
+    image: "/team/vasilen-snimka.png",
+    bioKey: "vasilenDescription",
+    socialLinks: {
+      linkedin: "https://www.linkedin.com/in/vasilen-minkov-9117011b0/",
+      facebook: "https://www.facebook.com/vasilen.minkov.1",
+      instagram: "https://www.instagram.com/vasilenminkovv/",
+    },
+  },
+  {
+    keyFirstName: "galq",
+    keyLastName: "nencheva",
+    title: "Graphic Designer",
+    image: "/team/galq-snimka.png",
+    bioKey: "galqDescription",
+    socialLinks: {
+      linkedin: "https://www.linkedin.com/in/galyanencheva/",
+      facebook: "https://www.facebook.com/galya.nencheva",
+      instagram: "https://www.instagram.com/beeluvdpublishing/?hl=bg",
+    },
+  },
+  {
+    keyFirstName: "miroslav",
+    keyLastName: "dimitrov",
+    title: "Software Engineer",
+    image: "/team/miroslav-snimka.jpg",
+    bioKey: "miroslavDescription",
+
+    socialLinks: {
+      linkedin: "https://www.linkedin.com/in/miroslav-dimitrov-534805263/",
+      facebook: "https://www.facebook.com/png.insta",
+      instagram: "https://www.instagram.com/21_mir0slav/",
+    },
+  },
+  {
+    keyFirstName: "natalia",
+    keyLastName: "lazarova",
+    title: "Marketing Specialist",
+    image: "/team/nataliq-snimka.png",
+    bioKey: "nataliaDescription",
+
+    socialLinks: {
+      linkedin: "https://www.linkedin.com/in/nataliya-lazarova-29897b234/",
+      facebook: "https://www.facebook.com/profile.php?id=100012502009075",
+      instagram: "https://www.instagram.com/nataliyalazarova/",
+    },
+  },
+];
+export const TECHNOLOGIES: Technology[] = [
+  {
+    icon: NextIcon,
+    name: "Next.js",
+    slug: "nextjs",
+    description: {
+      bg: "Next.js е лесна платформа за изграждане на бързи и интерактивни уебсайтове. Всичко, което трябва, е вградено – от най-простите до най-сложните функции.",
+      en: "Next.js is an easy platform for building fast and interactive websites. Everything you need is built-in—from the simplest to the most complex features.",
+    },
+    benefits: {
+      bg: [
+        "Вашият сайт зарежда бързо, което подобрява потребителския опит",
+        "Автоматично се оптимизира за мобилни устройства",
+        "Лесно се свързва със социални мрежи и други инструменти",
+        "Подобрена видимост в Google и другите търсачки",
+      ],
+      en: [
+        "Your website loads quickly, which improves user experience",
+        "Automatically optimized for mobile devices",
+        "Easily connects with social networks and other tools",
+        "Better visibility in Google and other search engines",
+      ],
+    },
+  },
+  {
+    icon: ReactIcon,
+    name: "React",
+    slug: "react",
+    description: {
+      bg: "React е библиотека, която прави уебсайтовете интерактивни и отзивчиви. Когато щракнете, напишете или се преместите, всичко се случва без спиране.",
+      en: "React is a library that makes websites interactive and responsive. When you click, type, or move, everything happens smoothly without interruption.",
+    },
+    benefits: {
+      bg: [
+        "Интерактивни елементи, които отговарят незабавно на ваши действия",
+        "Намалени натоварване на интернета при использвание",
+        "Лесна поддръжка и обновяване на функциите",
+        "Согласувано поведение на всички браузъри",
+      ],
+      en: [
+        "Interactive elements that respond immediately to your actions",
+        "Reduced internet load when using the site",
+        "Easy maintenance and feature updates",
+        "Consistent behavior across all browsers",
+      ],
+    },
+  },
+  {
+    icon: TypescriptIcon,
+    name: "TypeScript",
+    slug: "typescript",
+    description: {
+      bg: "TypeScript помага разработчиците да пишат по-безопасен код. Той намирането грешки още преди сайтът да бъде пуснат, което означава по-малко проблеми за вас.",
+      en: "TypeScript helps developers write safer code. It finds errors before the site goes live, which means fewer problems for you.",
+    },
+    benefits: {
+      bg: [
+        "По-малко грешки и неочаквани проблеми",
+        "Лесна разширяване на функциите без страх от счупване",
+        "По-бързо развитие благодарение на по-добрата подкрепа на инструментите",
+        "По-добра документация и разбиране на кода",
+      ],
+      en: [
+        "Fewer errors and unexpected issues",
+        "Easy to expand features without fear of breaking things",
+        "Faster development thanks to better tool support",
+        "Better documentation and code understanding",
+      ],
+    },
+  },
+  {
+    icon: Tailwind,
+    name: "Tailwind CSS",
+    slug: "tailwind",
+    description: {
+      bg: "Tailwind CSS е инструмент, който прави дизайнирането на уебсайтове по-бързо и по-лесно. Стилът се прилага директно без писане на много код.",
+      en: "Tailwind CSS is a tool that makes designing websites faster and easier. Styling is applied directly without writing lots of code.",
+    },
+    benefits: {
+      bg: [
+        "Красив дизайн, който работи на всички устройства – телефон, таблет, компютър",
+        "Възможност за тъмен режим, който е лес за очите",
+        "Бързо правене на промени без необходимост от перестартиране",
+        "Малко файлове означават по-бързо зареждане",
+      ],
+      en: [
+        "Beautiful design that works on all devices—phone, tablet, computer",
+        "Dark mode capability that's easy on the eyes",
+        "Quick changes without the need to restart",
+        "Small files mean faster loading",
+      ],
+    },
+  },
+  {
+    icon: ShadcnIcon,
+    name: "shadcn/ui",
+    slug: "shadcn",
+    description: {
+      bg: "shadcn/ui е колекция от готови компоненти, които могат да бъдат използвани веднага. Това ускорява разработката и гарантира единствен дизайн.",
+      en: "shadcn/ui is a collection of ready-made components that can be used immediately. This speeds up development and ensures a consistent design.",
+    },
+    benefits: {
+      bg: [
+        "Всички бутони, форми и менюта изглеждат професионално",
+        "Достъпни за всички, включително хора със зрителни затруднения",
+        "Възможност за лесна приспособяване на цветовете и стилът",
+        "Консистентна работа на всички браузъри и устройства",
+      ],
+      en: [
+        "All buttons, forms, and menus look professional",
+        "Accessible to everyone, including people with visual impairments",
+        "Ability to easily customize colors and style",
+        "Consistent functionality across all browsers and devices",
+      ],
+    },
+  },
+  {
+    icon: ZustandIcon,
+    name: "Zustand",
+    slug: "zustand",
+    description: {
+      bg: "Zustand е просто решение за управление на данни. Позволява различни части на сайта да работят заедно без сложност.",
+      en: "Zustand is a simple solution for managing data. It allows different parts of the website to work together without complexity.",
+    },
+    benefits: {
+      bg: [
+        "Данните остават синхронизирани на всички части на сайта",
+        "Вашите предпочитания се запомнят дори след затваряне на браузъра",
+        "Лесно добавяне на нови функции без проблеми",
+        "Дебъгване е по-лесно благодарение на ясната структура",
+      ],
+      en: [
+        "Data stays synchronized across all parts of the website",
+        "Your preferences are remembered even after closing the browser",
+        "Easy to add new features without problems",
+        "Debugging is easier thanks to the clear structure",
+      ],
+    },
+  },
+  {
+    icon: StripeIcon,
+    name: "Stripe",
+    description: {
+      bg: "Stripe е платформа за онлайн плащания, която улеснява интеграцията на различни методи за плащане и осигурява сигурни транзакции.",
+      en: "Stripe is an online payment platform that makes it easy to integrate various payment methods and ensures secure transactions.",
+    },
+    slug: "stripe",
+    benefits: {
+      bg: [
+        "Лесна интеграция с различни платежни методи",
+        "Сигурни транзакции и защита на данните",
+        "Поддръжка на абонаментни модели",
+        "Гъвкави API за персонализирани решения",
+        "Отлична документация и developer experience",
+        "Мащабируемост за големи проекти",
+      ],
+      en: [
+        "Easy integration with various payment methods",
+        "Secure transactions and data protection",
+        "Support for subscription models",
+        "Flexible APIs for custom solutions",
+        "Excellent documentation and developer experience",
+        "Scalability for large projects",
+      ],
+    },
+  },
+  {
+    icon: MUIIcon,
+    name: "MUI",
+    description: {
+      bg: "MUI е библиотека от готови компоненти за React, която улеснява създаването на модерни и отзивчиви потребителски интерфейси.",
+      en: "MUI is a library of ready-made components for React that makes it easy to create modern and responsive user interfaces.",
+    },
+    slug: "mui",
+    benefits: {
+      bg: [
+        "Модерен и професионален вид на сайта",
+        "Удобно използване на всички устройства – телефон, таблет и компютър",
+        "Бързо създаване на нови страници и функции",
+        "Еднакъв и подреден дизайн във всички части на сайта",
+        "Лесно адаптиране на визията според вашия бранд",
+      ],
+      en: [
+        "Modern and professional-looking website",
+        "Easy to use on all devices—phone, tablet, and computer",
+        "Faster creation of new pages and features",
+        "Consistent and well-organized design across the website",
+        "Easy to adapt the look to match your brand",
+      ],
+    },
+  },
+  {
+    icon: AnthropicIcon,
+    name: "Anthropic Claude API",
+    slug: "claude-api",
+    description: {
+      bg: "Anthropic Claude API позволява добавянето на интелигентни AI функции към уебсайтове и приложения. Подходящ е за автоматизация, анализ на информация и създаване на интелигентни решения.",
+      en: "The Anthropic Claude API makes it possible to add intelligent AI features to websites and applications. It is suitable for automation, information analysis, and building intelligent solutions.",
+    },
+    benefits: {
+      bg: [
+        "Автоматизиране на повтарящи се задачи и процеси",
+        "Бърз анализ и обработка на големи количества информация",
+        "Интелигентни функции, които улесняват работата на потребителите",
+        "Възможност за създаване на персонализирани AI решения",
+        "По-бързо обслужване и по-добро потребителско изживяване",
+      ],
+      en: [
+        "Automation of repetitive tasks and processes",
+        "Fast analysis and processing of large amounts of information",
+        "Intelligent features that make users' work easier",
+        "Ability to create customized AI solutions",
+        "Faster service and a better user experience",
+      ],
+    },
+  },
+];
+export const AI_MODELS: AIModel[] = [
+  {
+    name: "OpenAI",
+    icon: OpenAIIcon,
+    overviewKey: "openaiOverview",
+    strengthsKey: [
+      "openaiStrength1",
+      "openaiStrength2",
+      "openaiStrength3",
+      "openaiStrength4",
+    ],
+    useCasesKey: ["openaiUseCase1", "openaiUseCase2", "openaiUseCase3"],
+  },
+  {
+    name: "Anthropic Claude",
+    icon: AnthropicIcon,
+    overviewKey: "anthropicOverview",
+    strengthsKey: [
+      "anthropicStrength1",
+      "anthropicStrength2",
+      "anthropicStrength3",
+      "anthropicStrength4",
+    ],
+    useCasesKey: [
+      "anthropicUseCase1",
+      "anthropicUseCase2",
+      "anthropicUseCase3",
+    ],
+  },
+];
+export const AI_WORKFLOWS: AIWorkflow[] = [
+  {
+    id: "research-analysis",
+    titleKey: "workflowResearchTitle",
+    descriptionKey: "workflowResearchDesc",
+    benefitsKey: [
+      "workflowResearchBenefit1",
+      "workflowResearchBenefit2",
+      "workflowResearchBenefit3",
+    ],
+    modelKey: "usedWithOpenAI",
+  },
+  {
+    id: "content-generation",
+    titleKey: "workflowContentTitle",
+    descriptionKey: "workflowContentDesc",
+    benefitsKey: [
+      "workflowContentBenefit1",
+      "workflowContentBenefit2",
+      "workflowContentBenefit3",
+    ],
+    modelKey: "usedWithAnthropic",
+  },
+  {
+    id: "data-processing",
+    titleKey: "workflowDataTitle",
+    descriptionKey: "workflowDataDesc",
+    benefitsKey: [
+      "workflowDataBenefit1",
+      "workflowDataBenefit2",
+      "workflowDataBenefit3",
+    ],
+    modelKey: "usedWithOpenAI",
+  },
+  {
+    id: "customer-interactions",
+    titleKey: "workflowCustomerTitle",
+    descriptionKey: "workflowCustomerDesc",
+    benefitsKey: [
+      "workflowCustomerBenefit1",
+      "workflowCustomerBenefit2",
+      "workflowCustomerBenefit3",
+    ],
+    modelKey: "usedWithAnthropic",
+  },
+];
+
+export const commonInnerPageSectionStyles =
+  "relative pt-12 mt-23 px-4 sm:px-6 lg:px-8";

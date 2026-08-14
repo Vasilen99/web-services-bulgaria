@@ -44,7 +44,7 @@ export function LanguageToggle({
     <Button
       onClick={toggleLanguage}
       className={`
-        relative bg-primary-foreground/5 hover:bg-primary-foreground/20 
+        relative bg-primary-foreground hover:bg-primary-foreground/20 
         rounded-lg flex items-center justify-center border border-primary 
         p-0 overflow-hidden transition-all duration-300 backdrop-blur-md
         ${sizeClasses[size]} ${className}

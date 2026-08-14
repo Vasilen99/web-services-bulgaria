@@ -2,6 +2,7 @@
 
 import { Plus } from "lucide-react";
 import { useState } from "react";
+import { motion } from "motion/react";
 import { useLocale, useTranslations } from "next-intl";
 import { LANDING_PAGE_FAQ } from "@/lib/faq-data";
 import { HeadingSection } from "@/components/heading-section";
@@ -26,10 +27,14 @@ export default function FAQSection() {
             {LANDING_PAGE_FAQ.map((item, index) => {
               const isOpen = openIndex === index;
               return (
-                <button
+                <motion.button
                   key={item.id}
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                   className="w-full text-left group"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  viewport={{ once: true, amount: 0.1 }}
                 >
                   <div className="border-b border-primary-content/10 py-5 transition-all duration-300">
                     {/* Question */}
@@ -42,27 +47,31 @@ export default function FAQSection() {
                           {locale === "bg" ? item.questionBg : item.questionEn}
                         </h3>
                       </div>
-                      <Plus
-                        className={`w-5 h-5 text-primary-content/60 shrink-0 transition-transform duration-300 mt-0.5 ${
-                          isOpen ? "rotate-45" : ""
-                        }`}
-                      />
+                      <motion.div
+                        animate={{ rotate: isOpen ? 45 : 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <Plus className="w-5 h-5 text-primary-content/60 shrink-0 mt-0.5" />
+                      </motion.div>
                     </div>
 
                     {/* Answer - Collapsible */}
-                    <div
-                      className={`overflow-hidden transition-all duration-300 ${
+                    <motion.div
+                      initial={false}
+                      animate={
                         isOpen
-                          ? "max-h-96 opacity-100 mt-4 ml-12"
-                          : "max-h-0 opacity-0"
-                      }`}
+                          ? { maxHeight: 500, opacity: 1 }
+                          : { maxHeight: 0, opacity: 0 }
+                      }
+                      transition={{ duration: 0.3 }}
+                      className="overflow-hidden ml-12"
                     >
-                      <p className="text-sm text-primary-content/70 leading-relaxed pr-6">
+                      <p className="text-sm text-primary-content/70 leading-relaxed pr-6 pt-4">
                         {locale === "bg" ? item.answerBg : item.answerEn}
                       </p>
-                    </div>
+                    </motion.div>
                   </div>
-                </button>
+                </motion.button>
               );
             })}
           </div>

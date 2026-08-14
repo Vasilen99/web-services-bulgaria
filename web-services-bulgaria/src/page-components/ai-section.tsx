@@ -2,11 +2,12 @@
 
 import { useLocale, useTranslations } from "next-intl";
 import { HeadingSection } from "@/components/heading-section";
-import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { AIFeatureItem } from "@/app/components/ai-feature-item";
 import type { AIFeature } from "@/app/components/ai-feature-item";
-
+import { aiWorkflowsLink } from "@/utility/links";
+import { LiquidButton } from "@/components/animate-ui/components/buttons/liquid";
+import { useRouter } from "next/navigation";
 const AI_FEATURES: AIFeature[] = [
   {
     id: "research",
@@ -31,7 +32,7 @@ const AI_FEATURES: AIFeature[] = [
 export default function AISection() {
   const t = useTranslations();
   const locale = useLocale();
-
+  const router = useRouter();
   return (
     <section id="ai" className="bg-primary py-12 lg:px-12 px-4 overflow-hidden">
       {/* Heading */}
@@ -73,13 +74,13 @@ export default function AISection() {
               </p>
             </div>
 
-            <Link
-              href={`/${locale}/ai-workflows`}
-              className="group inline-flex items-center gap-3 px-6 lg:px-8 py-3 lg:py-4 rounded-lg bg-primary-foreground text-primary font-semibold hover:bg-primary-foreground/90 transition-all duration-300 whitespace-nowrap"
+            <LiquidButton
+              onClick={() => router.push(`/${locale}/${aiWorkflowsLink}`)}
+              className="w-50 lg:h-15 h-10"
             >
               <span>{t("exploreWorkflows")}</span>
               <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
+            </LiquidButton>
           </div>
         </div>
       </div>

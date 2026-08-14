@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
 import { VariantProps } from "class-variance-authority";
 import dynamic from "next/dynamic";
@@ -17,9 +18,16 @@ const getIcon = (
   effective: ThemeSelection,
   resolved: Resolved,
   modes: ThemeSelection[],
+  iconColor: string = "text-primary",
 ) => {
   const theme = modes.includes("system") ? effective : resolved;
-  return theme === "system" ? <Sun /> : theme === "dark" ? <Moon /> : <Sun />;
+  return theme === "system" ? (
+    <Sun className={iconColor} />
+  ) : theme === "dark" ? (
+    <Moon className={iconColor} />
+  ) : (
+    <Sun className={iconColor} />
+  );
 };
 
 const getNextTheme = (
@@ -39,92 +47,6 @@ type ThemeTogglerButtonProps = React.ComponentProps<"button"> &
     children?: React.ReactNode;
   };
 
-function useLocalStorageTheme(modes: ThemeSelection[] = ["light", "dark"]) {
-  // Initialize theme from localStorage synchronously to avoid mismatch
-  const [themeState, setThemeState] = React.useState<{
-    theme: ThemeSelection;
-    resolved: Resolved;
-  }>(() => {
-    // This initializer runs synchronously during render, before effects
-    const savedTheme = localStorage.getItem("theme");
-    let isDarkTheme = false;
-
-    if (savedTheme && modes.includes(savedTheme as ThemeSelection)) {
-      isDarkTheme = savedTheme === "dark";
-    } else {
-      // Check system preference
-      isDarkTheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    }
-
-    return {
-      theme:
-        savedTheme && modes.includes(savedTheme as ThemeSelection)
-          ? (savedTheme as ThemeSelection)
-          : isDarkTheme
-            ? "dark"
-            : "light",
-      resolved: isDarkTheme ? "dark" : "light",
-    };
-  });
-
-  React.useEffect(() => {
-    // Apply theme to DOM after mount
-    const applyTheme = () => {
-      document.documentElement.classList.toggle(
-        "dark",
-        themeState.resolved === "dark",
-      );
-    };
-
-    // Use startTransition if available for non-urgent updates
-    if ("startTransition" in React) {
-      React.startTransition(applyTheme);
-    } else {
-      applyTheme();
-    }
-
-    // Listen for storage changes from other tabs/windows
-    const handleStorageChange = (e: StorageEvent) => {
-      if (e.key === "theme") {
-        const updatedTheme = e.newValue;
-        if (updatedTheme && modes.includes(updatedTheme as ThemeSelection)) {
-          const isDark = updatedTheme === "dark";
-          setThemeState({
-            theme: updatedTheme as ThemeSelection,
-            resolved: isDark ? "dark" : "light",
-          });
-          document.documentElement.classList.toggle("dark", isDark);
-        }
-      }
-    };
-
-    window.addEventListener("storage", handleStorageChange);
-    return () => window.removeEventListener("storage", handleStorageChange);
-  }, [themeState.resolved, modes]);
-
-  const setTheme = React.useCallback((newTheme: ThemeSelection) => {
-    const resolved =
-      newTheme === "system"
-        ? window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? "dark"
-          : "light"
-        : newTheme;
-    setThemeState({
-      theme: newTheme,
-      resolved,
-    });
-    localStorage.setItem("theme", newTheme);
-    document.documentElement.classList.toggle("dark", resolved === "dark");
-  }, []);
-
-  return {
-    theme: themeState.theme,
-    resolvedTheme: themeState.resolved,
-    setTheme,
-    mounted: true,
-  };
-}
-
 function ThemeTogglerButtonInner({
   variant = "default",
   size = "default",
@@ -136,24 +58,12 @@ function ThemeTogglerButtonInner({
   children,
   ...props
 }: ThemeTogglerButtonProps) {
-  const { theme, resolvedTheme, setTheme, mounted } =
-    useLocalStorageTheme(modes);
-
-  if (!mounted) {
-    return (
-      <button
-        disabled
-        className={cn(buttonVariants({ variant, size, className }))}
-      >
-        <Sun className="size-5" />
-      </button>
-    );
-  }
+  const { theme, resolvedTheme, setTheme } = useTheme();
 
   return (
     <ThemeTogglerPrimitive
-      theme={theme}
-      resolvedTheme={resolvedTheme}
+      theme={theme as ThemeSelection}
+      resolvedTheme={resolvedTheme as Resolved}
       setTheme={setTheme}
       direction={direction}
       onImmediateChange={onImmediateChange}

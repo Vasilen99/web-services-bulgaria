@@ -2,63 +2,12 @@
 
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "motion/react";
 import { FacebookIcon, InstagramIcon, LinkedinIcon } from "@/utility/icons";
 import { ACHIEVEMENTS } from "@/utility/constants";
 import TimelineAchievement from "@/components/timeline-achievements";
-// Team member data - using the same team members from landing
-const TEAM_MEMBERS = [
-  {
-    id: 1,
-    name: "Василен Минков",
-    title: "CEO & Founder",
-    image: "/team/vasilen-snimka.png",
-    bio: "Софтуерен инженер с над 5 години професионален опит в разработката на уеб базирани решения.",
-    socialLinks: {
-      linkedin: "https://www.linkedin.com/in/vasilen-minkov-9117011b0/",
-      facebook: "https://www.facebook.com/vasilen.minkov.1",
-      instagram: "https://www.instagram.com/vasilenminkovv/",
-    },
-  },
-  {
-    id: 2,
-    name: "Галя Ненчева",
-    title: "Graphic Designer",
-    image: "/team/galq-snimka.png",
-    bio: "С години опит в разработката на SaaS и B2B решения, фокусирана върху ясни, функционални дизайни.",
-    socialLinks: {
-      linkedin: "https://www.linkedin.com/in/galyanencheva/",
-      facebook: "https://www.facebook.com/galya.nencheva",
-      instagram: "https://www.instagram.com/beeluvdpublishing/?hl=bg",
-    },
-  },
-  {
-    id: 3,
-    name: "Мирослав Димитров",
-    title: "Software Engineer",
-    image: "/team/miroslav-snimka.jpg",
-    bio: "Бекенд разработчик с дълъг опит в разработката на скалируеми и сигурни приложения.",
-    socialLinks: {
-      linkedin: "https://www.linkedin.com/in/miroslav-dimitrov-534805263/",
-      facebook: "https://www.facebook.com/png.insta",
-      instagram: "https://www.instagram.com/21_mir0slav/",
-    },
-  },
-  {
-    id: 4,
-    name: "Наталия Лазарова",
-    title: "Marketing Specialist",
-    image: "/team/nataliq-snimka.png",
-    bio: "Проектен мениджър с специализация в управление на цифрови проекти и team coordination.",
-    socialLinks: {
-      linkedin: "https://linkedin.com/in/elena-ivanova",
-      facebook: "https://facebook.com/elena.ivanova",
-      instagram: "https://instagram.com/elena_ivanova",
-    },
-  },
-];
-
+import { TEAM_MEMBERS } from "@/utility/constants";
+import { ContactCtaBottom } from "@/components/contact-cta-bottom";
 interface TeamMemberCardProps {
   member: (typeof TEAM_MEMBERS)[0];
   index: number;
@@ -82,6 +31,7 @@ function SocialLinkIcon({
 }
 
 function TeamMemberCard({ member, index }: TeamMemberCardProps) {
+  const t = useTranslations();
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -93,7 +43,7 @@ function TeamMemberCard({ member, index }: TeamMemberCardProps) {
       <div className="relative h-80 w-full overflow-hidden bg-foreground/5">
         <Image
           src={member.image}
-          alt={member.name}
+          alt={`${t(member.keyFirstName)} ${t(member.keyLastName)}`}
           fill
           className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
         />
@@ -103,17 +53,23 @@ function TeamMemberCard({ member, index }: TeamMemberCardProps) {
 
       {/* Content container */}
       <div className="relative px-6 py-8 -mt-20 pt-24 pb-6">
-        <h3 className="text-xl font-bold text-foreground mb-1">
-          {member.name}
-        </h3>
+        <div className="flex flex-col gap-2 mb-1">
+          <h3 className="text-xl font-bold text-foreground">
+            {t(member.keyFirstName)}
+          </h3>
+          <h3 className="text-xl font-bold text-foreground">
+            {t(member.keyLastName)}
+          </h3>
+        </div>
+
         <p className="text-sm font-medium text-primary mb-4">{member.title}</p>
         <p className="text-sm text-foreground/70 leading-relaxed mb-6">
-          {member.bio}
+          {t(member.bioKey)}
         </p>
 
         {/* Social links */}
-        <div className="flex gap-3">
-          {member.socialLinks.linkedin && (
+        <div className="flex gap-3 justify-center">
+          {member.socialLinks?.linkedin && (
             <a
               href={member.socialLinks.linkedin}
               target="_blank"
@@ -124,7 +80,7 @@ function TeamMemberCard({ member, index }: TeamMemberCardProps) {
               <SocialLinkIcon type="linkedin" />
             </a>
           )}
-          {member.socialLinks.facebook && (
+          {member.socialLinks?.facebook && (
             <a
               href={member.socialLinks.facebook}
               target="_blank"
@@ -135,7 +91,7 @@ function TeamMemberCard({ member, index }: TeamMemberCardProps) {
               <SocialLinkIcon type="facebook" />
             </a>
           )}
-          {member.socialLinks.instagram && (
+          {member.socialLinks?.instagram && (
             <a
               href={member.socialLinks.instagram}
               target="_blank"
@@ -158,19 +114,17 @@ export default function TeamDetailsPage() {
   return (
     <main className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
+      <section className="relative py-12 mt-23 px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="max-w-4xl mx-auto flex flex-col items-center text-center"
         >
-          <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6">
+          <h1 className="text-5xl md:text-6xl font-bold text-primary mb-6">
             {t("teamPageHeading")}
           </h1>
-          <p className="text-xl text-foreground/70 mb-4">
-            {t("teamPageSubheading")}
-          </p>
+          <p className="text-xl text-primary">{t("teamPageSubheading")}</p>
         </motion.div>
       </section>
 
@@ -185,7 +139,11 @@ export default function TeamDetailsPage() {
           {/* Team Members Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {TEAM_MEMBERS.map((member, index) => (
-              <TeamMemberCard key={member.id} member={member} index={index} />
+              <TeamMemberCard
+                key={`${member.keyFirstName}-${member.keyLastName}`}
+                member={member}
+                index={index}
+              />
             ))}
           </div>
         </div>
@@ -226,32 +184,7 @@ export default function TeamDetailsPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 border-t border-foreground/10">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold text-foreground mb-4">
-              Ready to join us?
-            </h2>
-            <p className="text-lg text-foreground/60 mb-8">
-              We&apos;re always looking for talented professionals who share our
-              passion for digital excellence.
-            </p>
-            <Link
-              href="/#contact"
-              className="inline-flex items-center gap-2 px-8 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-colors duration-300"
-            >
-              Get in touch
-              <span>→</span>
-            </Link>
-          </motion.div>
-        </div>
-      </section>
+      <ContactCtaBottom />
     </main>
   );
 }
