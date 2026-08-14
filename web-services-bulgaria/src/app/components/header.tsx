@@ -7,29 +7,34 @@ import {
   FlipButtonBack,
   FlipButtonFront,
 } from "@/components/animate-ui/components/buttons/flip";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/animate-ui/components/radix/dropdown-menu";
-import { Button } from "@/components/animate-ui/components/buttons/button";
-import { AlignJustify, X } from "lucide-react";
-import { useState } from "react";
-import { ThemeTogglerButton } from "@/components/animate-ui/components/buttons/theme-toggler";
 import { LanguageToggle } from "@/components/language-toggle";
-import { contactUsLinks, technologiesMainLink } from "@/utility/links";
+import {
+  contactUsLinks,
+  technologiesMainLink,
+  faqLink,
+  aiWorkflowsLink,
+} from "@/utility/links";
 import { GlassCardWrapper as GlassCard } from "@/components/glass-card-wrapper";
 import Image from "next/image";
+import dynamic from "next/dynamic";
+
+const MobileNavDrawer = dynamic(() =>
+  import("@/components/mobile-nav-drawer").then((mod) => mod.default),
+);
+
+const ThemeToggle = dynamic(() =>
+  import("@/components/theme-button").then((mod) => mod.default),
+);
 export const NAVIGATION_DATA = [
   // { name: "services", href: "#services" },
   // { name: "projects", href: "#work" },
   { name: "technologies", href: technologiesMainLink },
+  { name: "faq", href: faqLink },
   { name: "contact", href: contactUsLinks },
+  { name: "aiWorkflows", href: aiWorkflowsLink },
 ] as const;
 
 export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const params = useParams();
   const locale = params.locale as string;
   const t = useTranslations();
@@ -95,60 +100,16 @@ export default function Header() {
           {/* CTA + Mobile Menu */}
           <div className="lg:flex hidden gap-3">
             <LanguageToggle />
-            <ThemeTogglerButton
-              variant="outline"
-              size="icon"
-              className="bg-primary-foreground/5 hover:bg-primary-foreground/20 rounded-lg border border-primary size-10 p-0 overflow-hidden transition-all duration-300 backdrop-blur-md"
-              title="Toggle theme"
-            />
-            {/* <FlipButton className="hidden lg:flex rounded-md border border-white/40 text-sm bg-primary-foreground transition-all">
-                <FlipButtonFront className="bg-transparent text-primary hover:bg-transparent cursor-pointer">
-                  {t("letsStart")}
-                </FlipButtonFront>
-                <FlipButtonBack className="bg-transparent text-primary hover:bg-transparent cursor-pointer">
-                  {t("letsStart")}
-                </FlipButtonBack>
-              </FlipButton> */}
-            <DropdownMenu open={isMenuOpen} onOpenChange={setIsMenuOpen}>
-              <DropdownMenuTrigger asChild>
-                <Button className="bg-white/10 hover:bg-white/20 rounded-lg lg:hidden flex border border-white/30 size-10 p-0 overflow-hidden transition-all duration-300 backdrop-blur-md">
-                  <div
-                    className="absolute transition-opacity duration-300"
-                    style={{ opacity: !isMenuOpen ? 1 : 0 }}
-                  >
-                    <AlignJustify className="size-5 text-primary-foreground" />
-                  </div>
-                  <div
-                    className="absolute transition-opacity duration-300"
-                    style={{ opacity: isMenuOpen ? 1 : 0 }}
-                  >
-                    <X className="size-5 text-primary-foreground" />
-                  </div>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56 backdrop-blur-3xl bg-white/10 border border-white/30 rounded-2xl mt-3 shadow-2xl shadow-black/40">
-                {NAVIGATION_DATA.map((item) => (
-                  <DropdownMenuItem
-                    key={item.name}
-                    className="text-primary-content/80 hover:text-primary-content focus:bg-white/10 transition-colors"
-                    onClick={() => (window.location.href = item.href)}
-                  >
-                    <span>{t(item.name)}</span>
-                  </DropdownMenuItem>
-                ))}
-                <DropdownMenuItem>
-                  <ThemeTogglerButton
-                    variant="outline"
-                    size="sm"
-                    className="w-full"
-                    modes={["light", "dark"]}
-                  />
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <LanguageToggle />
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            {ThemeToggle && (
+              <ThemeToggle
+                showAsText={false}
+                className="bg-primary-foreground rounded-md border border-primary size-10 p-0 overflow-hidden transition-all duration-300"
+                title="Toggle theme"
+              />
+            )}
+          </div>
+          <div className="lg:hidden flex">
+            {MobileNavDrawer && <MobileNavDrawer />}
           </div>
         </div>
       </GlassCard>

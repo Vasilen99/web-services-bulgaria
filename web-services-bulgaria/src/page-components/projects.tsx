@@ -12,6 +12,7 @@ import {
   TypescriptIcon,
   ZustandIcon,
 } from "@/utility/icons";
+import { ContactCtaBottom } from "@/components/contact-cta-bottom";
 
 const TECH_ICONS: Record<
   string,
@@ -310,6 +311,8 @@ export default function ProjectsPage({ partner }: ProjectsPageProps) {
           </div>
         </motion.section>
       </div>
+
+      <ContactCtaBottom />
     </div>
   );
 }

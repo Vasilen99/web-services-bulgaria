@@ -6,11 +6,13 @@ import { FacebookIcon, InstagramIcon, LinkedinIcon } from "@/utility/icons";
 import Image from "next/image";
 import Link from "next/link";
 import { GlassCardWrapper as GlassCard } from "@/components/glass-card-wrapper";
+import { useTranslations } from "next-intl";
 export interface FlipCardData {
-  name: string;
+  keyFirstName: string;
+  keyLastName: string;
   title?: string;
   image: string;
-  bio: string;
+  bioKey: string;
   socialLinks?: {
     linkedin?: string;
     facebook?: string;
@@ -24,7 +26,7 @@ interface FlipCardProps {
 
 export function FlipCard({ data }: FlipCardProps) {
   const [isFlipped, setIsFlipped] = React.useState(false);
-
+  const t = useTranslations();
   const isTouchDevice =
     typeof window !== "undefined" && "ontouchstart" in window;
 
@@ -73,7 +75,7 @@ export function FlipCard({ data }: FlipCardProps) {
         >
           <GlassCard
             blur={3}
-            distortion={2}
+            distortion={0}
             borderSize={0}
             borderOpacity={0.1}
             backgroundOpacity={0.1}
@@ -89,14 +91,20 @@ export function FlipCard({ data }: FlipCardProps) {
             brightness={1}
             backgroundColor="var(--primary-foreground)"
             innerLightColor="var(--primary-foreground)"
-            className="w-full"
+            className="w-full flex! flex-1"
           >
-            <div className="flex items-center justify-between gap-14 w-full px-2 py-3">
-              <h4 className="text-primary-foreground text-start">
-                {data.name}
-              </h4>
+            <div className="flex items-center justify-between gap-14 px-2 py-3">
+              <div className="flex flex-col gap-2">
+                <h4 className="text-primary-foreground text-start">
+                  {t(`${data.keyFirstName}`)}
+                </h4>
+                <h4 className="text-primary-foreground text-start">
+                  {t(`${data.keyLastName}`)}
+                </h4>
+              </div>
+
               {data.title && (
-                <p className="text-xs text-end uppercase text-primary-foreground font-bold">
+                <p className="text-xs text-end uppercase text-primary-foreground font-bold w-20">
                   {data.title}
                 </p>
               )}
@@ -107,7 +115,7 @@ export function FlipCard({ data }: FlipCardProps) {
         <div className="relative bottom-2 flex-1 w-full rounded-b-4xl overflow-hidden">
           <Image
             src={data.image}
-            alt={data.name}
+            alt={`${t(data.keyFirstName)} ${t(data.keyLastName)}`}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 400px"
             className="object-cover object-top"
@@ -126,7 +134,7 @@ export function FlipCard({ data }: FlipCardProps) {
       >
         <div className="flex flex-col items-center justify-center flex-1 relative z-10">
           <p className="text-sm text-primary-foreground text-center leading-relaxed">
-            {data.bio}
+            {t(data.bioKey)}
           </p>
         </div>
 
