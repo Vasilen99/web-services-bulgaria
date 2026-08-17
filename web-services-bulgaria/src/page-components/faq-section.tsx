@@ -18,6 +18,7 @@ export default function FAQSection() {
         title={t("faqHeadline")}
         subtitle={t("faqDescription")}
         textColor="primary"
+        type="landing"
       />
       <div className="max-w-6xl mx-auto">
         {/* Two Column Layout */}

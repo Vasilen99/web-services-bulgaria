@@ -180,5 +180,21 @@
   "achievement6Title": "Leading Provider",
   "achievement6Description": "Recognized as one of the leading digital solution developers, we work with 50+ companies on successful projects.",
   "footerDescription": "Premium web services for your business.",
-  "pages": "Pages"
+  "pages": "Pages",
+  "aiCoreStrength": "Core strengths",
+  "aiBestUseCase": "Best use cases",
+  "gallery": "Gallery",
+  "overview": "Overview",
+  "whatItDoes": "What It Does",
+  "technologiesUsed": "Technologies Used",
+  "projectTimeline": "Project Timeline",
+  "keyAchievements": "Key Achievements",
+  "started": "Started",
+  "completed": "Completed",
+  "description": "Description",
+  "visitWebsite": "Visit Website →",
+  "readyToBuild": "Ready to build something similar?",
+  "letDiscuss": "Let's discuss how we can create amazing solutions for your project.",
+  "viewProject": "View Project",
+  "getInTouchCTA": "Get In Touch"
 }

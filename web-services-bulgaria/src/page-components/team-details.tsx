@@ -8,6 +8,7 @@ import { ACHIEVEMENTS } from "@/utility/constants";
 import TimelineAchievement from "@/components/timeline-achievements";
 import { TEAM_MEMBERS } from "@/utility/constants";
 import { ContactCtaBottom } from "@/components/contact-cta-bottom";
+import Link from "next/link";
 interface TeamMemberCardProps {
   member: (typeof TEAM_MEMBERS)[0];
   index: number;
@@ -37,7 +38,7 @@ function TeamMemberCard({ member, index }: TeamMemberCardProps) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group relative rounded-lg overflow-hidden bg-linear-to-b from-foreground/5 to-foreground/10 border border-foreground/10 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20"
+      className="group relative rounded-lg overflow-hidden bg-linear-to-b from-foreground/5 to-foreground/10 border border-foreground/10 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 flex flex-col"
     >
       {/* Image container */}
       <div className="relative h-80 w-full overflow-hidden bg-foreground/5">
@@ -52,25 +53,23 @@ function TeamMemberCard({ member, index }: TeamMemberCardProps) {
       </div>
 
       {/* Content container */}
-      <div className="relative px-6 py-8 -mt-20 pt-24 pb-6">
-        <div className="flex flex-col gap-2 mb-1">
+      <div className="relative px-6 py-8 -mt-20 pt-24 pb-6 flex flex-col grow">
+        <div className="flex flex-col mb-1">
           <h3 className="text-xl font-bold text-foreground">
-            {t(member.keyFirstName)}
+            {t(member.keyFirstName)} {t(member.keyLastName)}
           </h3>
-          <h3 className="text-xl font-bold text-foreground">
-            {t(member.keyLastName)}
-          </h3>
+          <h3 className="text-xl font-bold text-foreground"></h3>
         </div>
 
         <p className="text-sm font-medium text-primary mb-4">{member.title}</p>
-        <p className="text-sm text-foreground/70 leading-relaxed mb-6">
+        <p className="text-sm text-primary leading-relaxed mb-6 grow">
           {t(member.bioKey)}
         </p>
 
         {/* Social links */}
         <div className="flex gap-3 justify-center">
           {member.socialLinks?.linkedin && (
-            <a
+            <Link
               href={member.socialLinks.linkedin}
               target="_blank"
               rel="noopener noreferrer"
@@ -78,10 +77,10 @@ function TeamMemberCard({ member, index }: TeamMemberCardProps) {
               aria-label="LinkedIn"
             >
               <SocialLinkIcon type="linkedin" />
-            </a>
+            </Link>
           )}
           {member.socialLinks?.facebook && (
-            <a
+            <Link
               href={member.socialLinks.facebook}
               target="_blank"
               rel="noopener noreferrer"
@@ -89,10 +88,10 @@ function TeamMemberCard({ member, index }: TeamMemberCardProps) {
               aria-label="Facebook"
             >
               <SocialLinkIcon type="facebook" />
-            </a>
+            </Link>
           )}
           {member.socialLinks?.instagram && (
-            <a
+            <Link
               href={member.socialLinks.instagram}
               target="_blank"
               rel="noopener noreferrer"
@@ -100,7 +99,7 @@ function TeamMemberCard({ member, index }: TeamMemberCardProps) {
               aria-label="Instagram"
             >
               <SocialLinkIcon type="instagram" />
-            </a>
+            </Link>
           )}
         </div>
       </div>

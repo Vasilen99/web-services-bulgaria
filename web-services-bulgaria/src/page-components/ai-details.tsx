@@ -2,10 +2,14 @@
 
 import { useTranslations } from "next-intl";
 import { ContactCtaBottom } from "@/components/contact-cta-bottom";
-import { AI_WORKFLOWS, AI_MODELS } from "@/utility/constants";
+import {
+  AI_WORKFLOWS,
+  AI_MODELS,
+  innerPageMainSectionStyles,
+} from "@/utility/constants";
 import dynamic from "next/dynamic";
-import { commonInnerPageSectionStyles } from "@/utility/constants";
 import { motion } from "motion/react";
+import { HeadingSection } from "@/components/heading-section";
 
 const ModelSection = dynamic(() => import("@/components/ai-model-section"), {
   ssr: false,
@@ -56,34 +60,27 @@ export default function AIWorkflowsPage() {
   };
 
   return (
-    <main
-      id="team"
-      className={`${commonInnerPageSectionStyles} bg-primary-foreground`}
-    >
+    <main id="team" className="bg-primary-foreground px-4">
       {/* Workflows Section */}
       <motion.section
-        className="py-12 px-4 sm:px-6 lg:px-8"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: false, amount: 0.2 }}
         variants={containerVariants}
       >
-        <div className="max-w-5xl mx-auto">
+        <div className={innerPageMainSectionStyles}>
           {/* Section Header */}
-          <motion.div
-            className="mb-16 pb-12 border-b border-primary/10"
-            variants={itemVariants}
-          >
-            <h2 className="text-4xl lg:text-5xl font-semibold text-primary mb-4 tracking-tight">
-              {t("aiWorkflowsSection")}
-            </h2>
-            <p className="text-primary text-lg leading-relaxed max-w-3xl">
-              {t("aiWorkflowsSectionDesc")}
-            </p>
+          <motion.div variants={itemVariants}>
+            <HeadingSection
+              title={t("aiWorkflowsSection")}
+              subtitle={t("aiWorkflowsSectionDesc")}
+              textColor="primary"
+              type="inner"
+            />
           </motion.div>
 
           {/* Workflow Items List */}
-          <motion.div className="space-y-12" variants={containerVariants}>
+          <motion.div className="space-y-12 my-6" variants={containerVariants}>
             {AI_WORKFLOWS.map((workflow, index) => (
               <motion.div key={workflow.id} variants={itemVariants}>
                 <WorkflowItem workflow={workflow} index={index} />
@@ -106,22 +103,20 @@ export default function AIWorkflowsPage() {
 
       {/* AI Models Section */}
       <motion.section
-        className="py-12 px-4 sm:px-6 lg:px-8"
+        className="lg:py-12 py-4 px-4 lg:px-8"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: false, amount: 0.2 }}
         variants={containerVariants}
       >
-        <div className="max-w-5xl mx-auto">
+        <div className={innerPageMainSectionStyles}>
           {/* Section Header */}
           <motion.div
-            className="mb-16 pb-12 border-b border-primary-foreground/10"
+            className="flex flex-col gap-3 items-center"
             variants={itemVariants}
           >
-            <h2 className="text-4xl lg:text-5xl font-semibold text-primary mb-4 tracking-tight">
-              {t("aiModelsSection")}
-            </h2>
-            <p className="text-primary text-lg leading-relaxed max-w-3xl">
+            <h3 className="text-primary text-center">{t("aiModelsSection")}</h3>
+            <p className="text-primary text-center">
               {t("aiModelsSectionDesc")}
             </p>
           </motion.div>
@@ -129,7 +124,11 @@ export default function AIWorkflowsPage() {
           {/* Model Sections List */}
           <motion.div className="space-y-12" variants={containerVariants}>
             {AI_MODELS.map((model) => (
-              <motion.div key={model.name} variants={itemVariants}>
+              <motion.div
+                key={model.name}
+                className="first:mt-6"
+                variants={itemVariants}
+              >
                 <ModelSection model={model} />
               </motion.div>
             ))}

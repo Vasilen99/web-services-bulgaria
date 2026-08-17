@@ -10,6 +10,7 @@ import { LiquidButton } from "@/components/animate-ui/components/buttons/liquid"
 import { technologiesMainLink } from "@/utility/links";
 import { useRouter } from "next/navigation";
 import { ContactCtaBottom } from "@/components/contact-cta-bottom";
+import { HeadingSection } from "@/components/heading-section";
 import { TECHNOLOGIES } from "@/utility/constants";
 
 export default function MainTechnologies() {
@@ -37,30 +38,21 @@ export default function MainTechnologies() {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-background via-background to-primary/5">
+    <div>
       {/* Header Section */}
-      <div className="relative py-12 mt-23 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h1 className="text-4xl sm:text-5xl font-bold mb-4 bg-linear-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-              {locale === "bg" ? "Технологии" : "Technologies"}
-            </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              {locale === "bg"
-                ? "Открийте технологиите, които използваме, за да създадем вашия уебсайт. Всяка инструмент е избрана внимателно за вашия успех."
-                : "Discover the technologies we use to create your website. Each tool is carefully chosen for your success."}
-            </p>
-          </motion.div>
-        </div>
-      </div>
+      <HeadingSection
+        title={locale === "bg" ? "Технологии" : "Technologies"}
+        subtitle={
+          locale === "bg"
+            ? "Открийте технологиите, които използваме, за да създадем вашия уебсайт. Всяка инструмент е избрана внимателно за вашия успех."
+            : "Discover the technologies we use to create your website. Each tool is carefully chosen for your success."
+        }
+        textColor="primary"
+        type="inner"
+      />
 
       {/* Technologies Grid */}
-      <div className="max-w-7xl mx-auto px-4 lg:px-8 pb-12">
+      <div className="max-w-7xl mx-auto pt-12 px-4 lg:px-8 pb-12">
         <motion.div
           variants={containerVariants}
           initial="hidden"

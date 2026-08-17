@@ -17,6 +17,7 @@ const PARTNERS_LIST = [
     logo: PARTNERS_DATA.bft.logo,
     slug: "bft",
     type: "image" as const,
+    product: "Platform",
   },
   {
     name: PARTNERS_DATA.servify.name,
@@ -25,6 +26,7 @@ const PARTNERS_LIST = [
     slug: "servify",
     type: "component" as const,
     logoClassName: "text-primary",
+    product: "SaaS",
   },
   {
     name: PARTNERS_DATA.mmbuilding.name,
@@ -32,6 +34,7 @@ const PARTNERS_LIST = [
     logo: PARTNERS_DATA.mmbuilding.logo,
     slug: "mmbuilding",
     type: "image" as const,
+    product: "Landing page",
   },
 ];
 
@@ -47,16 +50,17 @@ export default function PartnersGallery() {
         title={t("partnersHeading")}
         subtitle={t("partnersSubheading")}
         textColor="primary"
+        type="landing"
       />
       {/* Responsive Grid: Horizontal on lg+, Vertical on smaller screens */}
       <div className="px-4 lg:px-12">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-[614px_614px] gap-8 lg:gap-12">
             {PARTNERS_LIST.map((partner) => (
               <Link
                 key={partner.slug}
                 href={`/${locale}${projectsLink}/${partner.slug}`}
-                className="group block"
+                className="group block h-53"
               >
                 <PartnerCard
                   name={partner.name}
@@ -66,18 +70,22 @@ export default function PartnersGallery() {
                   slug={partner.slug}
                   type={partner.type}
                   className={partner.logoClassName}
+                  product={partner.product}
                 />
               </Link>
             ))}
 
             {/* Marketing CTA Card */}
-            <Link href={`${locale}/${contactUsLinks}`} className="group block">
+            <Link
+              href={`${locale}${contactUsLinks}`}
+              className="group block max-h-53 h-full"
+            >
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
                 viewport={{ once: true, amount: 0.2 }}
-                className="relative rounded-2xl border-2 border-dashed border-primary/30 hover:border-primary/60 bg-primary/5 hover:bg-primary/10 transition-all duration-300 p-8 h-full min-h-64 flex flex-col items-center justify-center text-center gap-6 overflow-hidden cursor-pointer"
+                className="relative rounded-2xl border-2 border-dashed border-primary/30 hover:border-primary/60 bg-primary/5 hover:bg-primary/10 transition-all duration-300 p-4 h-full flex flex-col items-center justify-center text-center gap-6 overflow-hidden cursor-pointer"
               >
                 {/* Subtle animated glow */}
                 <div className="absolute inset-0 bg-linear-to-br from-primary/5 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -92,7 +100,7 @@ export default function PartnersGallery() {
                   </motion.div>
 
                   <div className="space-y-2">
-                    <h3 className="text-2xl font-bold text-primary/60 group-hover:text-primary transition-colors duration-300">
+                    <h3 className="lg:text-2xl text-lg font-bold text-primary/60 group-hover:text-primary transition-colors duration-300">
                       {t("ctaProjectHeader")}
                     </h3>
                     <p className="text-primary/40 group-hover:text-primary/70 text-sm max-w-xs leading-relaxed transition-colors duration-300">

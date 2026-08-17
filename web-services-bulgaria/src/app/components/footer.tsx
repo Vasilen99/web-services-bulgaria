@@ -1,8 +1,9 @@
 "use client";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
-import { Mail } from "lucide-react";
+import { useTranslations, useLocale } from "next-intl";
+import { Mail, Phone } from "lucide-react";
 import { NAVIGATION_DATA } from "./header";
+import { LinkedinIcon } from "@/utility/icons";
 
 const SOCIAL_LINKS = [
   {
@@ -10,11 +11,21 @@ const SOCIAL_LINKS = [
     href: "mailto:info@webservicesbg.com",
     name: "info@webservicesbg.com",
   },
+  {
+    icon: <Phone />,
+    href: "tel:+359892203616",
+    name: "+359 89 220 3616",
+  },
+  {
+    icon: <LinkedinIcon />,
+    href: "https://www.linkedin.com/in/vasilen-minkov-9117011b0/",
+    name: "LinkedIn",
+  },
 ];
 
 export default function Footer() {
   const t = useTranslations();
-
+  const locale = useLocale();
   return (
     <footer id="contact" className="bg-foreground">
       {/* Footer Nav + Socials */}
@@ -40,7 +51,7 @@ export default function Footer() {
                 <li key={link.name}>
                   <Link
                     type="email"
-                    href={link.href}
+                    href={`/${locale}${link.href}`}
                     className="text-primary-foreground text-sm hover:text-primary-foreground/70 transition-colors"
                   >
                     {t(link.name)}

@@ -44,10 +44,10 @@ export default async function Home({ params }: Props) {
   return (
     <main className="bg-background">
       <HeroSection />
-      <TechnologiesLanding />
+      <Team />
       <AISection />
       <PartnersGallery />
-      <Team />
+      <TechnologiesLanding />
       <FAQSection />
       {/* <Services />
       <SelectedWork />

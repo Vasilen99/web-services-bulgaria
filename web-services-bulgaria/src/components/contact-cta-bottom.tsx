@@ -40,10 +40,10 @@ export const ContactCtaBottom = () => {
       viewport={{ once: true, amount: 0.3 }}
       variants={containerVariants}
     >
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-12 gap-4 items-center">
         <motion.div className="flex flex-col gap-3" variants={itemVariants}>
           <motion.h3
-            className="text-3xl font-bold lg:text-start text-center text-primary mb-4"
+            className="text-3xl font-bold lg:text-start text-center text-primary"
             variants={itemVariants}
           >
             {t("contactHeadline")}

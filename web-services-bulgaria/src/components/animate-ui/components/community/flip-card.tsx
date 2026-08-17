@@ -152,7 +152,7 @@ export function FlipCard({ data }: FlipCardProps) {
             </Link>
           )}
           {data.socialLinks?.facebook && (
-            <a
+            <Link
               href={data.socialLinks.facebook}
               target="_blank"
               rel="noopener noreferrer"
@@ -160,10 +160,10 @@ export function FlipCard({ data }: FlipCardProps) {
               aria-label="Facebook"
             >
               <FacebookIcon size={20} />
-            </a>
+            </Link>
           )}
           {data.socialLinks?.instagram && (
-            <a
+            <Link
               href={data.socialLinks.instagram}
               target="_blank"
               rel="noopener noreferrer"
@@ -171,7 +171,7 @@ export function FlipCard({ data }: FlipCardProps) {
               aria-label="Instagram"
             >
               <InstagramIcon size={20} />
-            </a>
+            </Link>
           )}
         </div>
       </motion.div>

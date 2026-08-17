@@ -60,6 +60,7 @@ export default function Technologies() {
         title={t("technologies")}
         subtitle={t("technologiesSubtitle")}
         textColor="primary-foreground"
+        type="landing"
       />
 
       <div className="grid lg:grid-cols-3 grid-cols-1 lg:grid-rows-2 grid-rows-1 gap-6">

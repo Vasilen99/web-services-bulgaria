@@ -11,6 +11,8 @@ import {
   AccordionContent,
 } from "@/components/animate-ui/components/radix/accordion";
 import { ContactCtaBottom } from "./contact-cta-bottom";
+import { HeadingSection } from "./heading-section";
+import { Button } from "./ui/button";
 
 export const FAQMain = () => {
   const t = useTranslations();
@@ -22,18 +24,16 @@ export const FAQMain = () => {
   const activeCategoryData = FULL_FAQ.find((cat) => cat.id === activeCategory);
 
   return (
-    <main className="w-full min-h-screen bg-background">
+    <main
+      className={`w-full min-h-screen bg-background ${commonInnerPageSectionStyles}`}
+    >
       {/* Page Header Section */}
-      <div className={`${commonInnerPageSectionStyles} mx-auto max-w-7xl`}>
-        {/* Hero Section */}
-        <div className="flex flex-col items-center">
-          <h1 className="text-4xl lg:text-5xl font-bold text-primary text-center mb-6 leading-tight">
-            {t("faqPageHeadline")}
-          </h1>
-          <p className="text-lg text-primary-content leading-relaxed">
-            {t("faqPageDescription")}
-          </p>
-        </div>
+      <div className={` mx-auto max-w-7xl`}>
+        <HeadingSection
+          type="inner"
+          title={t("faqPageHeadline")}
+          subtitle={t("faqPageDescription")}
+        />
       </div>
 
       {/* Main Content */}
@@ -44,17 +44,17 @@ export const FAQMain = () => {
             {/* Left Sidebar - Categories */}
             <aside className="lg:col-span-1 space-y-2">
               {FULL_FAQ.map((category) => (
-                <button
+                <Button
                   key={category.id}
                   onClick={() => setActiveCategory(category.id)}
                   className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-200 border-l-2 ${
                     activeCategory === category.id
-                      ? "border-primary bg-primary/10 text-primary font-medium"
-                      : "border-transparent text-primary-content/70 hover:text-primary hover:border-primary/50"
+                      ? "border-primary bg-primary/10 text-primary-foreground font-medium"
+                      : "border-transparent text-primary hover:border-primary/50"
                   }`}
                 >
                   {locale === "bg" ? category.nameBg : category.nameEn}
-                </button>
+                </Button>
               ))}
             </aside>
 
@@ -64,7 +64,7 @@ export const FAQMain = () => {
                 <div className="space-y-8">
                   {/* Category Header */}
                   <span className="text-xs font-semibold text-primary-content/60 uppercase tracking-widest">
-                    {`${FULL_FAQ.findIndex((c) => c.id === activeCategory) + 1} of ${FULL_FAQ.length}`}
+                    {`${FULL_FAQ.findIndex((c) => c.id === activeCategory) + 1} ${locale === "bg" ? "от" : "of"} ${FULL_FAQ.length}`}
                   </span>
                   <h2 className="text-3xl lg:text-4xl font-bold text-primary mt-2 mb-4">
                     {locale === "bg"

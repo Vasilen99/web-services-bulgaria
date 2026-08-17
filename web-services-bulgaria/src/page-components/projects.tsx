@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import Link from "next/link";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { PartnerCarousel } from "@/components/partner-carousel";
 import {
   NextIcon,
@@ -62,6 +63,8 @@ interface ProjectsPageProps {
 }
 
 export default function ProjectsPage({ partner }: ProjectsPageProps) {
+  const t = useTranslations();
+
   return (
     <div className="min-h-screen bg-background mt-28 py-12">
       {/* Main Content */}
@@ -97,7 +100,7 @@ export default function ProjectsPage({ partner }: ProjectsPageProps) {
               rel="noopener noreferrer"
               className="text-primary hover:underline mt-3 inline-block"
             >
-              Visit Website →
+              {t("visitWebsite")}
             </a>
           </div>
         </motion.div>
@@ -110,7 +113,7 @@ export default function ProjectsPage({ partner }: ProjectsPageProps) {
           className="mb-16"
         >
           <h2 className="text-sm font-semibold text-foreground/60 uppercase tracking-wider mb-6">
-            Gallery
+            {t("gallery")}
           </h2>
           <PartnerCarousel
             images={partner.carouselImages}
@@ -130,7 +133,7 @@ export default function ProjectsPage({ partner }: ProjectsPageProps) {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <h2 className="text-sm font-semibold text-foreground/60 uppercase tracking-wider mb-6">
-              Overview
+              {t("overview")}
             </h2>
             <p className="text-base leading-relaxed text-foreground/80">
               {partner.description}
@@ -147,7 +150,7 @@ export default function ProjectsPage({ partner }: ProjectsPageProps) {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <h2 className="text-sm font-semibold text-foreground/60 uppercase tracking-wider mb-6">
-              What It Does
+              {t("whatItDoes")}
             </h2>
             <ul className="space-y-3">
               {partner.whatItDoes.map((feature, idx) => (
@@ -179,7 +182,7 @@ export default function ProjectsPage({ partner }: ProjectsPageProps) {
           className="mb-16"
         >
           <h2 className="text-sm font-semibold text-foreground/60 uppercase tracking-wider mb-8">
-            Technologies Used
+            {t("technologiesUsed")}
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
             {partner.technologies.map((tech, idx) => {
@@ -220,23 +223,23 @@ export default function ProjectsPage({ partner }: ProjectsPageProps) {
             transition={{ duration: 0.5, delay: 0.4 }}
           >
             <h2 className="text-sm font-semibold text-foreground/60 uppercase tracking-wider mb-6">
-              Project Timeline
+              {t("projectTimeline")}
             </h2>
             <div className="space-y-4">
               <div>
-                <p className="text-sm text-foreground/60">Started</p>
+                <p className="text-sm text-foreground/60">{t("started")}</p>
                 <p className="text-lg font-semibold text-foreground">
                   {partner.timeline.started}
                 </p>
               </div>
               <div>
-                <p className="text-sm text-foreground/60">Completed</p>
+                <p className="text-sm text-foreground/60">{t("completed")}</p>
                 <p className="text-lg font-semibold text-foreground">
                   {partner.timeline.completed}
                 </p>
               </div>
               <div>
-                <p className="text-sm text-foreground/60">Description</p>
+                <p className="text-sm text-foreground/60">{t("description")}</p>
                 <p className="text-sm text-foreground/75">
                   {partner.timeline.description}
                 </p>
@@ -251,7 +254,7 @@ export default function ProjectsPage({ partner }: ProjectsPageProps) {
             transition={{ duration: 0.5, delay: 0.4 }}
           >
             <h2 className="text-sm font-semibold text-foreground/60 uppercase tracking-wider mb-6">
-              Key Achievements
+              {t("keyAchievements")}
             </h2>
             <ul className="space-y-3">
               {partner.achievements.map((achievement, idx) => (
@@ -283,12 +286,9 @@ export default function ProjectsPage({ partner }: ProjectsPageProps) {
           className="flex flex-col gap-3 justify-center items-center py-12"
         >
           <h3 className="text-2xl font-bold mb-3 text-foreground">
-            Ready to build something similar?
+            {t("readyToBuild")}
           </h3>
-          <p className="text-foreground/60 text-center">
-            Let&apos;s discuss how we can create amazing solutions for your
-            project.
-          </p>
+          <p className="text-foreground/60 text-center">{t("letDiscuss")}</p>
           <div className="flex gap-4 mt-4">
             <a href={partner.website} target="_blank" rel="noopener noreferrer">
               <motion.button
@@ -296,7 +296,7 @@ export default function ProjectsPage({ partner }: ProjectsPageProps) {
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-3 rounded-lg bg-primary/10 text-primary font-semibold text-sm hover:bg-primary/20 transition-colors duration-300 border border-primary/30"
               >
-                View Project
+                {t("viewProject")}
               </motion.button>
             </a>
             <Link href="/contact-us">
@@ -305,7 +305,7 @@ export default function ProjectsPage({ partner }: ProjectsPageProps) {
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-3 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-colors duration-300"
               >
-                Get In Touch
+                {t("getInTouchCTA")}
               </motion.button>
             </Link>
           </div>

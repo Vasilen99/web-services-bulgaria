@@ -10,11 +10,11 @@ export type AIFeature = {
 export function AIFeatureItem({
   feature,
   isReverse,
-  rowIndex,
+  // rowIndex,
 }: {
   feature: AIFeature;
   isReverse: boolean;
-  rowIndex: number;
+  // rowIndex?: number;
 }) {
   const t = useTranslations();
   const itemRef = useRef<HTMLDivElement>(null);
@@ -39,14 +39,12 @@ export function AIFeatureItem({
   }, []);
 
   // Alternate background colors with opposite text colors
-  const bgColor = rowIndex % 2 === 0 ? "bg-primary" : "bg-primary-foreground";
-  const textColor =
-    rowIndex % 2 === 0 ? "text-primary-foreground" : "text-primary";
+  const textColor = "text-primary-foreground";
 
   return (
     <div
       ref={itemRef}
-      className={`${bgColor} rounded-xl p-6 lg:p-8 transition-all duration-300`}
+      className={`rounded-xl p-6 lg:p-8 transition-all duration-300 backdrop-blur-xs bg-white/10 border border-white/20 shadow-lg`}
     >
       <div
         className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center`}

@@ -906,5 +906,6 @@ export const AI_WORKFLOWS: AIWorkflow[] = [
   },
 ];
 
-export const commonInnerPageSectionStyles =
-  "relative pt-12 mt-23 px-4 sm:px-6 lg:px-8";
+export const commonInnerPageSectionStyles = "relative px-4 sm:px-6 lg:px-8";
+
+export const innerPageMainSectionStyles = "max-w-5xl mx-auto";

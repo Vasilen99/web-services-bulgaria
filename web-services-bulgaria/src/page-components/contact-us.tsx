@@ -102,7 +102,7 @@ export default function ContactUsSection() {
         <GravityStarsBackground starsSize={5} starsCount={120} />
       </div>
       {/* Content */}
-      <div className="flex flex-col lg:flex-row w-full items-center justify-center gap-12 px-6 lg:px-12">
+      <div className="flex flex-col lg:flex-row w-full items-center justify-center gap-12 px-6 lg:px-12 mt-33">
         {/* Left side - Globe and Text */}
         <div className="flex flex-col items-center lg:items-start w-full lg:w-1/2 gap-8">
           <div className="flex flex-col gap-4 max-w-xl">
@@ -122,7 +122,7 @@ export default function ContactUsSection() {
         </div>
 
         {/* Right side - Form */}
-        <div className="w-full lg:w-1/2 max-w-xl">
+        <div className="w-full lg:w-1/2 max-w-xl pb-12">
           <div className="backdrop-blur-xs bg-primary/20 border border-primary-foreground/20 rounded-2xl p-8 shadow-2xl shadow-black/20 relative before:absolute before:inset-0 before:bg-linear-to-b before:from-white/10 before:to-transparent before:pointer-events-none before:rounded-2xl">
             {submitMessage && (
               <div
