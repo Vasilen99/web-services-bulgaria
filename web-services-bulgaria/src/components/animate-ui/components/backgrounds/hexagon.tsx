@@ -20,28 +20,30 @@ function HexagonBackground({
 }: HexagonBackgroundProps) {
   const hexagonWidth = hexagonSize;
   const hexagonHeight = hexagonSize * 1.1;
-  const rowSpacing = hexagonSize * 0.2;
+  const rowSpacing = hexagonSize * 0.2  ;
   const baseMarginTop = -36 - 0.275 * (hexagonSize - 100);
   const computedMarginTop = baseMarginTop + hexagonMargin;
   const oddRowMarginLeft = -(hexagonSize / 2);
   const evenRowMarginLeft = hexagonMargin / 2;
 
-  const [gridDimensions, setGridDimensions] = React.useState({
-    rows: 0,
-    columns: 0,
-  });
+  const subscribe = React.useCallback((callback: () => void) => {
+    window.addEventListener('resize', callback);
+    return () => window.removeEventListener('resize', callback);
+  }, []);
 
-  const updateGridDimensions = React.useCallback(() => {
-    const rows = Math.ceil(window.innerHeight / rowSpacing);
-    const columns = Math.ceil(window.innerWidth / hexagonWidth) + 1;
-    setGridDimensions({ rows, columns });
-  }, [rowSpacing, hexagonWidth]);
+  const windowSize = React.useSyncExternalStore(
+    subscribe,
+    () => `${window.innerWidth}x${window.innerHeight}`,
+    () => '0x0',
+  );
 
-  React.useEffect(() => {
-    updateGridDimensions();
-    window.addEventListener('resize', updateGridDimensions);
-    return () => window.removeEventListener('resize', updateGridDimensions);
-  }, [updateGridDimensions]);
+  const gridDimensions = React.useMemo(() => {
+    const [width, height] = windowSize.split('x').map(Number);
+    return {
+      rows: Math.ceil(height / rowSpacing),
+      columns: width ? Math.ceil(width / hexagonWidth) + 1 : 0,
+    };
+  }, [windowSize, rowSpacing, hexagonWidth]);
 
   return (
     <div
