@@ -1,9 +1,8 @@
 "use client";
 
 import { motion } from "motion/react";
-import Link from "next/link";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { PartnerCarousel } from "@/app/components/partner-carousel";
 import {
   NextIcon,
@@ -14,7 +13,8 @@ import {
   ZustandIcon,
 } from "@/utility/icons";
 import { ContactCtaBottom } from "@/app/components/contact-cta-bottom";
-
+import { technologiesMainLink } from "@/utility/links";
+import { useRouter } from "next/navigation";
 const TECH_ICONS: Record<
   string,
   React.ComponentType<React.SVGProps<SVGSVGElement>>
@@ -27,13 +27,19 @@ const TECH_ICONS: Record<
   zustand: ZustandIcon,
 };
 
-const TECH_NAMES: Record<string, string> = {
-  nextjs: "Next.js",
-  react: "React",
-  typescript: "TypeScript",
-  tailwind: "Tailwind CSS",
-  shadcn: "Shadcn UI",
-  zustand: "Zustand",
+const TECH_NAMES: Record<string, { name: string; detailsHref: string }> = {
+  nextjs: { name: "Next.js", detailsHref: `${technologiesMainLink}/nextjs` },
+  react: { name: "React", detailsHref: `${technologiesMainLink}/react` },
+  typescript: {
+    name: "TypeScript",
+    detailsHref: `${technologiesMainLink}/typescript`,
+  },
+  tailwind: {
+    name: "Tailwind CSS",
+    detailsHref: `${technologiesMainLink}/tailwind`,
+  },
+  shadcn: { name: "Shadcn UI", detailsHref: `${technologiesMainLink}/shadcn` },
+  zustand: { name: "Zustand", detailsHref: `${technologiesMainLink}/zustand` },
 };
 
 interface Partner {
@@ -64,7 +70,8 @@ interface ProjectsPageProps {
 
 export default function ProjectsPage({ partner }: ProjectsPageProps) {
   const t = useTranslations();
-
+  const router = useRouter();
+  const locale = useLocale();
   return (
     <div className="min-h-screen bg-background mt-36 px-4">
       {/* Main Content */}
@@ -187,7 +194,8 @@ export default function ProjectsPage({ partner }: ProjectsPageProps) {
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
             {partner.technologies.map((tech, idx) => {
               const Icon = TECH_ICONS[tech];
-              const techName = TECH_NAMES[tech];
+              const techName = TECH_NAMES[tech].name;
+              const techDetailsHref = TECH_NAMES[tech].detailsHref;
 
               return (
                 <motion.div
@@ -195,7 +203,8 @@ export default function ProjectsPage({ partner }: ProjectsPageProps) {
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.4 + idx * 0.05 }}
-                  className="flex flex-col items-center gap-3 p-4 rounded-lg bg-foreground/5 border border-foreground/10 hover:bg-foreground/10 transition-colors"
+                  className="flex flex-col items-center gap-3 p-4 rounded-lg bg-foreground/5 border border-foreground/10 hover:bg-foreground/10 transition-colors hover:cursor-pointer"
+                  onClick={() => router.push(`/${locale}/${techDetailsHref}`)}
                 >
                   {Icon && (
                     <div className="w-10 h-10 flex items-center justify-center">

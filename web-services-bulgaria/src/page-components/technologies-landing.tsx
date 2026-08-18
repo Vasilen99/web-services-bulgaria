@@ -63,7 +63,7 @@ export default function Technologies() {
         type="landing"
       />
 
-      <div className="grid lg:grid-cols-3 grid-cols-1 lg:grid-rows-2 grid-rows-1 gap-6">
+      <div className="grid lg:grid-cols-[repeat(3,420px)] grid-cols-1 lg:grid-rows-2 grid-rows-1 gap-6 items-center justify-center">
         {ICONS_CONFIG.map((config, index) => {
           const IconComponent = config.icon;
           return (

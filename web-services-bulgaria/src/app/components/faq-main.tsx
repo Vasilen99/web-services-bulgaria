@@ -34,6 +34,9 @@ export const FAQMain = () => {
           title={t("faqPageHeadline")}
           subtitle={t("faqPageDescription")}
         />
+        <p className="text-base text-primary w-full leading-relaxed max-w-none mt-8">
+          {t("platformIntro")}
+        </p>
       </div>
 
       {/* Main Content */}
@@ -50,7 +53,7 @@ export const FAQMain = () => {
                   className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-200 border-l-2 ${
                     activeCategory === category.id
                       ? "border-primary-foreground bg-primary text-primary-foreground font-medium"
-                      : "border-primary text-primary bg-primary-foreground hover:border-primary/50"
+                      : "border-primary text-primary bg-primary-foreground hover:bg-primary/50! hover:border-primary/50 hover:text-primary"
                   }`}
                 >
                   {locale === "bg" ? category.nameBg : category.nameEn}

@@ -9,38 +9,39 @@ import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { HeadingSection } from "@/app/components/heading-section";
 import { contactUsLinks, projectsLink } from "@/utility/links";
-// Map partners data for cards
-const PARTNERS_LIST = [
-  {
-    name: PARTNERS_DATA.bft.name,
-    shortDescription: PARTNERS_DATA.bft.shortDescription,
-    logo: PARTNERS_DATA.bft.logo,
-    slug: "bft",
-    type: "image" as const,
-    product: "Platform",
-  },
-  {
-    name: PARTNERS_DATA.servify.name,
-    shortDescription: PARTNERS_DATA.servify.shortDescription,
-    logoComponent: ServifyFullLogo,
-    slug: "servify",
-    type: "component" as const,
-    logoClassName: "text-primary",
-    product: "SaaS",
-  },
-  {
-    name: PARTNERS_DATA.mmbuilding.name,
-    shortDescription: PARTNERS_DATA.mmbuilding.shortDescription,
-    logo: PARTNERS_DATA.mmbuilding.logo,
-    slug: "mmbuilding",
-    type: "image" as const,
-    product: "Landing page",
-  },
-];
 
 export default function PartnersGallery() {
   const t = useTranslations();
   const locale = useLocale();
+
+  // Map partners data for cards with translations
+  const PARTNERS_LIST = [
+    {
+      name: t("partners.bft.name"),
+      shortDescription: t("partners.bft.shortDescription"),
+      logo: PARTNERS_DATA.bft.logo,
+      slug: "bft",
+      type: "image" as const,
+      product: "Platform",
+    },
+    {
+      name: t("partners.servify.name"),
+      shortDescription: t("partners.servify.shortDescription"),
+      logoComponent: ServifyFullLogo,
+      slug: "servify",
+      type: "component" as const,
+      logoClassName: "text-primary",
+      product: "SaaS",
+    },
+    {
+      name: t("partners.mmbuilding.name"),
+      shortDescription: t("partners.mmbuilding.shortDescription"),
+      logo: PARTNERS_DATA.mmbuilding.logo,
+      slug: "mmbuilding",
+      type: "image" as const,
+      product: "Landing page",
+    },
+  ];
   return (
     <section
       id="gallery"
@@ -60,7 +61,7 @@ export default function PartnersGallery() {
               <Link
                 key={partner.slug}
                 href={`/${locale}${projectsLink}/${partner.slug}`}
-                className="group block h-53"
+                className="group block h-57"
               >
                 <PartnerCard
                   name={partner.name}
@@ -78,7 +79,7 @@ export default function PartnersGallery() {
             {/* Marketing CTA Card */}
             <Link
               href={`${locale}${contactUsLinks}`}
-              className="group block max-h-53 h-full"
+              className="group block max-h-57 h-full"
             >
               <motion.div
                 initial={{ opacity: 0, y: 20 }}

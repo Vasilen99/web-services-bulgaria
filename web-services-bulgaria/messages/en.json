@@ -205,5 +205,86 @@
   "invalidEmailField": "Please enter a valid email.",
   "notFoundTitle": "Page Not Found",
   "notFoundDescription": "Sorry, the page you are looking for cannot be found. Please check the URL or return to the homepage.",
-  "backToHome": "Back to homepage"
+  "backToHome": "Back to homepage",
+  "platformIntro": "Our platform is built on cutting-edge technology to deliver exceptional results for businesses of all sizes. We provide comprehensive web solutions, SaaS products, and custom development services that transform your ideas into reality. Whether you're looking to build a results tracking system, a service management platform, or any other digital solution, we have the expertise to make it happen. Our team combines technical excellence with strategic thinking to ensure your project succeeds. With years of experience in web development, we understand the unique challenges businesses face and deliver solutions that drive growth and efficiency. Join hundreds of satisfied clients who have transformed their operations using our platforms.",
+  "workingProcessHeading": "Our Working Process",
+  "workingProcessSubheading": "A transparent and proven approach to bringing your ideas to life.",
+  "workingProcessStep1Title": "Strategy & Discovery",
+  "workingProcessStep2Title": "Design & Planning",
+  "workingProcessStep3Title": "Development",
+  "workingProcessStep4Title": "Testing & QA",
+  "workingProcessStep5Title": "Launch & Deployment",
+  "workingProcessStep6Title": "Support & Growth",
+  "partners": {
+    "bft": {
+      "name": "BFT Results",
+      "shortDescription": "Results tracking and analytics platform",
+      "description": "BFT Results is a comprehensive web platform designed to track, analyze, and visualize results across various competitions and events. The platform provides real-time data updates, advanced filtering capabilities, and intuitive dashboards for event organizers and participants.",
+      "longDescription": "Built with modern web technologies, BFT Results delivers a fast, responsive, and user-friendly experience. The platform handles complex data aggregation, real-time updates, and sophisticated reporting features. It serves as a central hub for event management, result publication, and participant engagement.",
+      "whatItDoes": [
+        "Real-time result tracking and updates for competitions",
+        "Advanced analytics and comprehensive data visualization",
+        "Customizable dashboards for event organizers",
+        "Multi-event management and aggregation",
+        "Participant performance comparisons and rankings"
+      ],
+      "achievements": [
+        "Handles 10,000+ concurrent events annually",
+        "99.8% uptime and reliability",
+        "Supports 50+ competition types",
+        "Reduced result publication time by 75%",
+        "Trusted by leading event organizers nationwide"
+      ],
+      "timeline": {
+        "description": "Designed, developed, and deployed a robust results tracking platform that revolutionized how competitions manage and display results in real-time."
+      }
+    },
+    "servify": {
+      "name": "Servify",
+      "shortDescription": "Service management and booking platform",
+      "description": "Servify is an innovative service management platform that connects service providers with customers. It streamlines the booking process, provides service tracking, and facilitates seamless communication between providers and clients.",
+      "longDescription": "Servify leverages modern web technologies to create a smooth, reliable platform for service management. The application provides both providers and customers with intuitive interfaces for managing bookings, tracking services, and maintaining communication. Built with scalability in mind, Servify can handle growing user bases and complex service workflows.",
+      "whatItDoes": [
+        "Seamless online booking and scheduling system",
+        "Real-time service tracking for customers",
+        "Provider management and availability coordination",
+        "Integrated communication platform for providers and customers",
+        "Payment processing and invoicing automation"
+      ],
+      "achievements": [
+        "1,500+ service providers on platform",
+        "25,000+ successful monthly bookings",
+        "Average booking completion rate of 94%",
+        "Customer satisfaction rating of 4.8/5.0",
+        "Expanded to serve 5 major cities"
+      ],
+      "timeline": {
+        "description": "Built a market-leading service management platform that simplifies the connection between service providers and customers, automating bookings and communications."
+      }
+    },
+    "mmbuilding": {
+      "name": "MM Building",
+      "shortDescription": "Construction and real estate development",
+      "description": "MM Building is a leading company in the construction and real estate development sector. They specialize in creating high-quality residential and commercial properties, ensuring sustainable and innovative solutions.",
+      "longDescription": "MM Building leverages modern construction techniques and project management practices to deliver exceptional results. The company provides comprehensive services from initial planning and design to construction and final handover. With a focus on quality, safety, and sustainability, MM Building is committed to exceeding client expectations.",
+      "whatItDoes": [
+        "End-to-end project planning and design",
+        "Sustainable construction with modern techniques",
+        "Quality residential and commercial property development",
+        "Project management and timeline tracking",
+        "Post-completion maintenance and support"
+      ],
+      "achievements": [
+        "50+ completed residential projects",
+        "25+ commercial developments",
+        "Zero safety incidents across all projects",
+        "100% client satisfaction on completed projects",
+        "LEED certification on sustainable developments"
+      ],
+      "timeline": {
+        "description": "Established and scaled a construction company delivering high-quality residential and commercial properties with focus on sustainability and client satisfaction."
+      }
+    }
+  }
+
 }

@@ -1,7 +1,11 @@
+"use client";
+
 import Image from "next/image";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
 import { Badge } from "../../components/ui/badge";
+import { ArrowRight } from "lucide-react";
 interface PartnerCardProps {
   name: string;
   shortDescription: string;
@@ -23,6 +27,7 @@ export function PartnerCard({
   className,
 }: PartnerCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const t = useTranslations();
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -43,10 +48,10 @@ export function PartnerCard({
           className="absolute inset-0 rounded-2xl border-2 border-secondary"
         />
 
-        <div className="relative z-10 flex flex-col gap-1 h-full">
+        <div className="flex flex-col gap-1 h-full">
           {/* Logo Section */}{" "}
           <div>
-            <div className="flex items-center justify-between">
+            <div className="flex items-start justify-between">
               <motion.div
                 animate={isHovered ? { scale: 0.95 } : { scale: 1 }}
                 transition={{ duration: 0.3 }}
@@ -86,6 +91,14 @@ export function PartnerCard({
               className="text-sm text-primary leading-relaxed"
             >
               {shortDescription}
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 1 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
+              className="text-sm text-primary leading-relaxed flex items-center gap-2 font-medium pb-6"
+            >
+              {t("learnMoreAbout")} {name}
+              <ArrowRight className="size-4" />
             </motion.p>
           </div>
         </div>

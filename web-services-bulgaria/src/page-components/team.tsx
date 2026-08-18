@@ -93,7 +93,7 @@ export default function Team() {
           data-member-id={`${TEAM_ROLES[0].keyFirstName}-${TEAM_ROLES[0].keyLastName}`}
           className="mb-16"
         >
-          <div className="flex lg:flex-row flex-col-reverse lg:items-center items-start gap-3 lg:justify-center justify-start lg:pt-12">
+          <div className="flex lg:flex-row flex-col-reverse lg:items-center items-start lg:gap-12 gap-6 lg:justify-center justify-start lg:pt-12">
             {/* Animation Left */}
             <div className="lg:w-1/2 w-80 lg:shrink-0 shrink">
               <div className="lg:h-80 h-40">
@@ -132,7 +132,7 @@ export default function Team() {
           data-member-id={`${TEAM_ROLES[1].keyFirstName}-${TEAM_ROLES[1].keyLastName}`}
           className="mb-16"
         >
-          <div className="flex lg:flex-row flex-col-reverse lg:items-center items-start gap-3 lg:justify-center justify-start lg:pt-12">
+          <div className="flex lg:flex-row flex-col-reverse lg:items-center items-start lg:gap-12 gap-6 lg:justify-center justify-start lg:pt-12">
             {/* Info Left */}
             <div className="lg:w-1/2 w-fit space-y-4 order-last lg:order-first">
               <div className="space-y-1">
@@ -171,7 +171,7 @@ export default function Team() {
           data-member-id={`${TEAM_ROLES[2].keyFirstName}-${TEAM_ROLES[2].keyLastName}`}
           className="mb-16"
         >
-          <div className="flex lg:flex-row flex-col-reverse lg:items-center items-start gap-3 lg:justify-center justify-start lg:pt-12">
+          <div className="flex lg:flex-row flex-col-reverse lg:items-center items-start lg:gap-12 gap-6 lg:justify-center justify-start lg:pt-12">
             {/* Animation Left */}
             <div className="lg:w-1/2 w-80 lg:shrink-0 shrink">
               <div className="lg:h-80 h-40">
@@ -210,7 +210,7 @@ export default function Team() {
           data-member-id={`${TEAM_ROLES[3].keyFirstName}-${TEAM_ROLES[3].keyLastName}`}
           className="mb-16"
         >
-          <div className="flex lg:flex-row flex-col-reverse lg:items-center items-start gap-3 lg:justify-center justify-start lg:pt-12">
+          <div className="flex lg:flex-row flex-col-reverse lg:items-center items-start lg:gap-12 gap-6 lg:justify-center justify-start lg:pt-12">
             {/* Info Left */}
             <div className="lg:w-1/2 w-fit space-y-4 order-last lg:order-first">
               <div className="space-y-1">

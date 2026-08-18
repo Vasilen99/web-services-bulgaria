@@ -28,10 +28,10 @@ const ThemeToggle = dynamic(() =>
 export const NAVIGATION_DATA = [
   // { name: "services", href: "#services" },
   // { name: "projects", href: "#work" },
-  { name: "technologies", href: technologiesMainLink },
-  { name: "faq", href: faqLink },
   { name: "contact", href: contactUsLinks },
   { name: "aiWorkflows", href: aiWorkflowsLink },
+  { name: "technologies", href: technologiesMainLink },
+  { name: "faq", href: faqLink },
 ] as const;
 
 export default function Header() {

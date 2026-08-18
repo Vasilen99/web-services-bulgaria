@@ -17,7 +17,7 @@ const SOCIAL_LINKS = [
     name: "+359 89 220 3616",
   },
   {
-    icon: <LinkedinIcon />,
+    icon: <LinkedinIcon size={24} />,
     href: "https://www.linkedin.com/in/vasilen-minkov-9117011b0/",
     name: "LinkedIn",
   },

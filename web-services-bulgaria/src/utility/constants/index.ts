@@ -907,7 +907,7 @@ export const AI_WORKFLOWS: AIWorkflow[] = [
 ];
 
 export const EMAIL_REGEX =
-  /^(([^<>()[\]\.,;:\s@"]+(\.[^<>()[\]\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\.,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,})$/i; // eslint-disable-line no-useless-escape
+  /^(([^<>()[\]\.,;:\s@"]+(\.[^<>()[\]\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\.,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,})$/i;
 
 export const commonInnerPageSectionStyles = "relative px-4 sm:px-6 lg:px-8";
 

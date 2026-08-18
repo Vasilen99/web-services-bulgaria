@@ -8,6 +8,7 @@ import Team from "@/page-components/team";
 import TechnologiesLanding from "@/page-components/technologies-landing";
 import FAQSection from "@/page-components/faq-section";
 import AISection from "@/page-components/ai-section";
+import WorkingProcess from "@/page-components/working-process";
 type Props = {
   params: Promise<{
     locale: string;
@@ -45,6 +46,7 @@ export default async function Home({ params }: Props) {
     <main className="bg-background">
       <HeroSection />
       <Team />
+      <WorkingProcess />
       <AISection />
       <PartnersGallery />
       <TechnologiesLanding />

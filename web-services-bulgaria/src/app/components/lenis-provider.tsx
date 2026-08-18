@@ -1,17 +1,32 @@
 "use client";
 
-import React, { ReactNode, useEffect } from "react";
+import {
+  ReactNode,
+  useEffect,
+  useState,
+  createContext,
+  useContext,
+} from "react";
 import Lenis from "lenis";
 import "lenis/dist/lenis.css";
+
+type LenisContextType = Lenis | null;
+const LenisContext = createContext<LenisContextType>(null);
+
+export function useLenis() {
+  return useContext(LenisContext);
+}
 
 type LenisProviderProps = {
   children: ReactNode;
 };
 
 export function LenisProvider({ children }: LenisProviderProps) {
+  const [lenis, setLenis] = useState<Lenis | null>(null);
+
   useEffect(() => {
     // Initialize Lenis with recommended settings
-    const lenis = new Lenis({
+    const lenisInstance = new Lenis({
       autoRaf: true,
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -36,16 +51,21 @@ export function LenisProvider({ children }: LenisProviderProps) {
     });
 
     // Optional: Listen to scroll events for debugging or custom behaviors
-    lenis.on("scroll", () => {
+    lenisInstance.on("scroll", () => {
       // You can emit custom events or sync with other animations here
       // console.log('Lenis scroll event:', e);
     });
 
+    // Set state in a microtask to avoid cascading renders
+    Promise.resolve().then(() => setLenis(lenisInstance));
+
     // Cleanup function to destroy Lenis instance on unmount
     return () => {
-      lenis.destroy();
+      lenisInstance.destroy();
     };
   }, []);
 
-  return <>{children}</>;
+  return (
+    <LenisContext.Provider value={lenis}>{children}</LenisContext.Provider>
+  );
 }
