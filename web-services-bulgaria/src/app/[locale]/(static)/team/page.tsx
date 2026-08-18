@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return generatePageMetadata({
     locale: locale as Locale,
     title: {
-      bg: "Познайте екипа | Web Services Bulgaria",
+      bg: "Запознайте се с екипа | Web Services Bulgaria",
       en: "Meet the Team | Web Services Bulgaria",
     },
     description: {

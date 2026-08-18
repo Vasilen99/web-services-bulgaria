@@ -5,9 +5,9 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import { FacebookIcon, InstagramIcon, LinkedinIcon } from "@/utility/icons";
 import { ACHIEVEMENTS } from "@/utility/constants";
-import TimelineAchievement from "@/components/timeline-achievements";
+import TimelineAchievement from "@/app/components/timeline-achievements";
 import { TEAM_MEMBERS } from "@/utility/constants";
-import { ContactCtaBottom } from "@/components/contact-cta-bottom";
+import { ContactCtaBottom } from "@/app/components/contact-cta-bottom";
 import Link from "next/link";
 interface TeamMemberCardProps {
   member: (typeof TEAM_MEMBERS)[0];

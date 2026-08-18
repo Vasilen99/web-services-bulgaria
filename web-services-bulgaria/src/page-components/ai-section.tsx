@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
-import { HeadingSection } from "@/components/heading-section";
+import { HeadingSection } from "@/app/components/heading-section";
 import { ArrowRight } from "lucide-react";
 import { AIFeatureItem } from "@/app/components/ai-feature-item";
 import type { AIFeature } from "@/app/components/ai-feature-item";

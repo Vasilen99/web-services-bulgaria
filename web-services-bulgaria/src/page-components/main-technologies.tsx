@@ -9,8 +9,8 @@ import {
 import { LiquidButton } from "@/components/animate-ui/components/buttons/liquid";
 import { technologiesMainLink } from "@/utility/links";
 import { useRouter } from "next/navigation";
-import { ContactCtaBottom } from "@/components/contact-cta-bottom";
-import { HeadingSection } from "@/components/heading-section";
+import { ContactCtaBottom } from "@/app/components/contact-cta-bottom";
+import { HeadingSection } from "@/app/components/heading-section";
 import { TECHNOLOGIES } from "@/utility/constants";
 
 export default function MainTechnologies() {
@@ -38,7 +38,7 @@ export default function MainTechnologies() {
   };
 
   return (
-    <div>
+    <div className="px-4">
       {/* Header Section */}
       <HeadingSection
         title={locale === "bg" ? "Технологии" : "Technologies"}

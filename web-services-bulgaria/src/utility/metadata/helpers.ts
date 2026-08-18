@@ -117,7 +117,8 @@ export function generatePageMetadata(config: MetadataConfig): Metadata {
     ? getLocaleString(config.aiEntityType, locale)
     : "";
 
-  const canonicalUrl = config.canonicalUrl || `${SITE_URL}${config.pathname}`;
+  const canonicalUrl =
+    config.canonicalUrl || `${SITE_URL}/${locale}${config.pathname}`;
 
   return {
     title,

@@ -12,7 +12,7 @@ import {
 } from "@/components/animate-ui/components/radix/accordion";
 import { ContactCtaBottom } from "./contact-cta-bottom";
 import { HeadingSection } from "./heading-section";
-import { Button } from "./ui/button";
+import { Button } from "@/components/animate-ui/components/buttons/button";
 
 export const FAQMain = () => {
   const t = useTranslations();
@@ -49,8 +49,8 @@ export const FAQMain = () => {
                   onClick={() => setActiveCategory(category.id)}
                   className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-200 border-l-2 ${
                     activeCategory === category.id
-                      ? "border-primary bg-primary/10 text-primary-foreground font-medium"
-                      : "border-transparent text-primary hover:border-primary/50"
+                      ? "border-primary-foreground bg-primary text-primary-foreground font-medium"
+                      : "border-primary text-primary bg-primary-foreground hover:border-primary/50"
                   }`}
                 >
                   {locale === "bg" ? category.nameBg : category.nameEn}

@@ -7,23 +7,23 @@ import {
   FlipButtonBack,
   FlipButtonFront,
 } from "@/components/animate-ui/components/buttons/flip";
-import { LanguageToggle } from "@/components/language-toggle";
+import { LanguageToggle } from "@/app/components/language-toggle";
 import {
   contactUsLinks,
   technologiesMainLink,
   faqLink,
   aiWorkflowsLink,
 } from "@/utility/links";
-import { GlassCardWrapper as GlassCard } from "@/components/glass-card-wrapper";
+import { GlassCardWrapper as GlassCard } from "@/app/components/glass-card-wrapper";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 
 const MobileNavDrawer = dynamic(() =>
-  import("@/components/mobile-nav-drawer").then((mod) => mod.default),
+  import("@/app/components/mobile-nav-drawer").then((mod) => mod.default),
 );
 
 const ThemeToggle = dynamic(() =>
-  import("@/components/theme-button").then((mod) => mod.default),
+  import("@/app/components/theme-button").then((mod) => mod.default),
 );
 export const NAVIGATION_DATA = [
   // { name: "services", href: "#services" },
@@ -68,6 +68,7 @@ export default function Header() {
                 alt="Web Services Bulgaria Logo"
                 width={50}
                 height={50}
+                loading="eager"
                 className="w-auto h-auto"
               />
             </Link>

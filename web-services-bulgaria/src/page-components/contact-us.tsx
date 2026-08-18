@@ -1,22 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { useLocale } from "next-intl";
-import { Globe } from "@/components/globe";
+import { useTranslations } from "next-intl";
+import { Globe } from "@/app/components/globe";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/animate-ui/components/buttons/button";
-import { translations } from "@/lib/translations";
 import { GravityStarsBackground } from "@/components/animate-ui/components/backgrounds/gravity-stars";
 import { commonInnerPageSectionStyles } from "@/utility/constants";
+import { EMAIL_REGEX } from "@/utility/constants";
 export default function ContactUsSection() {
-  const locale = useLocale() as "bg" | "en";
-
-  // Helper to get translated text
-  const t = (bilingualString: { bg: string; en: string }): string => {
-    return bilingualString[locale];
-  };
+  const t = useTranslations();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -34,7 +29,30 @@ export default function ContactUsSection() {
     e.preventDefault();
     setIsLoading(true);
     setSubmitMessage(null);
-
+    if (!formData.email.trim() || !EMAIL_REGEX.test(formData.email.trim())) {
+      setSubmitMessage({
+        type: "error",
+        text: t("missingEmailField"),
+      });
+      setIsLoading(false);
+      return;
+    }
+    if (!formData.name.trim()) {
+      setSubmitMessage({
+        type: "error",
+        text: t("missingNameField"),
+      });
+      setIsLoading(false);
+      return;
+    }
+    if (!formData.message.trim()) {
+      setSubmitMessage({
+        type: "error",
+        text: t("missingMessageField"),
+      });
+      setIsLoading(false);
+      return;
+    }
     try {
       const formDataObj = new FormData(e.currentTarget);
       formDataObj.append(
@@ -59,7 +77,7 @@ export default function ContactUsSection() {
       if (result.success) {
         setSubmitMessage({
           type: "success",
-          text: "Message sent successfully! We'll get back to you soon.",
+          text: t("successMessage"),
         });
         setFormData({
           name: "",
@@ -71,14 +89,14 @@ export default function ContactUsSection() {
       } else {
         setSubmitMessage({
           type: "error",
-          text: "Failed to send message. Please try again.",
+          text: t("errorMessage"),
         });
       }
     } catch (error) {
       console.error("Form submission error:", error);
       setSubmitMessage({
         type: "error",
-        text: "An error occurred. Please try again later.",
+        text: t("errorMessage"),
       });
     } finally {
       setIsLoading(false);
@@ -107,11 +125,11 @@ export default function ContactUsSection() {
         <div className="flex flex-col items-center lg:items-start w-full lg:w-1/2 gap-8">
           <div className="flex flex-col gap-4 max-w-xl">
             <h1 className="text-4xl lg:text-6xl text-center lg:text-left font-bold text-primary">
-              {t(translations.contactHeadline)}
+              {t("contactHeadline")}
             </h1>
 
             <p className="text-base lg:text-lg text-center lg:text-left text-primary leading-relaxed">
-              {t(translations.contactDescription)}
+              {t("contactDescription")}
             </p>
           </div>
 
@@ -142,16 +160,15 @@ export default function ContactUsSection() {
                   htmlFor="name"
                   className="text-primary text-sm font-medium"
                 >
-                  {t(translations.yourName)}
+                  {t("yourName")}
                 </Label>
                 <Input
                   id="name"
                   name="name"
                   type="text"
-                  placeholder={t(translations.namePlaceholder)}
+                  placeholder={t("namePlaceholder")}
                   value={formData.name}
                   onChange={handleChange}
-                  required
                   className="bg-primary/5 border-primary/30 text-primary placeholder:text-primary/40 focus-visible:ring-primary/50"
                 />
               </div>
@@ -162,16 +179,15 @@ export default function ContactUsSection() {
                   htmlFor="email"
                   className="text-primary text-sm font-medium"
                 >
-                  {t(translations.yourEmail)}
+                  {t("yourEmail")}
                 </Label>
                 <Input
                   id="email"
                   name="email"
                   type="email"
-                  placeholder={t(translations.emailPlaceholder)}
+                  placeholder={t("emailPlaceholder")}
                   value={formData.email}
                   onChange={handleChange}
-                  required
                   className="bg-primary/5 border-primary/30 text-primary placeholder:text-primary/40 focus-visible:ring-primary/50"
                 />
               </div>
@@ -182,13 +198,13 @@ export default function ContactUsSection() {
                   htmlFor="phone"
                   className="text-primary text-sm font-medium"
                 >
-                  {t(translations.yourPhone)}
+                  {t("yourPhone")}
                 </Label>
                 <Input
                   id="phone"
                   name="phone"
                   type="tel"
-                  placeholder={t(translations.phonePlaceholder)}
+                  placeholder={t("phonePlaceholder")}
                   value={formData.phone}
                   onChange={handleChange}
                   className="bg-primary/5 border-primary/30 text-primary placeholder:text-primary/40 focus-visible:ring-primary/50"
@@ -201,16 +217,15 @@ export default function ContactUsSection() {
                   htmlFor="subject"
                   className="text-primary text-sm font-medium"
                 >
-                  {t(translations.subject)}
+                  {t("subject")}
                 </Label>
                 <Input
                   id="subject"
                   name="subject"
                   type="text"
-                  placeholder={t(translations.subjectPlaceholder)}
+                  placeholder={t("subjectPlaceholder")}
                   value={formData.subject}
                   onChange={handleChange}
-                  required
                   className="bg-primary/5 border-primary/30 text-primary placeholder:text-primary/40 focus-visible:ring-primary/50"
                 />
               </div>
@@ -221,15 +236,14 @@ export default function ContactUsSection() {
                   htmlFor="message"
                   className="text-primary text-sm font-medium"
                 >
-                  {t(translations.message)}
+                  {t("message")}
                 </Label>
                 <Textarea
                   id="message"
                   name="message"
-                  placeholder={t(translations.messagePlaceholder)}
+                  placeholder={t("messagePlaceholder")}
                   value={formData.message}
                   onChange={handleChange}
-                  required
                   rows={5}
                   className="bg-primary/5 border-primary/30 text-primary placeholder:text-primary/40 focus-visible:ring-primary/50 resize-none"
                 />
@@ -238,9 +252,7 @@ export default function ContactUsSection() {
               {/* Submit Button */}
               <div className="flex justify-center">
                 <Button disabled={isLoading}>
-                  {isLoading
-                    ? t(translations.sendingEmail)
-                    : t(translations.sendMessage)}
+                  {isLoading ? t("sendingEmail") : t("sendMessage")}
                 </Button>
               </div>
             </form>

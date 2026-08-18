@@ -1,6 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { translations } from "./translations";
-
 export interface FAQItem {
   id: string;
   questionBg: string;

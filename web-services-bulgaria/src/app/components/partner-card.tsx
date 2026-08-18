@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { motion } from "motion/react";
-import { Badge } from "./ui/badge";
+import { Badge } from "../../components/ui/badge";
 interface PartnerCardProps {
   name: string;
   shortDescription: string;

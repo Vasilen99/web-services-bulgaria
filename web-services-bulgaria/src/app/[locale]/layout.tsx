@@ -9,7 +9,7 @@ import { createMetadata } from "@/lib/seo";
 import "./globals.css";
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
-import { ScrollToTop } from "@/components/scroll-to-top";
+import { ScrollToTop } from "@/app/components/scroll-to-top";
 
 type Props = {
   children: React.ReactNode;

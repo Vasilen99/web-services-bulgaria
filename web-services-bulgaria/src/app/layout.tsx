@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import "./[locale]/globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
-import { LenisProvider } from "@/components/lenis-provider";
+import { ThemeProvider } from "@/app/components/theme-provider";
+import { LenisProvider } from "@/app/components/lenis-provider";
 
 type Props = {
   children: ReactNode;

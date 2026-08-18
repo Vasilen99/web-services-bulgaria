@@ -5,7 +5,7 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import { useLocale, useTranslations } from "next-intl";
 import { LANDING_PAGE_FAQ } from "@/lib/faq-data";
-import { HeadingSection } from "@/components/heading-section";
+import { HeadingSection } from "@/app/components/heading-section";
 
 export default function FAQSection() {
   const t = useTranslations();

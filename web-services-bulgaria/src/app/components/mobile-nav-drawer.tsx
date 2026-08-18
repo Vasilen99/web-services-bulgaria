@@ -14,8 +14,8 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { NAVIGATION_DATA } from "@/app/components/header";
-import { LanguageToggle } from "@/components/language-toggle";
-import ThemeToggle from "@/components/theme-button";
+import { LanguageToggle } from "@/app/components/language-toggle";
+import ThemeToggle from "@/app/components/theme-button";
 
 export default function MobileNavDrawer() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

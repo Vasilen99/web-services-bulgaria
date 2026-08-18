@@ -10,8 +10,8 @@ import {
   TypescriptIcon,
   ZustandIcon,
 } from "@/utility/icons";
-import { TechCard } from "@/components/tech-card";
-import { HeadingSection } from "@/components/heading-section";
+import { TechCard } from "@/app/components/tech-card";
+import { HeadingSection } from "@/app/components/heading-section";
 const ICONS_CONFIG = [
   {
     icon: NextIcon,

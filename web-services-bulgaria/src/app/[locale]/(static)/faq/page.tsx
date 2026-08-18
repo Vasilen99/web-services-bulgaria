@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { FAQMain } from "@/components/faq-main";
+import { FAQMain } from "../../../components/faq-main";
 import { generatePageMetadata } from "@/utility/metadata";
 import { locales, type Locale } from "@/i18n/config";
 

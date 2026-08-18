@@ -1,6 +1,6 @@
 // Common metadata constants for Web Services Bulgaria
 export const SITE_NAME = "Web Services Bulgaria";
-export const SITE_URL = "https://www.webservicesbulgaria.com";
+export const SITE_URL = "https://www.webservicesbg.com";
 export const SITE_LOCALE = "bg_BG";
 export const SITE_COUNTRY = "България";
 export const GEO_REGION = "BG";

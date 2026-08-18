@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { ContactCtaBottom } from "@/components/contact-cta-bottom";
+import { ContactCtaBottom } from "@/app/components/contact-cta-bottom";
 import {
   AI_WORKFLOWS,
   AI_MODELS,
@@ -9,15 +9,21 @@ import {
 } from "@/utility/constants";
 import dynamic from "next/dynamic";
 import { motion } from "motion/react";
-import { HeadingSection } from "@/components/heading-section";
+import { HeadingSection } from "@/app/components/heading-section";
 
-const ModelSection = dynamic(() => import("@/components/ai-model-section"), {
-  ssr: false,
-});
+const ModelSection = dynamic(
+  () => import("@/app/components/ai-model-section"),
+  {
+    ssr: false,
+  },
+);
 
-const WorkflowItem = dynamic(() => import("@/components/ai-workflow-item"), {
-  ssr: false,
-});
+const WorkflowItem = dynamic(
+  () => import("@/app/components/ai-workflow-item"),
+  {
+    ssr: false,
+  },
+);
 export type AIWorkflow = {
   id: string;
   titleKey: string;

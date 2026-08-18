@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations, useLocale } from "next-intl";
-import { HeadingSection } from "@/components/heading-section";
+import { HeadingSection } from "@/app/components/heading-section";
 import { LiquidButton } from "@/components/animate-ui/components/buttons/liquid";
 import { useRouter } from "next/navigation";
 import { teamLink } from "@/utility/links";

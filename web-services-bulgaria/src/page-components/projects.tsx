@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import Link from "next/link";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { PartnerCarousel } from "@/components/partner-carousel";
+import { PartnerCarousel } from "@/app/components/partner-carousel";
 import {
   NextIcon,
   ReactIcon,
@@ -13,7 +13,7 @@ import {
   TypescriptIcon,
   ZustandIcon,
 } from "@/utility/icons";
-import { ContactCtaBottom } from "@/components/contact-cta-bottom";
+import { ContactCtaBottom } from "@/app/components/contact-cta-bottom";
 
 const TECH_ICONS: Record<
   string,
@@ -66,15 +66,15 @@ export default function ProjectsPage({ partner }: ProjectsPageProps) {
   const t = useTranslations();
 
   return (
-    <div className="min-h-screen bg-background mt-28 py-12">
+    <div className="min-h-screen bg-background mt-36 px-4">
       {/* Main Content */}
-      <div className="max-w-6xl mx-auto px-6 py-16">
+      <div className="max-w-6xl mx-auto">
         {/* Title & Logo Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="mb-16 flex items-start gap-8"
+          className="mb-6 flex items-start gap-8"
         >
           <div className="shrink-0">
             <div className="w-24 h-24 rounded-lg bg-foreground/5 border border-foreground/10 flex items-center justify-center overflow-hidden">
@@ -274,44 +274,7 @@ export default function ProjectsPage({ partner }: ProjectsPageProps) {
             </ul>
           </motion.section>
         </div>
-
-        {/* Divider */}
-        <div className="h-px bg-linear-to-r from-foreground/0 via-foreground/10 to-foreground/0 mb-16" />
-
-        {/* CTA Section */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          className="flex flex-col gap-3 justify-center items-center py-12"
-        >
-          <h3 className="text-2xl font-bold mb-3 text-foreground">
-            {t("readyToBuild")}
-          </h3>
-          <p className="text-foreground/60 text-center">{t("letDiscuss")}</p>
-          <div className="flex gap-4 mt-4">
-            <a href={partner.website} target="_blank" rel="noopener noreferrer">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 rounded-lg bg-primary/10 text-primary font-semibold text-sm hover:bg-primary/20 transition-colors duration-300 border border-primary/30"
-              >
-                {t("viewProject")}
-              </motion.button>
-            </a>
-            <Link href="/contact-us">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-colors duration-300"
-              >
-                {t("getInTouchCTA")}
-              </motion.button>
-            </Link>
-          </div>
-        </motion.section>
       </div>
-
       <ContactCtaBottom />
     </div>
   );

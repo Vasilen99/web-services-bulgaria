@@ -2,12 +2,12 @@
 
 import { useLocale, useTranslations } from "next-intl";
 import { motion } from "motion/react";
-import { PartnerCard } from "@/components/partner-card";
+import { PartnerCard } from "@/app/components/partner-card";
 import { ServifyFullLogo } from "@/utility/icons";
 import { PARTNERS_DATA } from "@/lib/partners-data";
 import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
-import { HeadingSection } from "@/components/heading-section";
+import { HeadingSection } from "@/app/components/heading-section";
 import { contactUsLinks, projectsLink } from "@/utility/links";
 // Map partners data for cards
 const PARTNERS_LIST = [
