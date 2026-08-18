@@ -8,7 +8,7 @@ import type { AIFeature } from "@/app/components/ai-feature-item";
 import { aiWorkflowsLink } from "@/utility/links";
 import { LiquidButton } from "@/components/animate-ui/components/buttons/liquid";
 import { useRouter } from "next/navigation";
-// import { HexagonBackground } from "@/components/animate-ui/components/backgrounds/hexagon";
+import { HexagonBackground } from "@/components/animate-ui/components/backgrounds/hexagon";
 const AI_FEATURES: AIFeature[] = [
   {
     id: "research",
@@ -36,7 +36,7 @@ export default function AISection() {
   const router = useRouter();
   return (
     <section id="ai" className="relative min-h-screen h-full bg-primary">
-      {/* <HexagonBackground className="absolute inset-0 w-full h-full" /> */}
+      <HexagonBackground className="absolute inset-0 w-full h-full" />
       <div className="relative py-12 lg:px-12 px-4">
         {/* Heading */}
         <div className="max-w-7xl mx-auto mb-16 lg:mb-20">
