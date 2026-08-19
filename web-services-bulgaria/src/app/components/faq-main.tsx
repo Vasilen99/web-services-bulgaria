@@ -28,7 +28,7 @@ export const FAQMain = () => {
       className={`w-full min-h-screen bg-background ${commonInnerPageSectionStyles}`}
     >
       {/* Page Header Section */}
-      <div className={` mx-auto max-w-7xl`}>
+      <div className="mx-auto max-w-7xl">
         <HeadingSection
           type="inner"
           title={t("faqPageHeadline")}
@@ -40,7 +40,7 @@ export const FAQMain = () => {
       </div>
 
       {/* Main Content */}
-      <div className="pt-12 px-4 lg:px-12">
+      <div className="pt-12">
         <div className="max-w-7xl mx-auto">
           {/* Two Column Layout: Sidebar + Content */}
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-16">

@@ -14,7 +14,7 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative w-full overflow-hidden pt-24 h-screen"
+      className="relative w-full overflow-hidden pt-24 lg:h-screen h-full"
     >
       <div className="absolute inset-0 w-full h-full">
         <StarsBackground starColor="var(--primary)" />

@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 interface TeamMember {
   keyFirstName: string;
   keyLastName: string;
-  title: string;
+  titleKey: string;
   animationPath: string;
   descriptionKey: string;
 }
@@ -20,28 +20,28 @@ const TEAM_ROLES: TeamMember[] = [
   {
     keyFirstName: "vasilen",
     keyLastName: "minkov",
-    title: "CEO & Founder",
+    titleKey: "ceoFounder",
     animationPath: "/animations/ceo.lottie",
     descriptionKey: "vasilenDescription",
   },
   {
     keyFirstName: "natalia",
     keyLastName: "lazarova",
-    title: "Marketing Specialist",
+    titleKey: "marketingSpecialist",
     animationPath: "/animations/marketing.lottie",
     descriptionKey: "nataliaDescription",
   },
   {
     keyFirstName: "miroslav",
     keyLastName: "dimitrov",
-    title: "Software Engineer",
+    titleKey: "frontEndDeveloper",
     animationPath: "/animations/Developer Front End.lottie",
     descriptionKey: "miroslavDescription",
   },
   {
     keyFirstName: "galq",
     keyLastName: "nencheva",
-    title: "Graphic Designer",
+    titleKey: "graficDesigner",
     animationPath: "/animations/uiux designer.lottie",
     descriptionKey: "galqDescription",
   },
@@ -95,7 +95,7 @@ export default function Team() {
         >
           <div className="flex lg:flex-row flex-col-reverse lg:items-center items-start lg:gap-12 gap-6 lg:justify-center justify-start lg:pt-12">
             {/* Animation Left */}
-            <div className="lg:w-1/2 w-80 lg:shrink-0 shrink">
+            <div className="lg:w-1/2 w-full lg:shrink-0 shrink flex justify-center">
               <div className="lg:h-80 h-40">
                 <LottieAnimation
                   src={TEAM_ROLES[0].animationPath}
@@ -118,7 +118,7 @@ export default function Team() {
               </div>
               <div className="w-12 h-1 bg-primary-foreground/30" />
               <p className="text-sm font-semibold text-primary-foreground/70 tracking-wide uppercase">
-                {TEAM_ROLES[0].title}
+                {t(TEAM_ROLES[0].titleKey)}
               </p>
               <p className="text-base text-primary-foreground/60 leading-relaxed">
                 {t(TEAM_ROLES[0].descriptionKey)}
@@ -145,7 +145,7 @@ export default function Team() {
               </div>
               <div className="w-12 h-1 bg-primary-foreground/30" />
               <p className="text-sm font-semibold text-primary-foreground/70 tracking-wide uppercase">
-                {TEAM_ROLES[1].title}
+                {t(TEAM_ROLES[1].titleKey)}
               </p>
               <p className="text-base text-primary-foreground/60 leading-relaxed">
                 {t(TEAM_ROLES[1].descriptionKey)}
@@ -153,7 +153,7 @@ export default function Team() {
             </div>
 
             {/* Animation Right */}
-            <div className="lg:w-1/2 w-80 lg:shrink-0 shrink">
+            <div className="lg:w-1/2 w-full lg:shrink-0 shrink flex justify-center">
               <div className="lg:h-80 h-40">
                 <LottieAnimation
                   src={TEAM_ROLES[1].animationPath}
@@ -173,7 +173,7 @@ export default function Team() {
         >
           <div className="flex lg:flex-row flex-col-reverse lg:items-center items-start lg:gap-12 gap-6 lg:justify-center justify-start lg:pt-12">
             {/* Animation Left */}
-            <div className="lg:w-1/2 w-80 lg:shrink-0 shrink">
+            <div className="lg:w-1/2 w-full lg:shrink-0 shrink flex justify-center">
               <div className="lg:h-80 h-40">
                 <LottieAnimation
                   src={TEAM_ROLES[2].animationPath}
@@ -196,7 +196,7 @@ export default function Team() {
               </div>
               <div className="w-12 h-1 bg-primary-foreground/30" />
               <p className="text-sm font-semibold text-primary-foreground/70 tracking-wide uppercase">
-                {TEAM_ROLES[2].title}
+                {t(TEAM_ROLES[2].titleKey)}
               </p>
               <p className="text-base text-primary-foreground/60 leading-relaxed">
                 {t(TEAM_ROLES[2].descriptionKey)}
@@ -223,7 +223,7 @@ export default function Team() {
               </div>
               <div className="w-12 h-1 bg-primary-foreground/30" />
               <p className="text-sm font-semibold text-primary-foreground/70 tracking-wide uppercase">
-                {TEAM_ROLES[3].title}
+                {t(TEAM_ROLES[3].titleKey)}
               </p>
               <p className="text-base text-primary-foreground/60 leading-relaxed">
                 {t(TEAM_ROLES[3].descriptionKey)}
@@ -231,7 +231,7 @@ export default function Team() {
             </div>
 
             {/* Animation Right */}
-            <div className="lg:w-1/2 w-80 lg:shrink-0 shrink">
+            <div className="lg:w-1/2 w-full lg:shrink-0 shrink place-self-center flex justify-center">
               <div className="lg:h-80 h-40">
                 <LottieAnimation
                   src={TEAM_ROLES[3].animationPath}

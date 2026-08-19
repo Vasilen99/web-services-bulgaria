@@ -15,7 +15,7 @@ export const HeadingSection = ({
 }) => {
   if (type === "landing") {
     return (
-      <div className="px-6 lg:px-12 mb-14">
+      <div className="mb-14">
         <motion.div
           className="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 border-t border-primary-content/10 pt-10"
           initial={{ opacity: 0, y: 20 }}

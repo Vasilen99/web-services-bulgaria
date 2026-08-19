@@ -9,12 +9,14 @@ import { localeNames } from "@/i18n/config";
 interface LanguageToggleProps {
   className?: string;
   showLabel?: boolean;
+  showAsText?: boolean;
   size?: "sm" | "md" | "lg";
 }
 
 export function LanguageToggle({
   className = "",
   showLabel = false,
+  showAsText = false,
   size = "md",
 }: LanguageToggleProps) {
   const router = useRouter();
@@ -38,7 +40,31 @@ export function LanguageToggle({
   };
 
   const tooltipText =
-    currentLocale === "bg" ? "Switch to English" : "Превключи на български";
+    currentLocale === "bg" ? "Switch to" : "Превключи на български";
+
+  // For text display in mobile drawer
+  if (showAsText) {
+    const displayText = currentLocale === "bg" ? "Смени на:" : "Change to:";
+
+    return (
+      <Button
+        onClick={toggleLanguage}
+        className={`
+          w-full gap-2 rounded-lg 
+          bg-primary-foreground
+          border border-primary transition-all duration-300
+          text-primary ${className}
+        `}
+        title={tooltipText}
+        aria-label={tooltipText}
+      >
+        <span className="transition-colors duration-300 flex gap-2 items-center justify-center">
+          <p className="text-sm">{displayText}</p>
+          <p className="text-sm">{nextLocale.toUpperCase()}</p>
+        </span>
+      </Button>
+    );
+  }
 
   return (
     <Button

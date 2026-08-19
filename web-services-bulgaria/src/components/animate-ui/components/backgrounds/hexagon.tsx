@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import * as React from 'react';
+import * as React from "react";
 
-import { cn } from '@/lib/utils';
+import { cn } from "@/lib/utils";
 
-type HexagonBackgroundProps = React.ComponentProps<'div'> & {
-  hexagonProps?: React.ComponentProps<'div'>;
+type HexagonBackgroundProps = React.ComponentProps<"div"> & {
+  hexagonProps?: React.ComponentProps<"div">;
   hexagonSize?: number; // value greater than 50
   hexagonMargin?: number;
 };
@@ -20,25 +20,25 @@ function HexagonBackground({
 }: HexagonBackgroundProps) {
   const hexagonWidth = hexagonSize;
   const hexagonHeight = hexagonSize * 1.1;
-  const rowSpacing = hexagonSize * 0.2  ;
+  const rowSpacing = hexagonSize * 0.2;
   const baseMarginTop = -36 - 0.275 * (hexagonSize - 100);
   const computedMarginTop = baseMarginTop + hexagonMargin;
   const oddRowMarginLeft = -(hexagonSize / 2);
   const evenRowMarginLeft = hexagonMargin / 2;
 
   const subscribe = React.useCallback((callback: () => void) => {
-    window.addEventListener('resize', callback);
-    return () => window.removeEventListener('resize', callback);
+    window.addEventListener("resize", callback);
+    return () => window.removeEventListener("resize", callback);
   }, []);
 
   const windowSize = React.useSyncExternalStore(
     subscribe,
     () => `${window.innerWidth}x${window.innerHeight}`,
-    () => '0x0',
+    () => "0x0",
   );
 
   const gridDimensions = React.useMemo(() => {
-    const [width, height] = windowSize.split('x').map(Number);
+    const [width, height] = windowSize.split("x").map(Number);
     return {
       rows: Math.ceil(height / rowSpacing),
       columns: width ? Math.ceil(width / hexagonWidth) + 1 : 0,
@@ -49,7 +49,7 @@ function HexagonBackground({
     <div
       data-slot="hexagon-background"
       className={cn(
-        'relative size-full overflow-hidden dark:bg-neutral-900 bg-neutral-100',
+        "relative size-full overflow-hidden bg-secondary/10",
         className,
       )}
       {...props}
@@ -80,12 +80,12 @@ function HexagonBackground({
                     ...hexagonProps?.style,
                   }}
                   className={cn(
-                    'relative',
-                    '[clip-path:polygon(50%_0%,_100%_25%,_100%_75%,_50%_100%,_0%_75%,_0%_25%)]',
+                    "relative",
+                    "[clip-path:polygon(50%_0%,_100%_25%,_100%_75%,_50%_100%,_0%_75%,_0%_25%)]",
                     "before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full dark:before:bg-neutral-950 before:bg-white before:opacity-100 before:transition-all before:duration-1000",
                     "after:content-[''] after:absolute after:inset-[var(--hexagon-margin)] dark:after:bg-neutral-950 after:bg-white",
-                    'after:[clip-path:polygon(50%_0%,_100%_25%,_100%_75%,_50%_100%,_0%_75%,_0%_25%)]',
-                    'hover:before:bg-neutral-200 dark:hover:before:bg-neutral-800 hover:before:opacity-100 hover:before:duration-0 dark:hover:after:bg-neutral-900 hover:after:bg-neutral-100 hover:after:opacity-100 hover:after:duration-0',
+                    "after:[clip-path:polygon(50%_0%,_100%_25%,_100%_75%,_50%_100%,_0%_75%,_0%_25%)]",
+                    "hover:before:bg-neutral-200 dark:hover:before:bg-neutral-800 hover:before:opacity-100 hover:before:duration-0 dark:hover:after:bg-neutral-900 hover:after:bg-neutral-100 hover:after:opacity-100 hover:after:duration-0",
                     hexagonProps?.className,
                   )}
                 />

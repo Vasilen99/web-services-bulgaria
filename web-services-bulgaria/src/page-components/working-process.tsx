@@ -76,7 +76,7 @@ export default function WorkingProcess() {
   }, []);
 
   return (
-    <section className="w-full py-16 px-4 lg:px-12 bg-background">
+    <section className="w-full py-12 lg:px-12 px-4 bg-background">
       <HeadingSection
         title={t("workingProcessHeading")}
         subtitle={t("workingProcessSubheading")}
@@ -220,7 +220,7 @@ export default function WorkingProcess() {
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   viewport={{ once: true, amount: 0.3 }}
-                  className="relative pl-44"
+                  className="relative pl-44 last:mb-12"
                   data-step-number={step.number}
                 >
                   {/* Step animation */}

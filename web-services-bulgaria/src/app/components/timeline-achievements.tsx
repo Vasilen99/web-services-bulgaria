@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { useTranslations } from "next-intl";
 import { ACHIEVEMENTS } from "@/utility/constants/index";
 
 export type TimelineAchievementProps = {
@@ -9,6 +10,7 @@ export default function TimelineAchievement({
   achievement,
   index,
 }: TimelineAchievementProps) {
+  const t = useTranslations();
   const isLeft = index % 2 === 0;
 
   return (
@@ -32,14 +34,14 @@ export default function TimelineAchievement({
             <div className="rounded-lg border border-foreground/10 bg-foreground/5 p-6 hover:bg-foreground/8 transition-colors duration-300 inline-block w-full">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-end sm:gap-4 mb-3">
                 <h3 className="text-lg font-bold text-foreground">
-                  {achievement.title}
+                  {t(achievement.titleKey)}
                 </h3>
                 <span className="text-sm font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full w-fit">
                   {achievement.year}
                 </span>
               </div>
               <p className="text-sm text-foreground/70 leading-relaxed">
-                {achievement.description}
+                {t(achievement.descriptionKey)}
               </p>
             </div>
           </div>
@@ -60,14 +62,14 @@ export default function TimelineAchievement({
             <div className="rounded-lg border border-foreground/10 bg-foreground/5 p-6 hover:bg-foreground/8 transition-colors duration-300 inline-block w-full">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between sm:gap-4 mb-3">
                 <h3 className="text-lg font-bold text-foreground">
-                  {achievement.title}
+                  {t(achievement.titleKey)}
                 </h3>
                 <span className="text-sm font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full w-fit">
                   {achievement.year}
                 </span>
               </div>
               <p className="text-sm text-foreground/70 leading-relaxed">
-                {achievement.description}
+                {t(achievement.descriptionKey)}
               </p>
             </div>
           </div>

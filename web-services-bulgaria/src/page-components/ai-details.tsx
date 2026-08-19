@@ -86,7 +86,7 @@ export default function AIWorkflowsPage() {
           </motion.div>
 
           {/* Workflow Items List */}
-          <motion.div className="space-y-12 my-6" variants={containerVariants}>
+          <motion.div className="space-y-12 my-12" variants={containerVariants}>
             {AI_WORKFLOWS.map((workflow, index) => (
               <motion.div key={workflow.id} variants={itemVariants}>
                 <WorkflowItem workflow={workflow} index={index} />
@@ -109,7 +109,7 @@ export default function AIWorkflowsPage() {
 
       {/* AI Models Section */}
       <motion.section
-        className="lg:py-12 py-4 px-4 lg:px-8"
+        className="lg:py-12 py-4"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: false, amount: 0.2 }}
@@ -128,7 +128,7 @@ export default function AIWorkflowsPage() {
           </motion.div>
 
           {/* Model Sections List */}
-          <motion.div className="space-y-12" variants={containerVariants}>
+          <motion.div className="space-y-12 my-6" variants={containerVariants}>
             {AI_MODELS.map((model) => (
               <motion.div
                 key={model.name}

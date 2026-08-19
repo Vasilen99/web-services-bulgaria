@@ -518,44 +518,38 @@ export const TECHNOLOGIES_DATA = {
 export const ACHIEVEMENTS = [
   {
     id: 1,
-    title: "Основаването",
-    description:
-      "Web Services Bulgaria е основана с визия да доставя високо качествени дигитални решения.",
+    titleKey: "achievement1Title",
+    descriptionKey: "achievement1Description",
     year: "2019",
   },
   {
     id: 2,
-    title: "Първи успешен проект",
-    description:
-      "Завършихме първия ни SaaS продукт, който трансформира работата на над 100 фирми.",
+    titleKey: "achievement2Title",
+    descriptionKey: "achievement2Description",
     year: "2020",
   },
   {
     id: 3,
-    title: "Разширяване на екипа",
-    description:
-      "Привикохме талантливи дизайнери и разработчици, които разделят нашата визия.",
+    titleKey: "achievement3Title",
+    descriptionKey: "achievement3Description",
     year: "2021",
   },
   {
     id: 4,
-    title: "Лидерство в иновациите",
-    description:
-      "Внедрихме първите AI-управлявани работни процеси за автоматизация на бизнеса.",
+    titleKey: "achievement4Title",
+    descriptionKey: "achievement4Description",
     year: "2022",
   },
   {
     id: 5,
-    title: "Глобално разширяване",
-    description:
-      "Нашите решения сега помагат на клиенти от Европа и САЩ да оптимизират операциите.",
+    titleKey: "achievement5Title",
+    descriptionKey: "achievement5Description",
     year: "2023",
   },
   {
     id: 6,
-    title: "Водещ доставчик",
-    description:
-      "Признати като един от водещите разработчици, работим с 50+ компании.",
+    titleKey: "achievement6Title",
+    descriptionKey: "achievement6Description",
     year: "2024",
   },
 ];

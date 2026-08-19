@@ -7,7 +7,6 @@ import {
   DrawerTrigger,
   DrawerContent,
   DrawerHeader,
-  DrawerOverlay,
 } from "@/components/ui/drawer";
 import { Button } from "@/components/animate-ui/components/buttons/button";
 import Link from "next/link";
@@ -33,10 +32,6 @@ export default function MobileNavDrawer() {
         <Menu className="size-5 stroke-primary" />
       </DrawerTrigger>
 
-      <DrawerOverlay
-        className="bg-primary/50!"
-        onClick={() => setIsMenuOpen(false)}
-      />
       <DrawerContent className="bg-primary-foreground">
         <DrawerHeader>
           <div className="text-end">
@@ -63,9 +58,9 @@ export default function MobileNavDrawer() {
             </Link>
           ))}
         </nav>
-        <div className="grid grid-cols-1 gap-6 py-3 px-4 border-t border-base-200">
+        <div className="grid grid-cols-1 gap-4 py-3 px-4 border-t border-base-200">
           <ThemeToggle showAsText={true} className="border border-primary" />
-          <LanguageToggle />
+          <LanguageToggle showAsText={true} />
         </div>
       </DrawerContent>
     </Drawer>
