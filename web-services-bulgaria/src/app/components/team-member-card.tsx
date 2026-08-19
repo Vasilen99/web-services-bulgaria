@@ -51,14 +51,16 @@ export default function TeamMemberCard({ member, index }: TeamMemberCardProps) {
 
       {/* Content container */}
       <div className="relative px-6 py-8 -mt-20 pt-24 pb-6 flex flex-col grow">
-        <div className="flex flex-col mb-1">
+        <div className="flex flex-col gap-1 mb-1">
           <h3 className="text-xl font-bold text-foreground">
             {t(member.keyFirstName)} {t(member.keyLastName)}
           </h3>
-          <h3 className="text-xl font-bold text-foreground"></h3>
+
+          <p className="text-sm font-medium text-primary mb-4">
+            {t(member.titleKey || "")}
+          </p>
         </div>
 
-        <p className="text-sm font-medium text-primary mb-4">{member.title}</p>
         <p className="text-sm text-primary leading-relaxed mb-6 grow">
           {t(member.bioKey)}
         </p>

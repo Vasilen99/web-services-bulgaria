@@ -128,7 +128,7 @@ export default function AIWorkflowsPage() {
           </motion.div>
 
           {/* Model Sections List */}
-          <motion.div className="space-y-12 my-6" variants={containerVariants}>
+          <motion.div className="space-y-12 my-12" variants={containerVariants}>
             {AI_MODELS.map((model) => (
               <motion.div
                 key={model.name}

@@ -10,10 +10,22 @@ import {
   OpenAIIcon,
   AnthropicIcon,
 } from "../icons";
-import type { FlipCardData } from "@/components/animate-ui/components/community/flip-card";
 import type { AIWorkflow, AIModel } from "@/page-components/ai-details";
 
-interface Technology {
+export type FlipCardData = {
+  keyFirstName: string;
+  keyLastName: string;
+  titleKey?: string;
+  image: string;
+  bioKey: string;
+  socialLinks?: {
+    linkedin?: string;
+    facebook?: string;
+    instagram?: string;
+  };
+};
+
+type Technology = {
   icon: React.ComponentType<{ className?: string }>;
   name: string;
   slug: string;
@@ -25,7 +37,7 @@ interface Technology {
     bg: string[];
     en: string[];
   };
-}
+};
 export const TECHNOLOGIES_DATA = {
   nextjs: {
     name: "Next.js",
@@ -558,7 +570,7 @@ export const TEAM_MEMBERS: FlipCardData[] = [
   {
     keyFirstName: "vasilen",
     keyLastName: "minkov",
-    title: "CEO & Founder",
+    titleKey: "ceoFounder",
     image: "/team/vasilen-snimka.png",
     bioKey: "vasilenDescription",
     socialLinks: {
@@ -570,7 +582,7 @@ export const TEAM_MEMBERS: FlipCardData[] = [
   {
     keyFirstName: "galq",
     keyLastName: "nencheva",
-    title: "Graphic Designer",
+    titleKey: "graficDesigner",
     image: "/team/galq-snimka.png",
     bioKey: "galqDescription",
     socialLinks: {
@@ -582,7 +594,7 @@ export const TEAM_MEMBERS: FlipCardData[] = [
   {
     keyFirstName: "miroslav",
     keyLastName: "dimitrov",
-    title: "Software Engineer",
+    titleKey: "frontEndDeveloper",
     image: "/team/miroslav-snimka.jpg",
     bioKey: "miroslavDescription",
 
@@ -595,7 +607,7 @@ export const TEAM_MEMBERS: FlipCardData[] = [
   {
     keyFirstName: "natalia",
     keyLastName: "lazarova",
-    title: "Marketing Specialist",
+    titleKey: "marketingSpecialist",
     image: "/team/nataliq-snimka.png",
     bioKey: "nataliaDescription",
 
