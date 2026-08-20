@@ -34,9 +34,6 @@ export const FAQMain = () => {
           title={t("faqPageHeadline")}
           subtitle={t("faqPageDescription")}
         />
-        <p className="text-base text-primary w-full leading-relaxed max-w-none mt-8">
-          {t("platformIntro")}
-        </p>
       </div>
 
       {/* Main Content */}
@@ -106,6 +103,9 @@ export const FAQMain = () => {
               )}
             </div>
           </div>
+          <p className="text-base text-primary w-full leading-relaxed max-w-none mt-12">
+            {t("platformIntro")}
+          </p>
           <ContactCtaBottom />
         </div>
       </div>

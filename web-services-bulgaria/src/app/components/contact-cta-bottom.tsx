@@ -1,15 +1,15 @@
 "use client";
 
 import { useTranslations, useLocale } from "next-intl";
-import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
 import { contactUsLinks } from "@/utility/links";
-
+import { LiquidButton } from "@/components/animate-ui/components/buttons/liquid";
+import { useRouter } from "next/navigation";
 export const ContactCtaBottom = () => {
   const locale = useLocale();
   const t = useTranslations();
-
+  const router = useRouter();
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -40,7 +40,7 @@ export const ContactCtaBottom = () => {
       viewport={{ once: true, amount: 0.3 }}
       variants={containerVariants}
     >
-      <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-12 gap-4 items-center">
+      <div className="grid grid-cols-1 lg:gap-12 gap-4 items-center">
         <motion.div className="flex flex-col gap-3" variants={itemVariants}>
           <motion.h3
             className="text-3xl font-bold lg:text-start text-center text-primary"
@@ -56,16 +56,18 @@ export const ContactCtaBottom = () => {
           </motion.p>
         </motion.div>
         <motion.div
-          className="flex items-center mx-auto lg:justify-end"
+          className="flex items-center lg:justify-start justify-center"
           variants={itemVariants}
         >
-          <Link
-            href={`/${locale}/${contactUsLinks}`}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium"
+          <LiquidButton
+            onClick={() => router.push(`/${locale}/${contactUsLinks}`)}
+            variant={"foreground"}
+            size={"lg"}
+            className="w-full sm:w-[200px] h-[50px] items-center gap-2 px-6 py-3 text-primary-foreground"
           >
             {t("letsTalk")}{" "}
             <ArrowRight size={16} className="stroke-primary-foreground" />
-          </Link>
+          </LiquidButton>
         </motion.div>
       </div>
     </motion.div>

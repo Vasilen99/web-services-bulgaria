@@ -6,7 +6,7 @@ import { ACHIEVEMENTS } from "@/utility/constants";
 import TimelineAchievement from "@/app/components/timeline-achievements";
 import { TEAM_MEMBERS } from "@/utility/constants";
 import { ContactCtaBottom } from "@/app/components/contact-cta-bottom";
-import TeamMemberCard from "@/app/components/team-member-card";
+import { CustomCarousel } from "@/app/components/custom-carousel";
 import { HeadingSection } from "@/app/components/heading-section";
 import { innerPageMainSectionStyles } from "@/utility/constants";
 
@@ -30,17 +30,12 @@ export default function TeamDetailsPage() {
       </motion.div>
       {/* Team Members Section */}
       <section className="py-12">
-        <div className="max-w-6xl mx-auto">
-          {/* Team Members Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {TEAM_MEMBERS.map((member, index) => (
-              <TeamMemberCard
-                key={`${member.keyFirstName}-${member.keyLastName}`}
-                member={member}
-                index={index}
-              />
-            ))}
-          </div>
+        <div className="max-w-6xl mx-auto px-4">
+          {/* Team Members Carousel */}
+          <CustomCarousel
+            members={TEAM_MEMBERS}
+            imageContainerClassName="object-cover object-center object-center"
+          />
         </div>
       </section>
 

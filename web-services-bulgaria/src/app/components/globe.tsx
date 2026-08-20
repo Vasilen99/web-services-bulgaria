@@ -39,6 +39,34 @@ export function Globe() {
   const globeRef = useRef<GlobeInstance | null>(null);
   const animationIdRef = useRef<number | undefined>(undefined);
   const isMobile = useIsTouchable(1024);
+
+  const markers = [
+    // Basic marker
+    {
+      location: [37.78, -122.44] as [number, number],
+      size: 0.03,
+      color: [1, 0, 0] as [number, number, number],
+
+      id: "san-francisco",
+      label: "San Francisco",
+    },
+    // With custom color (RGB 0-1)
+    {
+      location: [51.51, -0.13] as [number, number],
+      size: 0.03,
+      color: [1, 0, 0] as [number, number, number],
+      id: "london",
+      label: "London",
+    },
+    // With id for CSS anchoring
+    {
+      location: [35.68, 139.65] as [number, number],
+      size: 0.03,
+      color: [1, 0, 0] as [number, number, number],
+      id: "tokyo",
+      label: "Tokyo",
+    },
+  ];
   // Detect theme changes
   useEffect(() => {
     const checkTheme = () => {
@@ -83,7 +111,13 @@ export function Globe() {
       devicePixelRatio: 2,
       phi: 0,
       theta: 0.3,
-
+      markers: markers.map((m) => ({
+        location: m.location,
+        size: m.size,
+        id: m.id,
+        label: m.label,
+        color: m.color || config.markerColor,
+      })),
       ...config,
     });
 
@@ -101,15 +135,27 @@ export function Globe() {
         cancelAnimationFrame(animationIdRef.current);
       }
     };
-  }, [isDarkTheme, isMobile]);
+  }, [isDarkTheme, isMobile, markers]);
 
   return (
     <div className="relative flex items-center justify-center">
+      {markers.map((m) => (
+        <div
+          key={m.id}
+          className="marker-label z-5"
+          style={{
+            positionAnchor: `--cobe-${m.id}`,
+            opacity: `var(--cobe-visible-${m.id}, 0)`,
+          }}
+        >
+          {m.label}
+        </div>
+      ))}
       <canvas
         ref={canvasRef}
         style={{
-          width: isMobile ? "300px" : "500px",
-          height: isMobile ? "300px" : "500px",
+          width: isMobile ? "400px" : "600px",
+          height: isMobile ? "400px" : "600px",
           maxWidth: "100%",
         }}
       />

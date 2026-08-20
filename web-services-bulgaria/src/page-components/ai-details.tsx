@@ -11,6 +11,19 @@ import dynamic from "next/dynamic";
 import { motion } from "motion/react";
 import { HeadingSection } from "@/app/components/heading-section";
 
+const Divider = () => {
+  return (
+    <motion.div
+      className="px-4 sm:px-6 lg:px-8"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: false, amount: 0.5 }}
+      transition={{ duration: 0.6 }}
+    >
+      <div className="max-w-5xl mx-auto border-t border-primary/10" />
+    </motion.div>
+  );
+};
 const ModelSection = dynamic(
   () => import("@/app/components/ai-model-section"),
   {
@@ -96,16 +109,7 @@ export default function AIWorkflowsPage() {
         </div>
       </motion.section>
 
-      {/* Divider */}
-      <motion.div
-        className="px-4 sm:px-6 lg:px-8"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: false, amount: 0.5 }}
-        transition={{ duration: 0.6 }}
-      >
-        <div className="max-w-5xl mx-auto border-t border-primary/10" />
-      </motion.div>
+      <Divider />
 
       {/* AI Models Section */}
       <motion.section
@@ -121,22 +125,30 @@ export default function AIWorkflowsPage() {
             className="flex flex-col gap-3 items-center"
             variants={itemVariants}
           >
-            <h3 className="text-primary text-center">{t("aiModelsSection")}</h3>
-            <p className="text-primary text-center">
+            <h3 className="text-4xl lg:text-5xl font-semibold mb-4 tracking-tight text-center text-primary">
+              {t("aiModelsSection")}
+            </h3>
+            <p className="text-primary text-lg leading-relaxed max-w-3xl text-center">
               {t("aiModelsSectionDesc")}
             </p>
           </motion.div>
 
           {/* Model Sections List */}
-          <motion.div className="space-y-12 my-12" variants={containerVariants}>
-            {AI_MODELS.map((model) => (
-              <motion.div
-                key={model.name}
-                className="first:mt-6"
-                variants={itemVariants}
-              >
-                <ModelSection model={model} />
-              </motion.div>
+          <motion.div
+            className="flex flex-col my-12"
+            variants={containerVariants}
+          >
+            {AI_MODELS.map((model, i: number) => (
+              <div key={model.name}>
+                <motion.div className="first:mt-6" variants={itemVariants}>
+                  <ModelSection model={model} />
+                </motion.div>
+                {i !== AI_MODELS.length - 1 && (
+                  <div className="my-24">
+                    <Divider />
+                  </div>
+                )}
+              </div>
             ))}
           </motion.div>
         </div>

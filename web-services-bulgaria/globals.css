@@ -33,7 +33,7 @@
     "Segoe UI", sans-serif;
 
   --font-body:
-    "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Montserrat", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", sans-serif;
 
   --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
@@ -493,5 +493,212 @@
 
   .animate-fade-in {
     animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+}
+.marker-label {
+  position: absolute;
+  bottom: anchor(top);
+  left: anchor(center);
+  translate: -50% 0;
+  margin-bottom: 8px;
+  padding: 0.25rem 0.5rem;
+  background: #1a1a1a;
+  color: #fff;
+  font-size: 0.75rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+/* 3D Carousel Styles */
+.team-carousel {
+  position: relative;
+  width: 100%;
+  height: auto;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+}
+
+.team-carousel-viewport {
+  position: relative;
+  width: 100%;
+  min-height: 28rem;
+  height: auto;
+  margin: 0 auto;
+  perspective: 1000px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.team-card-container {
+  position: absolute;
+  width: 380px;
+  height: auto;
+  min-height: 100%;
+  left: 50%;
+  top: 50%;
+  transform-origin: center center;
+
+  /* Dynamic z-index based on visibility - center card on top */
+  z-index: calc(100 - round(abs(var(--abs-offset)) * 10));
+
+  /* CSS Custom Properties for dynamic transforms */
+  transform: translateX(-50%) translateY(-50%)
+    rotateY(calc(var(--offset) * 50deg))
+    scaleY(calc(1 + var(--abs-offset) * -0.3))
+    translateZ(calc(var(--abs-offset) * -30rem))
+    translateX(calc(var(--direction) * -4rem));
+
+  filter: blur(calc(var(--abs-offset) * 0.8rem));
+  opacity: calc(1 - var(--abs-offset) * 0.4);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  pointer-events: var(--pointer-events, auto);
+  display: var(--display, block);
+}
+
+/* Navigation Buttons */
+.team-nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  border-radius: 50%;
+
+  transition: all 0.3s ease-out;
+  font-size: 1.5rem;
+}
+
+.team-nav-button:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-50%);
+}
+
+.team-nav-button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.team-nav-button:disabled:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.team-nav-left {
+  left: -4rem;
+}
+
+.team-nav-right {
+  right: -4rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .team-carousel-viewport {
+    min-height: 38rem;
+    height: auto;
+  }
+
+  .team-card-container {
+    width: 340px;
+
+    transform: translateX(-50%) translateY(-50%)
+      rotateY(calc(var(--offset) * 40deg))
+      scaleY(calc(1 + var(--abs-offset) * -0.25))
+      translateZ(calc(var(--abs-offset) * -25rem))
+      translateX(calc(var(--direction) * -3rem));
+  }
+
+  .team-nav-button {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .team-nav-left {
+    left: -3rem;
+  }
+
+  .team-nav-right {
+    right: -3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .team-carousel-viewport {
+    min-height: 22rem;
+    height: auto;
+  }
+
+  .team-card-container {
+    width: 300px;
+
+    transform: translateX(-50%) translateY(-50%)
+      rotateY(calc(var(--offset) * 30deg))
+      scaleY(calc(1 + var(--abs-offset) * -0.2))
+      translateZ(calc(var(--abs-offset) * -20rem))
+      translateX(calc(var(--direction) * -2rem));
+  }
+
+  .team-nav-button {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+  }
+
+  .team-nav-left {
+    left: -2rem;
+  }
+
+  .team-nav-right {
+    right: -2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .team-carousel-viewport {
+    min-height: 26rem;
+    height: auto;
+    width: 100%;
+    padding: 0 1rem;
+  }
+
+  .team-card-container {
+    width: 260px;
+
+    transform: translateX(-50%) translateY(-50%)
+      rotateY(calc(var(--offset) * 20deg))
+      scaleY(calc(1 + var(--abs-offset) * -0.15))
+      translateZ(calc(var(--abs-offset) * -15rem))
+      translateX(calc(var(--direction) * -1.5rem));
+  }
+
+  .team-nav-button {
+    width: 1.75rem;
+    height: 1.75rem;
+    font-size: 0.875rem;
+  }
+
+  .team-nav-left {
+    left: -1.5rem;
+  }
+
+  .team-nav-right {
+    right: -1.5rem;
   }
 }

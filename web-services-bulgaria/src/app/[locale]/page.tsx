@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { locales, type Locale } from "@/i18n/config";
 import { createMetadata } from "@/lib/seo";
 import HeroSection from "@/page-components/hero-section";
-import PartnersGallery from "@/page-components/partners-gallery";
+import ProjectsLanding from "@/page-components/projects-landing";
 import Team from "@/page-components/team";
 import TechnologiesLanding from "@/page-components/technologies-landing";
 import FAQSection from "@/page-components/faq-section";
@@ -48,7 +48,7 @@ export default async function Home({ params }: Props) {
       <Team />
       <WorkingProcess />
       <AISection />
-      <PartnersGallery />
+      <ProjectsLanding />
       <TechnologiesLanding />
       <FAQSection />
       {/* <Services />

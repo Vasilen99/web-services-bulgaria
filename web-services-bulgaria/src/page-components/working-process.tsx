@@ -193,7 +193,7 @@ export default function WorkingProcess() {
         </div>
 
         {/* Mobile Layout - Vertical stack with vertical line */}
-        <div className="lg:hidden">
+        <div className="lg:hidden flex flex-col items-center relative">
           <div className="relative min-h-screen">
             {/* Vertical connecting wavy line in the center */}
             <svg

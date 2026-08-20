@@ -7,17 +7,19 @@ export const HeadingSection = ({
   subtitle,
   textColor,
   type,
+  className,
 }: {
   title: string;
   subtitle?: string;
   textColor?: "primary" | "primary-foreground";
   type?: "landing" | "inner";
+  className?: string;
 }) => {
   if (type === "landing") {
     return (
       <div className="mb-14">
         <motion.div
-          className="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 border-t border-primary-content/10 pt-10"
+          className={`max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 border-t border-primary-content/10 pt-10 ${className || ""}`}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}

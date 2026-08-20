@@ -6,10 +6,10 @@ import { Globe } from "@/app/components/globe";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Button } from "@/components/animate-ui/components/buttons/button";
 import { GravityStarsBackground } from "@/components/animate-ui/components/backgrounds/gravity-stars";
 import { commonInnerPageSectionStyles } from "@/utility/constants";
 import { EMAIL_REGEX } from "@/utility/constants";
+import { LiquidButton } from "@/components/animate-ui/components/buttons/liquid";
 export default function ContactUsSection() {
   const t = useTranslations();
   const [formData, setFormData] = useState({
@@ -141,7 +141,7 @@ export default function ContactUsSection() {
 
         {/* Right side - Form */}
         <div className="w-full lg:w-1/2 max-w-xl pb-12">
-          <div className="backdrop-blur-xs bg-primary/20 border border-primary-foreground/20 rounded-2xl p-8 shadow-2xl shadow-black/20 relative before:absolute before:inset-0 before:bg-linear-to-b before:from-white/10 before:to-transparent before:pointer-events-none before:rounded-2xl">
+          <div className="backdrop-blur-xs bg-primary/50 border border-primary-foreground/20 rounded-2xl p-8 shadow-2xl shadow-black/20 relative before:absolute before:inset-0 before:bg-linear-to-b before:from-white/10 before:to-transparent before:pointer-events-none before:rounded-2xl">
             {submitMessage && (
               <div
                 className={`mb-6 p-4 rounded-lg ${
@@ -169,7 +169,7 @@ export default function ContactUsSection() {
                   placeholder={t("namePlaceholder")}
                   value={formData.name}
                   onChange={handleChange}
-                  className="bg-primary/5 border-primary/30 text-primary placeholder:text-primary/40 focus-visible:ring-primary/50"
+                  className="bg-primary/15 border-primary/30 text-primary placeholder:text-primary/60 focus-visible:ring-primary/50"
                 />
               </div>
 
@@ -188,7 +188,7 @@ export default function ContactUsSection() {
                   placeholder={t("emailPlaceholder")}
                   value={formData.email}
                   onChange={handleChange}
-                  className="bg-primary/5 border-primary/30 text-primary placeholder:text-primary/40 focus-visible:ring-primary/50"
+                  className="bg-primary/15 border-primary/30 text-primary placeholder:text-primary/60 focus-visible:ring-primary/50"
                 />
               </div>
 
@@ -207,7 +207,7 @@ export default function ContactUsSection() {
                   placeholder={t("phonePlaceholder")}
                   value={formData.phone}
                   onChange={handleChange}
-                  className="bg-primary/5 border-primary/30 text-primary placeholder:text-primary/40 focus-visible:ring-primary/50"
+                  className="bg-primary/15 border-primary/30 text-primary placeholder:text-primary/60 focus-visible:ring-primary/50"
                 />
               </div>
 
@@ -226,7 +226,7 @@ export default function ContactUsSection() {
                   placeholder={t("subjectPlaceholder")}
                   value={formData.subject}
                   onChange={handleChange}
-                  className="bg-primary/5 border-primary/30 text-primary placeholder:text-primary/40 focus-visible:ring-primary/50"
+                  className="bg-primary/15 border-primary/30 text-primary placeholder:text-primary/60 focus-visible:ring-primary/50"
                 />
               </div>
 
@@ -245,15 +245,15 @@ export default function ContactUsSection() {
                   value={formData.message}
                   onChange={handleChange}
                   rows={5}
-                  className="bg-primary/5 border-primary/30 text-primary placeholder:text-primary/40 focus-visible:ring-primary/50 resize-none"
+                  className="bg-primary/15 border-primary/30 text-primary placeholder:text-primary/60 resize-none"
                 />
               </div>
 
               {/* Submit Button */}
               <div className="flex justify-center">
-                <Button disabled={isLoading}>
+                <LiquidButton disabled={isLoading}>
                   {isLoading ? t("sendingEmail") : t("sendMessage")}
-                </Button>
+                </LiquidButton>
               </div>
             </form>
           </div>

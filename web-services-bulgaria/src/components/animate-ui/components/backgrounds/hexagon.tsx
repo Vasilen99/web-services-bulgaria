@@ -49,7 +49,7 @@ function HexagonBackground({
     <div
       data-slot="hexagon-background"
       className={cn(
-        "relative size-full overflow-hidden bg-secondary/10",
+        "relative size-full overflow-hidden bg-primary-foreground/10",
         className,
       )}
       {...props}
@@ -72,23 +72,31 @@ function HexagonBackground({
               (_, colIndex) => (
                 <div
                   key={`hexagon-${rowIndex}-${colIndex}`}
-                  {...hexagonProps}
                   style={{
                     width: hexagonWidth,
                     height: hexagonHeight,
                     marginLeft: hexagonMargin,
-                    ...hexagonProps?.style,
                   }}
-                  className={cn(
-                    "relative",
-                    "[clip-path:polygon(50%_0%,_100%_25%,_100%_75%,_50%_100%,_0%_75%,_0%_25%)]",
-                    "before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full dark:before:bg-neutral-950 before:bg-white before:opacity-100 before:transition-all before:duration-1000",
-                    "after:content-[''] after:absolute after:inset-[var(--hexagon-margin)] dark:after:bg-neutral-950 after:bg-white",
-                    "after:[clip-path:polygon(50%_0%,_100%_25%,_100%_75%,_50%_100%,_0%_75%,_0%_25%)]",
-                    "hover:before:bg-neutral-200 dark:hover:before:bg-neutral-800 hover:before:opacity-100 hover:before:duration-0 dark:hover:after:bg-neutral-900 hover:after:bg-neutral-100 hover:after:opacity-100 hover:after:duration-0",
-                    hexagonProps?.className,
-                  )}
-                />
+                  className="group"
+                >
+                  <div
+                    {...hexagonProps}
+                    style={{
+                      width: hexagonWidth,
+                      height: hexagonHeight,
+                      ...hexagonProps?.style,
+                    }}
+                    className={cn(
+                      "relative",
+                      "[clip-path:polygon(50%_0%,_100%_25%,_100%_75%,_50%_100%,_0%_75%,_0%_25%)]",
+                      "before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-primary-foreground/50 before:opacity-20 before:transition-opacity before:duration-25",
+                      "after:content-[''] after:absolute after:inset-[var(--hexagon-margin)] after:bg-primary-foreground/5 after:transition-all after:duration-25",
+                      "after:[clip-path:polygon(50%_0%,_100%_25%,_100%_75%,_50%_100%,_0%_75%,_0%_25%)]",
+                      "group-hover:before:opacity-70 group-hover:after:bg-primary-foreground/15",
+                      hexagonProps?.className,
+                    )}
+                  />
+                </div>
               ),
             )}
           </div>

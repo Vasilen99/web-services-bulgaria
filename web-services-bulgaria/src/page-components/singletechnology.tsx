@@ -2,13 +2,13 @@
 
 import { notFound } from "next/navigation";
 import { useLocale } from "next-intl";
-import Link from "next/link";
 import { motion } from "motion/react";
 import { TECHNOLOGIES_DATA } from "@/utility/constants";
+import { ContactCtaBottom } from "@/app/components/contact-cta-bottom";
 
-interface SingleTechnologyProps {
+type SingleTechnologyProps = {
   slug: string;
-}
+};
 
 export default function SingleTechnology({ slug }: SingleTechnologyProps) {
   const locale = useLocale() as "bg" | "en";
@@ -156,32 +156,7 @@ export default function SingleTechnology({ slug }: SingleTechnologyProps) {
         <div className="h-px bg-linear-to-r from-foreground/0 via-foreground/10 to-foreground/0" />
 
         {/* CTA Section */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="flex flex-col gap-3 justify-center items-center py-12"
-        >
-          <h3 className="text-2xl font-bold mb-3 text-foreground">
-            {locale === "bg"
-              ? `Готови ли сте да изградите с ${tech.name}?`
-              : `Ready to build with ${tech.name}?`}
-          </h3>
-          <p className="text-foreground/60 text-center">
-            {locale === "bg"
-              ? "Нека обсъдим как тази технология може да помогне на вашия проект."
-              : "Let's discuss how this technology can power your project."}
-          </p>
-          <Link href={`/${locale}/contact-us`}>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-colors duration-300"
-            >
-              {locale === "bg" ? "Свържете се" : "Get In Touch"}
-            </motion.button>
-          </Link>
-        </motion.section>
+        <ContactCtaBottom />
       </div>
     </div>
   );

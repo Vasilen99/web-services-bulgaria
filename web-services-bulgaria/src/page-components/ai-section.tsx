@@ -36,11 +36,15 @@ export default function AISection() {
   const router = useRouter();
   return (
     <section id="ai" className="relative min-h-screen h-full bg-primary">
-      <HexagonBackground className="absolute inset-0 w-full h-full" />
-      <div className="relative py-12 lg:px-12 px-4">
+      <HexagonBackground
+        hexagonSize={110}
+        className="absolute inset-0 w-full h-full pointer-events-auto"
+      />
+      <div className="relative py-12 lg:px-12 px-4 pointer-events-none">
         {/* Heading */}
-        <div className="max-w-7xl mx-auto mb-16 lg:mb-20">
+        <div className="max-w-7xl mx-auto mb-16 lg:mb-20 pointer-events-auto">
           <HeadingSection
+            className="border-none!"
             title={t("aiHeading")}
             subtitle={t("aiSubheading")}
             textColor="primary-foreground"
@@ -49,7 +53,7 @@ export default function AISection() {
         </div>
 
         {/* AI Features Grid - All in one unified section */}
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto pointer-events-auto">
           <div className="space-y-8 lg:space-y-10 mb-20 lg:mb-24">
             {AI_FEATURES.map((feature, index) => (
               <AIFeatureItem
@@ -63,7 +67,7 @@ export default function AISection() {
         </div>
 
         {/* CTA to AI Workflows Page */}
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto pointer-events-auto">
           <div className="relative rounded-2xl border border-primary-foreground/20 bg-linear-to-r from-primary-foreground/10 via-primary-foreground/5 to-primary-foreground/10 p-8 lg:p-12 overflow-hidden">
             {/* Subtle animated background */}
             <div className="absolute inset-0 bg-linear-to-r from-primary-foreground/5 via-transparent to-primary-foreground/5 opacity-50" />

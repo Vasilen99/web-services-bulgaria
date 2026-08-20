@@ -6,7 +6,7 @@ import { getMessages, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import type { Locale } from "@/i18n/config";
 import { createMetadata } from "@/lib/seo";
-import "./globals.css";
+import "../../../globals.css";
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
 import { ScrollToTop } from "@/app/components/scroll-to-top";
