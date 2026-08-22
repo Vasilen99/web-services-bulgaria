@@ -51,10 +51,6 @@ export default async function Home({ params }: Props) {
       <ProjectsLanding />
       <TechnologiesLanding />
       <FAQSection />
-      {/* <Services />
-      <SelectedWork />
-      <Process />
-      <Testimonials /> */}
     </main>
   );
 }

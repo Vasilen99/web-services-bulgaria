@@ -41,7 +41,7 @@ export const ContactCtaBottom = () => {
       variants={containerVariants}
     >
       <div className="grid grid-cols-1 lg:gap-12 gap-4 items-center">
-        <motion.div className="flex flex-col gap-3" variants={itemVariants}>
+        <motion.div className="flex flex-col gap-3 items-center" variants={itemVariants}>
           <motion.h3
             className="text-3xl font-bold lg:text-start text-center text-primary"
             variants={itemVariants}
@@ -56,7 +56,7 @@ export const ContactCtaBottom = () => {
           </motion.p>
         </motion.div>
         <motion.div
-          className="flex items-center lg:justify-start justify-center"
+          className="flex items-center lg:justify-start justify-center m-auto"
           variants={itemVariants}
         >
           <LiquidButton
