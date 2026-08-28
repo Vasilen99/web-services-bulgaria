@@ -170,7 +170,6 @@ export function CustomCarousel({
   const [isHovering, setIsHovering] = React.useState(false);
   const autoplayIntervalRef = React.useRef<NodeJS.Timeout | null>(null);
 
-  // Autoplay effect
   React.useEffect(() => {
     if (isHovering) {
       if (autoplayIntervalRef.current) {
@@ -191,11 +190,20 @@ export function CustomCarousel({
   }, [isHovering, members.length]);
 
   const handlePrev = () => {
-    setActive((prev) => (prev > 0 ? prev - 1 : prev));
+    setActive((prev) => (prev > 0 ? prev - 1 : members.length - 1));
   };
 
   const handleNext = () => {
-    setActive((prev) => (prev < members.length - 1 ? prev + 1 : prev));
+    setActive((prev) => (prev < members.length - 1 ? prev + 1 : 0));
+  };
+
+  // Shortest circular distance between active and index
+  const getCircularDiff = (index: number) => {
+    let diff = active - index;
+    const half = members.length / 2;
+    if (diff > half) diff -= members.length;
+    if (diff < -half) diff += members.length;
+    return diff;
   };
 
   return (
@@ -209,7 +217,6 @@ export function CustomCarousel({
         {/* Navigation Buttons */}
         <button
           onClick={handlePrev}
-          disabled={active === 0}
           className="team-nav-button team-nav-left"
           aria-label="Previous slide"
         >
@@ -219,10 +226,11 @@ export function CustomCarousel({
         {/* Carousel Viewport */}
         <div className="team-carousel-viewport">
           {members.map((member, index) => {
-            const offset = (active - index) / 3;
-            const absOffset = Math.abs(active - index) / 3;
-            const direction = Math.sign(active - index);
-            const isVisible = Math.abs(active - index) < MAX_VISIBILITY;
+            const diff = getCircularDiff(index);
+            const offset = diff / 3;
+            const absOffset = Math.abs(diff) / 3;
+            const direction = Math.sign(diff);
+            const isVisible = Math.abs(diff) < MAX_VISIBILITY;
             const isActive = active === index;
 
             return (
@@ -265,7 +273,6 @@ export function CustomCarousel({
         {/* Next Button */}
         <button
           onClick={handleNext}
-          disabled={active === members.length - 1}
           className="team-nav-button team-nav-right"
           aria-label="Next slide"
         >

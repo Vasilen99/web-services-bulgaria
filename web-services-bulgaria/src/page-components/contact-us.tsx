@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useTranslations } from "next-intl";
 import { Globe } from "@/app/components/globe";
 import { Input } from "@/components/ui/input";
@@ -10,6 +10,8 @@ import { GravityStarsBackground } from "@/components/animate-ui/components/backg
 import { commonInnerPageSectionStyles } from "@/utility/constants";
 import { EMAIL_REGEX } from "@/utility/constants";
 import { LiquidButton } from "@/components/animate-ui/components/buttons/liquid";
+import { GlassCard } from "react-glass-ui";
+
 export default function ContactUsSection() {
   const t = useTranslations();
   const [formData, setFormData] = useState({
@@ -24,6 +26,8 @@ export default function ContactUsSection() {
     type: "success" | "error";
     text: string;
   } | null>(null);
+
+  const globe = useMemo(() => <Globe isContactPage />, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -120,7 +124,7 @@ export default function ContactUsSection() {
         <GravityStarsBackground starsSize={5} starsCount={120} />
       </div>
       {/* Content */}
-      <div className="flex flex-col lg:flex-row w-full items-center justify-center gap-12 px-6 lg:px-12 mt-33">
+      <div className="flex flex-col lg:flex-row w-full gap-12 px-6 lg:px-12 mt-33">
         {/* Left side - Globe and Text */}
         <div className="flex flex-col items-center lg:items-start w-full lg:w-1/2 gap-8">
           <div className="flex flex-col gap-4 max-w-xl">
@@ -135,27 +139,44 @@ export default function ContactUsSection() {
 
           {/* Globe */}
           <div className="w-full hidden lg:flex justify-center lg:justify-center">
-            <Globe />
+            {globe}
           </div>
         </div>
 
         {/* Right side - Form */}
         <div className="w-full lg:w-1/2 max-w-xl pb-12">
-          <div className="backdrop-blur-xs bg-primary/50 border border-primary-foreground/20 rounded-2xl p-8 shadow-2xl shadow-black/20 relative before:absolute before:inset-0 before:bg-linear-to-b before:from-white/10 before:to-transparent before:pointer-events-none before:rounded-2xl">
+          <GlassCard
+            blur={1}
+            distortion={0}
+            borderSize={0}
+            borderRadius={30}
+            backgroundOpacity={0.20000000000000004}
+            innerLightColor="var(--primary-foreground)"
+            backgroundColor="var(--primary-foreground)"
+            innerLightSpread={1}
+            innerLightBlur={7}
+            innerLightOpacity={0.4}
+            outerLightColor="#00D9FF"
+            outerLightSpread={2}
+            outerLightBlur={120}
+            outerLightOpacity={0.4}
+            brightness={200}
+            className="w-full!"
+          >
             {submitMessage && (
               <div
-                className={`mb-6 p-4 rounded-lg ${
+                className={`m-4 mb-0 p-4 rounded-lg ${
                   submitMessage.type === "success"
-                    ? "bg-green-500/20 border border-green-500/50 text-green-100"
-                    : "bg-red-500/20 border border-red-500/50 text-red-100"
+                    ? "bg-green-500/20 border border-green-500/50 text-primary"
+                    : "bg-red-500/20 border border-red-500/50 text-primary"
                 }`}
               >
                 {submitMessage.text}
               </div>
             )}
-            <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
+            <form onSubmit={handleSubmit} className="px-4 py-2 relative z-10">
               {/* Name */}
-              <div className="space-y-2">
+              <div className="space-y-2 mt-4">
                 <Label
                   htmlFor="name"
                   className="text-primary text-sm font-medium"
@@ -174,7 +195,7 @@ export default function ContactUsSection() {
               </div>
 
               {/* Email */}
-              <div className="space-y-2">
+              <div className="space-y-2 mt-4">
                 <Label
                   htmlFor="email"
                   className="text-primary text-sm font-medium"
@@ -193,7 +214,7 @@ export default function ContactUsSection() {
               </div>
 
               {/* Phone */}
-              <div className="space-y-2">
+              <div className="space-y-2 mt-4">
                 <Label
                   htmlFor="phone"
                   className="text-primary text-sm font-medium"
@@ -212,7 +233,7 @@ export default function ContactUsSection() {
               </div>
 
               {/* Subject */}
-              <div className="space-y-2">
+              <div className="space-y-2 mt-4">
                 <Label
                   htmlFor="subject"
                   className="text-primary text-sm font-medium"
@@ -231,7 +252,7 @@ export default function ContactUsSection() {
               </div>
 
               {/* Message */}
-              <div className="space-y-2">
+              <div className="space-y-2 mt-4">
                 <Label
                   htmlFor="message"
                   className="text-primary text-sm font-medium"
@@ -250,13 +271,13 @@ export default function ContactUsSection() {
               </div>
 
               {/* Submit Button */}
-              <div className="flex justify-center">
+              <div className="mt-6 flex justify-center">
                 <LiquidButton disabled={isLoading}>
                   {isLoading ? t("sendingEmail") : t("sendMessage")}
                 </LiquidButton>
               </div>
             </form>
-          </div>
+          </GlassCard>
         </div>
       </div>
     </section>

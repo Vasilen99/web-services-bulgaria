@@ -13,6 +13,7 @@ import {
   technologiesMainLink,
   faqLink,
   aiWorkflowsLink,
+  teamLink,
 } from "@/utility/links";
 import { GlassCardWrapper as GlassCard } from "@/app/components/glass-card-wrapper";
 import dynamic from "next/dynamic";
@@ -32,9 +33,8 @@ const ThemeToggle = dynamic(() =>
   import("@/app/components/theme-button").then((mod) => mod.default),
 );
 export const NAVIGATION_DATA = [
-  // { name: "services", href: "#services" },
-  // { name: "projects", href: "#work" },
   { name: "contact", href: contactUsLinks },
+  { name: "teamHeading", href: teamLink },
   { name: "aiWorkflows", href: aiWorkflowsLink },
   { name: "technologies", href: technologiesMainLink },
   { name: "faq", href: faqLink },
@@ -52,7 +52,6 @@ export default function Header() {
         distortion={0}
         borderSize={0}
         borderRadius={30}
-        backgroundColor="var(--primary)"
         backgroundOpacity={0.20000000000000004}
         innerLightColor="var(--primary-foreground)"
         innerLightSpread={1}
@@ -62,7 +61,7 @@ export default function Header() {
         outerLightSpread={0}
         outerLightBlur={15}
         outerLightOpacity={0.5}
-        brightness={151}
+        brightness={100}
         className="w-full!"
       >
         {/* Logo */}
