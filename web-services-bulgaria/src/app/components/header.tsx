@@ -16,13 +16,19 @@ import {
   teamLink,
 } from "@/utility/links";
 import { GlassCardWrapper as GlassCard } from "@/app/components/glass-card-wrapper";
-import Image from "next/image";
 import dynamic from "next/dynamic";
-
+import { useTheme } from "@/hooks/use-theme";
 const MobileNavDrawer = dynamic(() =>
   import("@/app/components/mobile-nav-drawer").then((mod) => mod.default),
 );
-
+const WebServicesLogoHeaderWhite = dynamic(
+  () => import("@/utility/icons").then((mod) => mod.WebServicesLogoHeaderWhite),
+  { ssr: false },
+);
+const WebServicesLogoHeaderBlack = dynamic(
+  () => import("@/utility/icons").then((mod) => mod.WebServicesLogoHeaderBlack),
+  { ssr: false },
+);
 const ThemeToggle = dynamic(() =>
   import("@/app/components/theme-button").then((mod) => mod.default),
 );
@@ -38,7 +44,7 @@ export default function Header() {
   const params = useParams();
   const locale = params.locale as string;
   const t = useTranslations();
-
+  const { theme } = useTheme();
   return (
     <header className="absolute top-0 left-0 right-0 w-full px-6 lg:px-12 py-6 max-w-screen z-50">
       <GlassCard
@@ -62,14 +68,11 @@ export default function Header() {
         <div className="px-8 flex items-center justify-between gap-4 w-full">
           <div className="flex gap-3 items-center shrink-0 relative z-10">
             <Link className="" href={`/${locale}`}>
-              <Image
-                src="/logos/WS-logo-correct.png"
-                alt="Web Services Bulgaria Logo"
-                width={50}
-                height={50}
-                loading="eager"
-                className="w-auto h-auto"
-              />
+              {theme === "dark" ? (
+                <WebServicesLogoHeaderBlack />
+              ) : (
+                <WebServicesLogoHeaderWhite />
+              )}
             </Link>
           </div>
 

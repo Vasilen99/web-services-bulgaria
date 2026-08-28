@@ -4,7 +4,18 @@ import { useTranslations, useLocale } from "next-intl";
 import { Mail, Phone } from "lucide-react";
 import { NAVIGATION_DATA } from "./header";
 import { LinkedinIcon } from "@/utility/icons";
+import dynamic from "next/dynamic";
+import { useTheme } from "@/hooks/use-theme";
 
+const LogoFooterBlack = dynamic(
+  () => import("@/utility/icons").then((mod) => mod.WebServicesLogoFooterBlack),
+  { ssr: false },
+);
+
+const LogoFooterWhite = dynamic(
+  () => import("@/utility/icons").then((mod) => mod.WebServicesLogoFooterWhite),
+  { ssr: false },
+);
 const SOCIAL_LINKS = [
   {
     icon: <Mail />,
@@ -26,17 +37,17 @@ const SOCIAL_LINKS = [
 export default function Footer() {
   const t = useTranslations();
   const locale = useLocale();
+  const { theme } = useTheme();
+
   return (
     <footer id="contact" className="bg-foreground">
       {/* Footer Nav + Socials */}
       <div className="border-t border-primary px-6 lg:px-12 py-10">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-start lg:justify-between gap-12">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-start lg:justify-between lg:gap-12 gap-6">
           {/* Brand */}
-          <div>
-            <p className="text-primary-foreground font-semibold text-lg tracking-tight mb-2">
-              Web Services Bulgaria
-            </p>
-            <p className="text-primary-foreground text-base">
+          <div className="relative flex flex-col lg:justify-start justify-center lg:bottom-12 bottom-6">
+            {theme === "dark" ? <LogoFooterWhite /> : <LogoFooterBlack />}
+            <p className="text-primary-foreground text-base relative lg:bottom-5">
               {t("footerDescription")}
             </p>
           </div>

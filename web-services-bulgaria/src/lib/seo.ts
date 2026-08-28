@@ -34,6 +34,10 @@ export function createMetadata(
   return {
     title,
     description,
+    icons: {
+      icon: "/favicon.png",
+      apple: "/favicon.png",
+    },
     alternates: {
       canonical: url,
       languages: {
