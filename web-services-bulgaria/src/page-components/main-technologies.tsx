@@ -52,7 +52,7 @@ export default function MainTechnologies() {
       />
 
       {/* Technologies Grid */}
-      <div className="max-w-7xl mx-auto pt-12 px-4 lg:px-8 pb-12">
+      <div className="max-w-7xl mx-auto pt-12 lg:px-8 pb-12">
         <motion.div
           variants={containerVariants}
           initial="hidden"

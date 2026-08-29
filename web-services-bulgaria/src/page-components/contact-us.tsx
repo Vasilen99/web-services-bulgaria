@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import { Globe } from "@/app/components/globe";
 import { Input } from "@/components/ui/input";
@@ -124,10 +125,15 @@ export default function ContactUsSection() {
         <GravityStarsBackground starsSize={5} starsCount={120} />
       </div>
       {/* Content */}
-      <div className="flex flex-col lg:flex-row w-full gap-12 px-6 lg:px-12 mt-33">
+      <div className="flex flex-col lg:flex-row w-full gap-12 lg:px-12 mt-36">
         {/* Left side - Globe and Text */}
         <div className="flex flex-col items-center lg:items-start w-full lg:w-1/2 gap-8">
-          <div className="flex flex-col gap-4 max-w-xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="flex flex-col gap-4 max-w-xl"
+          >
             <h1 className="text-4xl lg:text-6xl text-center lg:text-left font-bold text-primary">
               {t("contactHeadline")}
             </h1>
@@ -135,7 +141,7 @@ export default function ContactUsSection() {
             <p className="text-base lg:text-lg text-center lg:text-left text-primary leading-relaxed">
               {t("contactDescription")}
             </p>
-          </div>
+          </motion.div>
 
           {/* Globe */}
           <div className="w-full hidden lg:flex justify-center lg:justify-center">
@@ -150,7 +156,7 @@ export default function ContactUsSection() {
             distortion={0}
             borderSize={0}
             borderRadius={30}
-            backgroundOpacity={0.20000000000000004}
+            backgroundOpacity={0.9}
             innerLightColor="var(--primary-foreground)"
             backgroundColor="var(--primary-foreground)"
             innerLightSpread={1}

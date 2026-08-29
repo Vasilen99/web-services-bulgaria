@@ -63,11 +63,12 @@ export default function Header() {
         outerLightOpacity={0.5}
         brightness={100}
         className="w-full!"
+        padding="0px"
       >
         {/* Logo */}
         <div className="px-8 flex items-center justify-between gap-4 w-full">
           <div className="flex gap-3 items-center shrink-0 relative z-10">
-            <Link className="" href={`/${locale}`}>
+            <Link aria-label="logo" href={`/${locale}`}>
               {theme === "dark" ? (
                 <WebServicesLogoHeaderBlack />
               ) : (
@@ -80,17 +81,19 @@ export default function Header() {
           <div className="hidden lg:flex items-center gap-2 relative z-10">
             {NAVIGATION_DATA.map((item) => (
               <FlipButton variant="link" key={item.name}>
-                <FlipButtonFront>
+                <FlipButtonFront size={"lg"}>
                   <Link
                     className="text-primary text-base"
+                    aria-label={`Navigate to page ${t(item.name)}`}
                     href={`/${locale}${item.href}`}
                   >
                     {t(item.name)}
                   </Link>
                 </FlipButtonFront>
-                <FlipButtonBack>
+                <FlipButtonBack size={"lg"}>
                   <Link
                     className="text-primary text-base"
+                    aria-label={`Navigate to page ${t(item.name)}`}
                     href={`/${locale}${item.href}`}
                   >
                     {t(item.name)}

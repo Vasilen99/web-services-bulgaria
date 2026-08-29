@@ -144,7 +144,7 @@ export default function AIWorkflowsPage() {
                   <ModelSection model={model} />
                 </motion.div>
                 {i !== AI_MODELS.length - 1 && (
-                  <div className="my-24">
+                  <div className="my-12 lg:my-24">
                     <Divider />
                   </div>
                 )}

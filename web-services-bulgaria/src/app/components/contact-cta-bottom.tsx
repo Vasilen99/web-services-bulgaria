@@ -34,7 +34,7 @@ export const ContactCtaBottom = () => {
 
   return (
     <motion.div
-      className="mt-24 pt-16 border-t border-primary-content/5 max-w-7xl mx-auto my-auto w-full pb-24"
+      className="mt-12 lg:mt-24 pt-8 lg:pt-16 border-t border-primary-content/5 max-w-7xl mx-auto my-auto w-full pb-12 lg:pb-24"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}

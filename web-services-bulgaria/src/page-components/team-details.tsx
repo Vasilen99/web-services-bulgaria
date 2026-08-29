@@ -30,7 +30,7 @@ export default function TeamDetailsPage() {
       </motion.div>
       {/* Team Members Section */}
       <section className="py-12">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-6xl mx-auto lg:px-4">
           {/* Team Members Carousel */}
           <CustomCarousel
             members={TEAM_MEMBERS}
@@ -45,7 +45,7 @@ export default function TeamDetailsPage() {
       </div>
 
       {/* Timeline Section */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8">
+      <section className="py-12 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
