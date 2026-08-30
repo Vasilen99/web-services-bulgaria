@@ -46,7 +46,7 @@ export default function Header() {
   const t = useTranslations();
   const { theme } = useTheme();
   return (
-    <header className="absolute top-0 left-0 right-0 w-full px-6 lg:px-12 py-6 max-w-screen z-50">
+    <header className="absolute top-0 left-0 right-0 max-w-[1920px] w-full px-6 lg:px-12 py-6 m-auto z-50">
       <GlassCard
         blur={1}
         distortion={0}

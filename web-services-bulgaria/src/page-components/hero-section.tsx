@@ -23,7 +23,7 @@ export default function HeroSection() {
       <div className="relative flex flex-col py-6">
         <div className="flex lg:flex-row flex-col w-full items-center lg:justify-around justify-center lg:gap-0 gap-4">
           <motion.div
-            className="flex flex-col w-full lg:w-fit lg:my-auto lg:mx-0 mx-auto my-0 lg:items-start gap-3 px-4"
+            className="flex flex-col w-full lg:w-fit lg:my-auto lg:mx-0 mx-auto my-0 lg:items-start gap-3 px-6"
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
@@ -40,17 +40,17 @@ export default function HeroSection() {
               {t("heroHeadline")}
             </motion.h1>
 
-            <div className="flex flex-col w-full lg:w-[55%] lg:items-start items-center">
+            <div className="flex flex-col w-full lg:w-[55%]">
               <motion.div
-                className="space-y-2 mt-3 w-full flex flex-col lg:items-start lg:text-start text-center"
+                className="space-y-2 mt-3 w-full place-items-center flex flex-col lg:place-items-start"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
                 viewport={{ once: true, amount: 0.3 }}
               >
-                <p className="text-primary text-sm font-medium">
+                {/* <p className="text-primary text-sm font-medium">
                   {t("webDesignDev")}
-                </p>
+                </p> */}
                 <p className="text-primary text-base max-w-sm leading-relaxed">
                   {t("heroDescription")}
                 </p>

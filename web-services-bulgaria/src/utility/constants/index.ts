@@ -532,37 +532,31 @@ export const ACHIEVEMENTS = [
     id: 1,
     titleKey: "achievement1Title",
     descriptionKey: "achievement1Description",
-    year: "2019",
+    year: "2024",
   },
   {
     id: 2,
     titleKey: "achievement2Title",
     descriptionKey: "achievement2Description",
-    year: "2020",
+    year: "2024",
   },
   {
     id: 3,
     titleKey: "achievement3Title",
     descriptionKey: "achievement3Description",
-    year: "2021",
+    year: "2024",
   },
   {
     id: 4,
     titleKey: "achievement4Title",
     descriptionKey: "achievement4Description",
-    year: "2022",
+    year: "2025",
   },
   {
     id: 5,
     titleKey: "achievement5Title",
     descriptionKey: "achievement5Description",
-    year: "2023",
-  },
-  {
-    id: 6,
-    titleKey: "achievement6Title",
-    descriptionKey: "achievement6Description",
-    year: "2024",
+    year: "2026",
   },
 ];
 
@@ -624,12 +618,12 @@ export const TECHNOLOGIES: Technology[] = [
     name: "Next.js",
     slug: "nextjs",
     description: {
-      bg: "Next.js е лесна платформа за изграждане на бързи и интерактивни уебсайтове. Всичко, което трябва, е вградено – от най-простите до най-сложните функции.",
+      bg: "Next.js е платформа за изграждане на бързи и интерактивни уебсайтове. Всичко, което трябва, е вградено – от най-простите до най-сложните функции.",
       en: "Next.js is an easy platform for building fast and interactive websites. Everything you need is built-in—from the simplest to the most complex features.",
     },
     benefits: {
       bg: [
-        "Вашият сайт зарежда бързо, което подобрява потребителския опит",
+        "Вашият сайт зарежда бързо, което подобрява потребителското изживяване",
         "Автоматично се оптимизира за мобилни устройства",
         "Лесно се свързва със социални мрежи и други инструменти",
         "Подобрена видимост в Google и другите търсачки",
@@ -647,15 +641,15 @@ export const TECHNOLOGIES: Technology[] = [
     name: "React",
     slug: "react",
     description: {
-      bg: "React е библиотека, която прави уебсайтовете интерактивни и отзивчиви. Когато щракнете, напишете или се преместите, всичко се случва без спиране.",
+      bg: "React е библиотека, която прави уебсайтовете интерактивни. Когато щракнете, напишете или се преместите, всичко се случва без спиране.",
       en: "React is a library that makes websites interactive and responsive. When you click, type, or move, everything happens smoothly without interruption.",
     },
     benefits: {
       bg: [
-        "Интерактивни елементи, които отговарят незабавно на ваши действия",
-        "Намалени натоварване на интернета при использвание",
+        "Интерактивни елементи, които реагират незабавно на ваши действия",
+        "Намалено натоварване при използване",
         "Лесна поддръжка и обновяване на функциите",
-        "Согласувано поведение на всички браузъри",
+        "Еднакво поведение на всички браузъри",
       ],
       en: [
         "Interactive elements that respond immediately to your actions",
@@ -670,14 +664,14 @@ export const TECHNOLOGIES: Technology[] = [
     name: "TypeScript",
     slug: "typescript",
     description: {
-      bg: "TypeScript помага разработчиците да пишат по-безопасен код. Той намирането грешки още преди сайтът да бъде пуснат, което означава по-малко проблеми за вас.",
+      bg: "TypeScript помага разработчиците да пишат по-безопасен код. Той намира грешки още преди сайтът да бъде пуснат, което означава по-малко проблеми за вас.",
       en: "TypeScript helps developers write safer code. It finds errors before the site goes live, which means fewer problems for you.",
     },
     benefits: {
       bg: [
         "По-малко грешки и неочаквани проблеми",
-        "Лесна разширяване на функциите без страх от счупване",
-        "По-бързо развитие благодарение на по-добрата подкрепа на инструментите",
+        "Лесно разширяване на функциите без страх от счупване",
+        "По-бързо разработване благодарение на разнообразието от библиотеки и инструменти",
         "По-добра документация и разбиране на кода",
       ],
       en: [
@@ -693,18 +687,18 @@ export const TECHNOLOGIES: Technology[] = [
     name: "Tailwind CSS",
     slug: "tailwind",
     description: {
-      bg: "Tailwind CSS е инструмент, който прави дизайнирането на уебсайтове по-бързо и по-лесно. Стилът се прилага директно без писане на много код.",
+      bg: "Tailwind CSS е инструмент, който прави стилизирането на уебсайтове по-бързо и по-лесно. Унифицирана палитра от цветове, фонтове и поведение",
       en: "Tailwind CSS is a tool that makes designing websites faster and easier. Styling is applied directly without writing lots of code.",
     },
     benefits: {
       bg: [
-        "Красив дизайн, който работи на всички устройства – телефон, таблет, компютър",
+        "Красив дизайн, който работи на всички устройства",
         "Възможност за тъмен режим, който е лес за очите",
-        "Бързо правене на промени без необходимост от перестартиране",
-        "Малко файлове означават по-бързо зареждане",
+        "Мигновено отразяване на промените без нужда от рестарт",
+        "По-малко файлове означават по-бързо зареждане",
       ],
       en: [
-        "Beautiful design that works on all devices—phone, tablet, computer",
+        "Beautiful design that works on all devices",
         "Dark mode capability that's easy on the eyes",
         "Quick changes without the need to restart",
         "Small files mean faster loading",
@@ -716,7 +710,7 @@ export const TECHNOLOGIES: Technology[] = [
     name: "shadcn/ui",
     slug: "shadcn",
     description: {
-      bg: "shadcn/ui е колекция от готови компоненти, които могат да бъдат използвани веднага. Това ускорява разработката и гарантира единствен дизайн.",
+      bg: "shadcn/ui е колекция от готови компоненти, които могат да бъдат използвани веднага. Това ускорява разработката и гарантира идентичен дизайн.",
       en: "shadcn/ui is a collection of ready-made components that can be used immediately. This speeds up development and ensures a consistent design.",
     },
     benefits: {
@@ -795,14 +789,14 @@ export const TECHNOLOGIES: Technology[] = [
     benefits: {
       bg: [
         "Модерен и професионален вид на сайта",
-        "Удобно използване на всички устройства – телефон, таблет и компютър",
+        "Удобно използване на всички устройства.",
         "Бързо създаване на нови страници и функции",
         "Еднакъв и подреден дизайн във всички части на сайта",
         "Лесно адаптиране на визията според вашия бранд",
       ],
       en: [
         "Modern and professional-looking website",
-        "Easy to use on all devices—phone, tablet, and computer",
+        "Easy to use on all devices",
         "Faster creation of new pages and features",
         "Consistent and well-organized design across the website",
         "Easy to adapt the look to match your brand",

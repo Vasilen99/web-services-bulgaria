@@ -49,7 +49,7 @@ export const ContactCtaBottom = () => {
             {t("contactHeadline")}
           </motion.h3>
           <motion.p
-            className="text-primary-content/70 text-base lg:text-start text-center leading-relaxed max-w-lg"
+            className="text-primary-content/70 text-base lg:text-start text-center leading-relaxed"
             variants={itemVariants}
           >
             {t("contactDescription")}

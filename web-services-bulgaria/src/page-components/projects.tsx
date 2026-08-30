@@ -166,7 +166,7 @@ export default function ProjectsPage({ partner }: ProjectsPageProps) {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 + idx * 0.04 }}
-                  className="flex items-start gap-3"
+                  className="flex gap-3 items-center"
                 >
                   <span className="text-primary font-bold shrink-0 mt-0.5">
                     ·

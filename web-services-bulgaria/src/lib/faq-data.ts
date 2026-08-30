@@ -214,7 +214,7 @@ export const FULL_FAQ: FAQCategory[] = [
         questionBg: "Как осигурявате сигурност и конфиденциалност?",
         questionEn: "How do you ensure security and privacy?",
         answerBg:
-          "Ние следваме индустриски стандарти за сигурност, включително шифриране, редовни аудити и тестване на безопасност.",
+          "Ние следваме стандарти за сигурност, включително шифриране, редовни аудити и тестване на безопасност.",
         answerEn:
           "We follow industry security standards including encryption, regular audits, and security testing.",
       },

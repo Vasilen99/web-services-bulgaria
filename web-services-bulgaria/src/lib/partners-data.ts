@@ -22,8 +22,8 @@ export const PARTNERS_DATA = {
       },
     ],
     timeline: {
-      started: "2023",
-      completed: "2024",
+      started: "2026",
+      completed: "2026",
     },
   },
   servify: {
@@ -50,8 +50,8 @@ export const PARTNERS_DATA = {
       },
     ],
     timeline: {
-      started: "2023",
-      completed: "2024",
+      started: "2022",
+      completed: "2026",
     },
   },
   mmbuilding: {
@@ -74,8 +74,8 @@ export const PARTNERS_DATA = {
       },
     ],
     timeline: {
-      started: "2023",
-      completed: "2024",
+      started: "2026",
+      completed: "2026",
     },
   },
 };
