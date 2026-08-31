@@ -53,20 +53,29 @@ export const HeadingSection = ({
       <motion.div
         className="pb-6 mt-36 border-b border-primary/10 flex flex-col items-center justify-center gap-3"
         initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
+        whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
+        viewport={{ once: true, amount: 0.3 }}
       >
-        <h1
+        <motion.h1
           className={`text-4xl lg:text-5xl font-semibold text-${textColor || "primary"} mb-4 tracking-tight text-center`}
+          initial={{ opacity: 0, y: -15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          viewport={{ once: true, amount: 0.3 }}
         >
           {title}
-        </h1>
+        </motion.h1>
         {subtitle && (
-          <p
+          <motion.p
             className={`text-${textColor || "primary"} text-lg leading-relaxed max-w-3xl text-center`}
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true, amount: 0.3 }}
           >
             {subtitle}
-          </p>
+          </motion.p>
         )}
       </motion.div>
     );

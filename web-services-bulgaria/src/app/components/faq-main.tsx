@@ -1,18 +1,14 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
-import { useState } from "react";
+import { useState, useMemo, useCallback } from "react";
+import { motion } from "motion/react";
 import { FULL_FAQ } from "@/lib/faq-data";
 import { commonInnerPageSectionStyles } from "@/utility/constants";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from "@/components/animate-ui/components/radix/accordion";
 import { ContactCtaBottom } from "./contact-cta-bottom";
 import { HeadingSection } from "./heading-section";
-import { Button } from "@/components/animate-ui/components/buttons/button";
+import { FAQCategoryButtons } from "./faq-category-buttons";
+import FaqAccordion from "./faq-accordion";
 
 export const FAQMain = () => {
   const t = useTranslations();
@@ -21,13 +17,19 @@ export const FAQMain = () => {
     FULL_FAQ[0]?.id || "platform",
   );
 
-  const activeCategoryData = FULL_FAQ.find((cat) => cat.id === activeCategory);
+  // Memoize the active category data to avoid recalculation
+  const activeCategoryData = useMemo(
+    () => FULL_FAQ.find((cat) => cat.id === activeCategory),
+    [activeCategory],
+  );
+
+  // Memoize callback to prevent new function reference on each render
+  const handleCategoryChange = useCallback((categoryId: string) => {
+    setActiveCategory(categoryId);
+  }, []);
 
   return (
-    <main
-      className={`w-full min-h-screen bg-background ${commonInnerPageSectionStyles}`}
-    >
-      {/* Page Header Section */}
+    <main className={`w-full bg-background ${commonInnerPageSectionStyles}`}>
       <div className="mx-auto max-w-7xl">
         <HeadingSection
           type="inner"
@@ -38,29 +40,25 @@ export const FAQMain = () => {
 
       {/* Main Content */}
       <div className="pt-12">
-        <div className="max-w-7xl mx-auto">
+        <motion.div
+          className="max-w-7xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.2 }}
+        >
           {/* Two Column Layout: Sidebar + Content */}
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-16">
-            {/* Left Sidebar - Categories */}
-            <aside className="lg:col-span-1 space-y-2">
-              {FULL_FAQ.map((category) => (
-                <Button
-                  key={category.id}
-                  onClick={() => setActiveCategory(category.id)}
-                  className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-200 border-l-2 ${
-                    activeCategory === category.id
-                      ? "border-primary-foreground bg-primary text-primary-foreground font-medium"
-                      : "border-primary text-primary bg-primary-foreground hover:bg-primary/50! hover:border-primary/50 hover:text-primary"
-                  }`}
-                >
-                  {locale === "bg" ? category.nameBg : category.nameEn}
-                </Button>
-              ))}
-            </aside>
+            {/* Left Sidebar - Categories - Memoized to prevent unnecessary re-renders */}
+            <FAQCategoryButtons
+              activeCategory={activeCategory}
+              onCategoryChange={handleCategoryChange}
+              locale={locale}
+            />
 
-            {/* Right Content Area */}
-            <div className="lg:col-span-4">
-              {activeCategoryData && (
+            {/* Right Content Area - Only render active category content */}
+            {activeCategoryData && (
+              <div className="lg:col-span-4">
                 <div className="space-y-8">
                   {/* Category Header */}
                   <span className="text-xs font-semibold text-primary-content/60 uppercase tracking-widest">
@@ -73,41 +71,20 @@ export const FAQMain = () => {
                   </h2>
                   <div className="w-full h-1.5 bg-primary rounded-full" />
 
-                  {/* Questions List */}
-                  <Accordion type="single" collapsible className="mt-12">
-                    {activeCategoryData.items.map((item, idx) => (
-                      <AccordionItem
-                        key={item.id}
-                        value={item.id}
-                        className="border-primary-content/10 bg-transparent"
-                      >
-                        <AccordionTrigger className="px-0 py-4 hover:bg-transparent data-[state=open]:bg-transparent">
-                          <div className="flex items-start gap-4 flex-1 text-left">
-                            <span className="text-sm font-semibold text-primary-content/50 shrink-0 mt-0.5">
-                              {String(idx + 1).padStart(2, "0")}
-                            </span>
-                            <h3 className="text-lg font-medium leading-tight text-primary-content group-data-[state=open]:text-primary transition-colors">
-                              {locale === "bg"
-                                ? item.questionBg
-                                : item.questionEn}
-                            </h3>
-                          </div>
-                        </AccordionTrigger>
-                        <AccordionContent className="px-0 py-4 text-base text-primary-content/70 leading-relaxed ml-12">
-                          {locale === "bg" ? item.answerBg : item.answerEn}
-                        </AccordionContent>
-                      </AccordionItem>
-                    ))}
-                  </Accordion>
+                  {/* Questions List - Accordion items only render when category changes */}
+                  <FaqAccordion
+                    activeCategoryData={activeCategoryData}
+                    locale={locale}
+                  />
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
           <p className="text-base text-primary w-full leading-relaxed max-w-none mt-12">
             {t("platformIntro")}
           </p>
           <ContactCtaBottom />
-        </div>
+        </motion.div>
       </div>
     </main>
   );

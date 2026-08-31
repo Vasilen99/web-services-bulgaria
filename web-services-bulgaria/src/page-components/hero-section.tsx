@@ -14,7 +14,7 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative w-full overflow-hidden pt-24 lg:h-screen h-full"
+      className="relative w-full overflow-hidden pt-24 max-h-270! lg:h-screen h-full"
     >
       <div className="absolute inset-0 w-full h-full">
         <StarsBackground starColor="var(--primary)" />
@@ -51,7 +51,7 @@ export default function HeroSection() {
                 {/* <p className="text-primary text-sm font-medium">
                   {t("webDesignDev")}
                 </p> */}
-                <p className="text-primary text-base max-w-sm leading-relaxed">
+                <p className="text-primary text-base max-w-sm leading-relaxed lg:text-start text-center">
                   {t("heroDescription")}
                 </p>
               </motion.div>

@@ -58,7 +58,7 @@ export default async function RootLayout({ children, params }: Props) {
     <>
       <NextIntlClientProvider locale={locale} messages={messages}>
         <Header />
-        {children}
+        <main className="flex-1">{children}</main>
         <Footer />
         <ScrollToTop />
       </NextIntlClientProvider>

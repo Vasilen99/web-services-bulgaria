@@ -6,6 +6,7 @@ import { motion } from "motion/react";
 import { contactUsLinks } from "@/utility/links";
 import { LiquidButton } from "@/components/animate-ui/components/buttons/liquid";
 import { useRouter } from "next/navigation";
+
 export const ContactCtaBottom = () => {
   const locale = useLocale();
   const t = useTranslations();

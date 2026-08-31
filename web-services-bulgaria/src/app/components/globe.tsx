@@ -164,7 +164,7 @@ export function Globe({ isContactPage = false }: { isContactPage?: boolean }) {
         cancelAnimationFrame(animationIdRef.current);
       }
     };
-  }, [isDarkTheme, isMobile, markers]);
+  }, [isDarkTheme, isMobile, markers, isContactPage]);
 
   return (
     <div

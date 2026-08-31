@@ -25,6 +25,20 @@ export type FlipCardData = {
   };
 };
 
+export type PartnerData = {
+  id: string;
+  keyFirstName: string;
+  keyLastName: string;
+  titleKey: string;
+  image: string;
+  bioKey: string;
+  socials: {
+    instagram?: string;
+    linkedin?: string;
+    facebook?: string;
+  }[];
+};
+
 type Technology = {
   icon: React.ComponentType<{ className?: string }>;
   name: string;
@@ -565,7 +579,7 @@ export const TEAM_MEMBERS: FlipCardData[] = [
     keyFirstName: "vasilen",
     keyLastName: "minkov",
     titleKey: "ceoFounder",
-    image: "/team/vasilen-snimka.png",
+    image: "/team/vasilen.jpg",
     bioKey: "vasilenDescription",
     socialLinks: {
       linkedin: "https://www.linkedin.com/in/vasilen-minkov-9117011b0/",
@@ -574,41 +588,16 @@ export const TEAM_MEMBERS: FlipCardData[] = [
     },
   },
   {
-    keyFirstName: "galq",
-    keyLastName: "nencheva",
-    titleKey: "graficDesigner",
-    image: "/team/galq-snimka.png",
-    bioKey: "galqDescription",
-    socialLinks: {
-      linkedin: "https://www.linkedin.com/in/galyanencheva/",
-      facebook: "https://www.facebook.com/galya.nencheva",
-      instagram: "https://www.instagram.com/beeluvdpublishing/?hl=bg",
-    },
-  },
-  {
     keyFirstName: "miroslav",
     keyLastName: "dimitrov",
     titleKey: "frontEndDeveloper",
-    image: "/team/miroslav-snimka.jpg",
+    image: "/team/miroslav.jpg",
     bioKey: "miroslavDescription",
 
     socialLinks: {
       linkedin: "https://www.linkedin.com/in/miroslav-dimitrov-534805263/",
       facebook: "https://www.facebook.com/png.insta",
       instagram: "https://www.instagram.com/21_mir0slav/",
-    },
-  },
-  {
-    keyFirstName: "natalia",
-    keyLastName: "lazarova",
-    titleKey: "marketingSpecialist",
-    image: "/team/nataliq-snimka.png",
-    bioKey: "nataliaDescription",
-
-    socialLinks: {
-      linkedin: "https://www.linkedin.com/in/nataliya-lazarova-29897b234/",
-      facebook: "https://www.facebook.com/profile.php?id=100012502009075",
-      instagram: "https://www.instagram.com/nataliyalazarova/",
     },
   },
 ];
@@ -903,6 +892,54 @@ export const AI_WORKFLOWS: AIWorkflow[] = [
       "workflowCustomerBenefit3",
     ],
     modelKey: "usedWithAnthropic",
+  },
+];
+
+export const PARTNERS_DATA: PartnerData[] = [
+  {
+    id: "galq-nencheva",
+    keyFirstName: "galq",
+    keyLastName: "nencheva",
+    titleKey: "graficDesigner",
+    image: "/partners/galq-snimka.png",
+    bioKey: "galqDescription",
+    socials: [
+      {
+        linkedin: "https://www.linkedin.com/in/galyanencheva/",
+        facebook: "https://www.facebook.com/galya.nencheva",
+        instagram: "https://www.instagram.com/beeluvdpublishing/?hl=bg",
+      },
+    ],
+  },
+  {
+    id: "plamen-petkov",
+    keyFirstName: "plamen",
+    keyLastName: "petkov",
+    titleKey: "ceoOasisSolutions",
+    image: "https://oasisssolutions.com/storage/custom/team/plamen.png",
+    bioKey: "plamenDescription",
+    socials: [
+      {
+        linkedin: "https://www.linkedin.com/in/plamen-petkov-4b2096228/",
+        facebook: "https://www.facebook.com/profile.php?id=100095255084767",
+        instagram: "https://www.instagram.com/pacata_petkov/",
+      },
+    ],
+  },
+  {
+    id: "natalia-lazarova",
+    keyFirstName: "natalia",
+    keyLastName: "lazarova",
+    titleKey: "marketingSpecialist",
+    image: "/partners/nataliq-snimka.png",
+    bioKey: "nataliaDescription",
+    socials: [
+      {
+        linkedin: "https://www.linkedin.com/in/nataliya-lazarova-29897b234/",
+        facebook: "https://www.facebook.com/profile.php?id=100012502009075",
+        instagram: "https://www.instagram.com/nataliyalazarova/",
+      },
+    ],
   },
 ];
 

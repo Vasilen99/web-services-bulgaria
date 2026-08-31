@@ -47,12 +47,19 @@ export default function SingleTechnology({ slug }: SingleTechnologyProps) {
         </motion.div>
 
         {/* Two Column Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-16">
+        <motion.div
+          className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-16"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.2 }}
+        >
           {/* Left Column: Overview */}
           <motion.section
             initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
+            whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             <h2 className="text-sm font-semibold text-foreground/60 uppercase tracking-wider mb-6">
               {locale === "bg" ? "Преглед" : "Overview"}
@@ -65,8 +72,9 @@ export default function SingleTechnology({ slug }: SingleTechnologyProps) {
           {/* Right Column: Why We Chose */}
           <motion.section
             initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
+            whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             <h2 className="text-sm font-semibold text-foreground/60 uppercase tracking-wider mb-6">
               {locale === "bg" ? "Защо го избрахме" : "Why We Chose It"}
@@ -76,8 +84,9 @@ export default function SingleTechnology({ slug }: SingleTechnologyProps) {
                 <motion.li
                   key={idx}
                   initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 + idx * 0.04 }}
+                  viewport={{ once: true, amount: 0.2 }}
                   className="flex items-center gap-3"
                 >
                   <span className="text-primary font-bold shrink-0 mt-0.5">
@@ -88,18 +97,25 @@ export default function SingleTechnology({ slug }: SingleTechnologyProps) {
               ))}
             </ul>
           </motion.section>
-        </div>
+        </motion.div>
 
         {/* Divider */}
         <div className="h-px bg-linear-to-r from-foreground/0 via-foreground/10 to-foreground/0 mb-16" />
 
         {/* Second Row: Benefits & Use Cases */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-16">
+        <motion.div
+          className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-16"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.2 }}
+        >
           {/* Left Column: Benefits */}
           <motion.section
             initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             <h2 className="text-sm font-semibold text-foreground/60 uppercase tracking-wider mb-6">
               {locale === "bg" ? "Ключови предимства" : "Key Benefits"}
@@ -109,8 +125,9 @@ export default function SingleTechnology({ slug }: SingleTechnologyProps) {
                 <motion.li
                   key={idx}
                   initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 + idx * 0.04 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 + idx * 0.04 }}
+                  viewport={{ once: true, amount: 0.2 }}
                   className="flex items-center gap-3"
                 >
                   <span className="text-primary font-bold shrink-0 mt-0.5">
@@ -125,8 +142,9 @@ export default function SingleTechnology({ slug }: SingleTechnologyProps) {
           {/* Right Column: Use Cases */}
           <motion.section
             initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             <h2 className="text-sm font-semibold text-foreground/60 uppercase tracking-wider mb-6">
               {locale === "bg"
@@ -138,8 +156,9 @@ export default function SingleTechnology({ slug }: SingleTechnologyProps) {
                 <motion.li
                   key={idx}
                   initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 + idx * 0.04 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 + idx * 0.04 }}
+                  viewport={{ once: true, amount: 0.2 }}
                   className="flex items-center gap-3"
                 >
                   <span className="text-primary font-bold shrink-0 mt-0.5">
@@ -150,7 +169,7 @@ export default function SingleTechnology({ slug }: SingleTechnologyProps) {
               ))}
             </ul>
           </motion.section>
-        </div>
+        </motion.div>
 
         {/* Divider */}
         <div className="h-px bg-linear-to-r from-foreground/0 via-foreground/10 to-foreground/0" />

@@ -14,19 +14,15 @@ type GlassCardProps = React.ComponentProps<typeof OriginalGlassCard>;
  */
 export function GlassCardWrapper(props: GlassCardProps) {
   // Use a state with callback function to trigger re-render once after mount
-  const [isMounted, setIsMounted] = useState(() => {
-    // Return false initially (will be false on server and first client render)
-    return false;
-  });
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    // Use startTransition or setTimeout to defer state update
-    // This ensures it doesn't happen during render phase
-    const timeoutId = setTimeout(() => {
-      setIsMounted(true);
-    }, 0);
-
-    return () => clearTimeout(timeoutId);
+    // Use startTransition to defer state update outside of render
+    if (typeof window !== "undefined") {
+      React.startTransition(() => {
+        setIsMounted(true);
+      });
+    }
   }, []);
 
   // During SSR and initial hydration, render a placeholder to maintain layout

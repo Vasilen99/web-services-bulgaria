@@ -35,7 +35,7 @@ export default function AISection() {
   const locale = useLocale();
   const router = useRouter();
   return (
-    <section id="ai" className="relative min-h-screen h-full bg-primary">
+    <section id="ai" className="relative h-full bg-primary">
       <HexagonBackground
         hexagonSize={110}
         className="absolute inset-0 w-full h-full pointer-events-auto"

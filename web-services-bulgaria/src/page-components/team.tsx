@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { teamLink } from "@/utility/links";
 import LottieAnimation from "@/app/components/lottie-animation";
 import { useEffect, useState } from "react";
+import { motion } from "motion/react";
 
 interface TeamMember {
   keyFirstName: string;
@@ -25,25 +26,11 @@ const TEAM_ROLES: TeamMember[] = [
     descriptionKey: "vasilenDescription",
   },
   {
-    keyFirstName: "natalia",
-    keyLastName: "lazarova",
-    titleKey: "marketingSpecialist",
-    animationPath: "/animations/marketing.lottie",
-    descriptionKey: "nataliaDescription",
-  },
-  {
     keyFirstName: "miroslav",
     keyLastName: "dimitrov",
     titleKey: "frontEndDeveloper",
     animationPath: "/animations/Developer Front End.lottie",
     descriptionKey: "miroslavDescription",
-  },
-  {
-    keyFirstName: "galq",
-    keyLastName: "nencheva",
-    titleKey: "graficDesigner",
-    animationPath: "/animations/uiux designer.lottie",
-    descriptionKey: "galqDescription",
   },
 ];
 
@@ -89,9 +76,13 @@ export default function Team() {
       {/* Minimalistic Animated Team Section - No Cards */}
       <div className="max-w-7xl mx-auto">
         {/* Row 1: CEO - Full Width Animation Left, Info Right */}
-        <div
+        <motion.div
           data-member-id={`${TEAM_ROLES[0].keyFirstName}-${TEAM_ROLES[0].keyLastName}`}
           className="mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.2 }}
         >
           <div className="flex lg:flex-row flex-col-reverse lg:items-center items-start lg:gap-12 gap-6 lg:justify-center justify-start lg:pt-12">
             {/* Animation Left */}
@@ -125,12 +116,16 @@ export default function Team() {
               </p>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Row 2: Marketing - Info Left, Animation Right */}
-        <div
+        <motion.div
           data-member-id={`${TEAM_ROLES[1].keyFirstName}-${TEAM_ROLES[1].keyLastName}`}
           className="mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          viewport={{ once: true, amount: 0.2 }}
         >
           <div className="flex lg:flex-row flex-col-reverse lg:items-center items-start lg:gap-12 gap-6 lg:justify-center justify-start lg:pt-12">
             {/* Info Left */}
@@ -164,85 +159,7 @@ export default function Team() {
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Row 3: Software Engineer - Full Width Animation Left, Info Right */}
-        <div
-          data-member-id={`${TEAM_ROLES[2].keyFirstName}-${TEAM_ROLES[2].keyLastName}`}
-          className="mb-16"
-        >
-          <div className="flex lg:flex-row flex-col-reverse lg:items-center items-start lg:gap-12 gap-6 lg:justify-center justify-start lg:pt-12">
-            {/* Animation Left */}
-            <div className="lg:w-1/2 w-full lg:shrink-0 shrink flex justify-center">
-              <div className="lg:h-80 h-40">
-                <LottieAnimation
-                  src={TEAM_ROLES[2].animationPath}
-                  isVisible={visibleAnimations.has(
-                    `${TEAM_ROLES[2].keyFirstName}-${TEAM_ROLES[2].keyLastName}`,
-                  )}
-                />
-              </div>
-            </div>
-
-            {/* Info Right */}
-            <div className="lg:w-1/2 w-fit space-y-4">
-              <div className="space-y-1">
-                <h3 className="text-4xl font-bold text-primary-foreground">
-                  {t(`${TEAM_ROLES[2].keyFirstName}`)}
-                </h3>
-                <h4 className="text-xl text-primary-foreground/60">
-                  {t(`${TEAM_ROLES[2].keyLastName}`)}
-                </h4>
-              </div>
-              <div className="w-12 h-1 bg-primary-foreground/30" />
-              <p className="text-sm font-semibold text-primary-foreground/70 tracking-wide uppercase">
-                {t(TEAM_ROLES[2].titleKey)}
-              </p>
-              <p className="text-base text-primary-foreground/60 leading-relaxed">
-                {t(TEAM_ROLES[2].descriptionKey)}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Row 4: Designer - Info Left, Animation Right */}
-        <div
-          data-member-id={`${TEAM_ROLES[3].keyFirstName}-${TEAM_ROLES[3].keyLastName}`}
-          className="mb-16"
-        >
-          <div className="flex lg:flex-row flex-col-reverse lg:items-center items-start lg:gap-12 gap-6 lg:justify-center justify-start lg:pt-12">
-            {/* Info Left */}
-            <div className="lg:w-1/2 w-fit space-y-4 order-last lg:order-first">
-              <div className="space-y-1">
-                <h3 className="text-4xl font-bold text-primary-foreground">
-                  {t(`${TEAM_ROLES[3].keyFirstName}`)}
-                </h3>
-                <h4 className="text-xl text-primary-foreground/60">
-                  {t(`${TEAM_ROLES[3].keyLastName}`)}
-                </h4>
-              </div>
-              <div className="w-12 h-1 bg-primary-foreground/30" />
-              <p className="text-sm font-semibold text-primary-foreground/70 tracking-wide uppercase">
-                {t(TEAM_ROLES[3].titleKey)}
-              </p>
-              <p className="text-base text-primary-foreground/60 leading-relaxed">
-                {t(TEAM_ROLES[3].descriptionKey)}
-              </p>
-            </div>
-
-            {/* Animation Right */}
-            <div className="lg:w-1/2 w-full lg:shrink-0 shrink place-self-center flex justify-center">
-              <div className="lg:h-80 h-40">
-                <LottieAnimation
-                  src={TEAM_ROLES[3].animationPath}
-                  isVisible={visibleAnimations.has(
-                    `${TEAM_ROLES[3].keyFirstName}-${TEAM_ROLES[3].keyLastName}`,
-                  )}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* CTA Button */}

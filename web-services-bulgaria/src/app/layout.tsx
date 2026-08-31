@@ -15,7 +15,7 @@ export default function RootLayout({ children }: Props) {
         <LenisProvider>
           <NavigationScrollReset />
           <ThemeProvider>
-            <div className="min-h-screen m-auto flex flex-col overflow-x-hidden">
+            <div className="flex flex-col min-h-screen w-full overflow-x-hidden">
               {children}
             </div>
           </ThemeProvider>

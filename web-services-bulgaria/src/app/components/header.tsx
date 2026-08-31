@@ -18,8 +18,11 @@ import {
 import { GlassCardWrapper as GlassCard } from "@/app/components/glass-card-wrapper";
 import dynamic from "next/dynamic";
 import { useTheme } from "@/hooks/use-theme";
-const MobileNavDrawer = dynamic(() =>
-  import("@/app/components/mobile-nav-drawer").then((mod) => mod.default),
+
+// Client-side only to prevent hydration issues with GlassCard library
+const MobileNavDrawer = dynamic(
+  () => import("@/app/components/mobile-nav-drawer").then((mod) => mod.default),
+  { ssr: false },
 );
 const WebServicesLogoHeaderWhite = dynamic(
   () => import("@/utility/icons").then((mod) => mod.WebServicesLogoHeaderWhite),
@@ -29,8 +32,9 @@ const WebServicesLogoHeaderBlack = dynamic(
   () => import("@/utility/icons").then((mod) => mod.WebServicesLogoHeaderBlack),
   { ssr: false },
 );
-const ThemeToggle = dynamic(() =>
-  import("@/app/components/theme-button").then((mod) => mod.default),
+const ThemeToggle = dynamic(
+  () => import("@/app/components/theme-button").then((mod) => mod.default),
+  { ssr: false },
 );
 export const NAVIGATION_DATA = [
   { name: "contact", href: contactUsLinks },
