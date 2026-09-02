@@ -29,8 +29,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ? "Web Services Bulgaria | Дигитални решения"
       : "Web Services Bulgaria | Digital Solutions",
     description: isBg
-      ? "Създаваме модерни дигитални решения - уеб платформи, SaaS продукти, CRM и ERP системи от идея до стартиране."
-      : "We create modern digital solutions - web platforms, SaaS products, CRM & ERP systems from idea to launch.",
+      ? "Имате идея за бизнес? Ние я превръщаме в работещ уеб сайт, SaaS продукт или вътрешна система, която ви спестява време и носи клиенти. От първата среща до стартирането - партнираме си с вас на всяка стъпка."
+      : "Have a business idea? We turn it into a working website, SaaS product, or internal system that saves you time and brings in customers. From the first call to launch, we partner with you every step of the way.",
     path: "",
   });
 }
