@@ -36,6 +36,7 @@ export default function TeamDetailsPage() {
           <CustomCarousel
             members={TEAM_MEMBERS}
             imageContainerClassName="object-cover object-center object-center"
+            isOverlayVisible={false}
           />
         </div>
       </section>

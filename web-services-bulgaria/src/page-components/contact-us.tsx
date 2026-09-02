@@ -8,18 +8,19 @@ import { commonInnerPageSectionStyles } from "@/utility/constants";
 import { EMAIL_REGEX } from "@/utility/constants";
 import dynamic from "next/dynamic";
 import ContactForm from "./contact-form";
+import { Globe } from "@/app/components/globe";
 
-const Globe = dynamic(
-  () => import("@/app/components/globe").then((mod) => mod.Globe),
-  {
-    ssr: false,
-    loading: () => <div className="w-full h-96 bg-transparent" />,
-  },
-);
+// const Globe = dynamic(
+//   () => import("@/app/components/globe").then((mod) => mod.Globe),
+//   {
+//     ssr: false,
+//     loading: () => <div className="w-full h-150 bg-transparent" />,
+//   },
+// );
 
 export default function ContactUsSection() {
   const t = useTranslations();
-  const [isGlobeVisible, setIsGlobeVisible] = useState(false);
+  //const [isGlobeVisible, setIsGlobeVisible] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -33,10 +34,10 @@ export default function ContactUsSection() {
     text: string;
   } | null>(null);
 
-  useEffect(() => {
-    const timer = setTimeout(() => setIsGlobeVisible(true), 100);
-    return () => clearTimeout(timer);
-  }, []);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => setIsGlobeVisible(true), 100);
+  //   return () => clearTimeout(timer);
+  // }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -129,10 +130,9 @@ export default function ContactUsSection() {
   return (
     <section className="w-full">
       <div
-        className={`${commonInnerPageSectionStyles} bg-background flex flex-col justify-center max-h-270! lg:h-screen h-full`}
-        // style={{ contain: "layout style paint" }}
+        className={`${commonInnerPageSectionStyles} bg-background flex flex-col justify-center max-h-270! h-full`}
       >
-        <div className="absolute inset-0 w-full h-screen">
+        <div className="absolute inset-0 w-full h-full">
           <GravityStarsBackground starsSize={5} starsCount={120} />
         </div>
         {/* Content */}
@@ -140,11 +140,10 @@ export default function ContactUsSection() {
           {/* Left side - Globe and Text */}
           <div className="flex flex-col items-center lg:items-start gap-8">
             <motion.div
-              initial={false}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
+              transition={{ duration: 0.6 }}
               className="flex flex-col gap-4 max-w-xl"
-              style={{ opacity: 1, y: 0 }}
             >
               <h1 className="text-4xl lg:text-6xl text-center lg:text-left font-bold text-primary">
                 {t("contactHeadline")}
@@ -156,11 +155,11 @@ export default function ContactUsSection() {
             </motion.div>
 
             {/* Globe */}
-            {isGlobeVisible && (
+            {/* {isGlobeVisible && ( */}
               <div className="w-full hidden lg:flex justify-center lg:justify-center">
                 <Globe isContactPage />
               </div>
-            )}
+            {/* )} */}
           </div>
 
           {/* Right side - Form */}

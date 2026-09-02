@@ -45,7 +45,7 @@ export default function Footer() {
       <div className="border-t border-primary px-6 lg:px-12 py-10">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-start lg:justify-between lg:gap-12 gap-6">
           {/* Brand */}
-          <div className="relative flex flex-col lg:justify-start justify-center lg:bottom-12 bottom-6">
+          <div className="relative flex flex-col lg:place-items-start place-items-center lg:bottom-12 bottom-6">
             {theme === "dark" ? <LogoFooterWhite /> : <LogoFooterBlack />}
             <p className="text-primary-foreground text-base relative lg:bottom-5">
               {t("footerDescription")}

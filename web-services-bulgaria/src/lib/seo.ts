@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import type { Locale } from "@/i18n/config";
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://example.com";
+const baseUrl =
+  process.env.NEXT_PUBLIC_BASE_URL || "https://www.webservicesbg.com";
+const defaultOgImage = `${baseUrl}/logos/logo_white_background.svg`;
 
 export interface SeoMetadataOptions {
   title: string;
@@ -51,13 +53,20 @@ export function createMetadata(
       url,
       type: ogType,
       locale: localeCode,
-      ...(ogImage && { images: [ogImage] }),
+      images: [
+        {
+          url: ogImage || defaultOgImage,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      ...(ogImage && { images: [ogImage] }),
+      images: [ogImage || defaultOgImage],
     },
   };
 }

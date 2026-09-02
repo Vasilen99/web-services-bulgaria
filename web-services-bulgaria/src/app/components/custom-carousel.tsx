@@ -26,6 +26,7 @@ type TeamMember = {
 type TeamCarouselProps = {
   members: TeamMember[];
   imageContainerClassName?: string;
+  isOverlayVisible?: boolean;
   isClickable?: boolean;
   basePath?: string;
 };
@@ -51,9 +52,15 @@ type CardContentProps = {
   member: TeamMember;
   imageContainerClassName?: string;
   t: (key: string) => string;
+  isOverlayVisible?: boolean;
 };
 
-function CardContent({ member, imageContainerClassName, t }: CardContentProps) {
+function CardContent({
+  member,
+  imageContainerClassName,
+  t,
+  isOverlayVisible = true,
+}: CardContentProps) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -71,7 +78,9 @@ function CardContent({ member, imageContainerClassName, t }: CardContentProps) {
           sizes="(max-width: 640px) 260px, (max-width: 768px) 300px, (max-width: 1024px) 340px, 380px"
         />
         {/* Overlay gradient */}
-        <div className="absolute inset-0 bg-linear-to-t from-foreground via-transparent to-transparent opacity-80" />
+        {isOverlayVisible && (
+          <div className="absolute inset-0 bg-linear-to-t from-foreground via-transparent to-transparent opacity-80" />
+        )}
       </div>
 
       {/* Content container */}
@@ -164,6 +173,7 @@ export function CustomCarousel({
   imageContainerClassName,
   isClickable = false,
   basePath = "",
+  isOverlayVisible = true,
 }: TeamCarouselProps) {
   const t = useTranslations();
   const [active, setActive] = React.useState(Math.floor(members.length / 2));
@@ -256,6 +266,7 @@ export function CustomCarousel({
                       member={member}
                       imageContainerClassName={imageContainerClassName}
                       t={t}
+                      isOverlayVisible={isOverlayVisible}
                     />
                   </Link>
                 ) : (
@@ -263,6 +274,7 @@ export function CustomCarousel({
                     member={member}
                     imageContainerClassName={imageContainerClassName}
                     t={t}
+                    isOverlayVisible={isOverlayVisible}
                   />
                 )}
               </div>

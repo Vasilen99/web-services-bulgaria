@@ -576,18 +576,6 @@ export const ACHIEVEMENTS = [
 
 export const TEAM_MEMBERS: FlipCardData[] = [
   {
-    keyFirstName: "vasilen",
-    keyLastName: "minkov",
-    titleKey: "ceoFounder",
-    image: "/team/vasilen.jpg",
-    bioKey: "vasilenDescription",
-    socialLinks: {
-      linkedin: "https://www.linkedin.com/in/vasilen-minkov-9117011b0/",
-      facebook: "https://www.facebook.com/vasilen.minkov.1",
-      instagram: "https://www.instagram.com/vasilenminkovv/",
-    },
-  },
-  {
     keyFirstName: "miroslav",
     keyLastName: "dimitrov",
     titleKey: "frontEndDeveloper",
@@ -598,6 +586,18 @@ export const TEAM_MEMBERS: FlipCardData[] = [
       linkedin: "https://www.linkedin.com/in/miroslav-dimitrov-534805263/",
       facebook: "https://www.facebook.com/png.insta",
       instagram: "https://www.instagram.com/21_mir0slav/",
+    },
+  },
+  {
+    keyFirstName: "vasilen",
+    keyLastName: "minkov",
+    titleKey: "ceoFounder",
+    image: "/team/vasilen.jpg",
+    bioKey: "vasilenDescription",
+    socialLinks: {
+      linkedin: "https://www.linkedin.com/in/vasilen-minkov-9117011b0/",
+      facebook: "https://www.facebook.com/vasilen.minkov.1",
+      instagram: "https://www.instagram.com/vasilenminkovv/",
     },
   },
 ];
@@ -931,7 +931,7 @@ export const PARTNERS_DATA: PartnerData[] = [
     keyFirstName: "natalia",
     keyLastName: "lazarova",
     titleKey: "marketingSpecialist",
-    image: "/partners/nataliq-snimka.png",
+    image: "/partners/nataliq-snimka.jpg",
     bioKey: "nataliaDescription",
     socials: [
       {
