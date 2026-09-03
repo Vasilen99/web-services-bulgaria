@@ -901,7 +901,7 @@ export const PARTNERS_DATA: PartnerData[] = [
     keyFirstName: "galq",
     keyLastName: "nencheva",
     titleKey: "graficDesigner",
-    image: "/partners/galq-snimka.png",
+    image: "/partners/galq.png",
     bioKey: "galqDescription",
     socials: [
       {
@@ -916,7 +916,7 @@ export const PARTNERS_DATA: PartnerData[] = [
     keyFirstName: "plamen",
     keyLastName: "petkov",
     titleKey: "ceoOasisSolutions",
-    image: "https://oasisssolutions.com/storage/custom/team/plamen.png",
+    image: "/partners/plamen.jpg",
     bioKey: "plamenDescription",
     socials: [
       {
@@ -931,7 +931,7 @@ export const PARTNERS_DATA: PartnerData[] = [
     keyFirstName: "natalia",
     keyLastName: "lazarova",
     titleKey: "marketingSpecialist",
-    image: "/partners/nataliq-snimka.jpg",
+    image: "/partners/nataliq.jpg",
     bioKey: "nataliaDescription",
     socials: [
       {

@@ -9,7 +9,6 @@ export interface SeoMetadataOptions {
   title: string;
   description: string;
   path: string;
-  ogImage?: string;
   ogType?: "website" | "article" | "profile";
   canonical?: string;
 }
@@ -18,14 +17,7 @@ export function createMetadata(
   locale: Locale,
   options: SeoMetadataOptions,
 ): Metadata {
-  const {
-    title,
-    description,
-    path,
-    ogImage,
-    ogType = "website",
-    canonical,
-  } = options;
+  const { title, description, path, ogType = "website", canonical } = options;
 
   const url = canonical || `${baseUrl}/${locale}${path}`;
   const bgUrl = `${baseUrl}/bg${path}`;
@@ -55,7 +47,7 @@ export function createMetadata(
       locale: localeCode,
       images: [
         {
-          url: ogImage || defaultOgImage,
+          url: defaultOgImage,
           width: 1200,
           height: 630,
           alt: title,
@@ -66,7 +58,7 @@ export function createMetadata(
       card: "summary_large_image",
       title,
       description,
-      images: [ogImage || defaultOgImage],
+      images: [defaultOgImage],
     },
   };
 }

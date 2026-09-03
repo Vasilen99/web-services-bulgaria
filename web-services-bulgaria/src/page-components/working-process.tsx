@@ -194,7 +194,7 @@ export default function WorkingProcess() {
 
         {/* Mobile Layout - Vertical stack with vertical line */}
         <div className="lg:hidden flex flex-col items-center relative">
-          <div className="relative min-h-screen">
+          <div className="relative">
             {/* Vertical connecting wavy line in the center */}
             <svg
               className="absolute left-16 top-0 w-6 h-full pointer-events-none"
@@ -236,7 +236,7 @@ export default function WorkingProcess() {
                   </div>
 
                   {/* Step content */}
-                  <div className="pt-2">
+                  <div className="pt-10 lg:pt-2">
                     <h3 className="text-base font-semibold text-primary">
                       {t(step.titleKey)}
                     </h3>
