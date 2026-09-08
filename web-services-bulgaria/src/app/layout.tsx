@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { getLocale } from "next-intl/server";
 import "../../globals.css";
 import { ThemeProvider } from "@/app/components/theme-provider";
 import { LenisProvider } from "@/app/components/lenis-provider";
@@ -8,9 +9,13 @@ type Props = {
   children: ReactNode;
 };
 
-export default function RootLayout({ children }: Props) {
+export default async function RootLayout({ children }: Props) {
+  // Correct on the initial server render; <HtmlLang /> in the locale layout
+  // keeps it in sync on client-side locale switches.
+  const locale = await getLocale();
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <body suppressHydrationWarning>
         <LenisProvider>
           <NavigationScrollReset />

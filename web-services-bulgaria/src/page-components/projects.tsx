@@ -204,7 +204,7 @@ export default function ProjectsPage({ partner }: ProjectsPageProps) {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.4 + idx * 0.05 }}
                   className="flex flex-col items-center gap-3 p-4 rounded-lg bg-foreground/5 border border-foreground/10 hover:bg-foreground/10 transition-colors hover:cursor-pointer"
-                  onClick={() => router.push(`/${locale}/${techDetailsHref}`)}
+                  onClick={() => router.push(`/${locale}${techDetailsHref}`)}
                 >
                   {Icon && (
                     <div className="w-10 h-10 flex items-center justify-center">

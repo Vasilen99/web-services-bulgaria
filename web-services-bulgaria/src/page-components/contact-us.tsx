@@ -1,22 +1,13 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import { GravityStarsBackground } from "@/components/animate-ui/components/backgrounds/gravity-stars";
 import { commonInnerPageSectionStyles } from "@/utility/constants";
 import { EMAIL_REGEX } from "@/utility/constants";
-import dynamic from "next/dynamic";
 import ContactForm from "./contact-form";
 import { Globe } from "@/app/components/globe";
-
-// const Globe = dynamic(
-//   () => import("@/app/components/globe").then((mod) => mod.Globe),
-//   {
-//     ssr: false,
-//     loading: () => <div className="w-full h-150 bg-transparent" />,
-//   },
-// );
 
 export default function ContactUsSection() {
   const t = useTranslations();
@@ -33,11 +24,6 @@ export default function ContactUsSection() {
     type: "success" | "error";
     text: string;
   } | null>(null);
-
-  // useEffect(() => {
-  //   const timer = setTimeout(() => setIsGlobeVisible(true), 100);
-  //   return () => clearTimeout(timer);
-  // }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

@@ -9,6 +9,8 @@ import TechnologiesLanding from "@/page-components/technologies-landing";
 import FAQSection from "@/page-components/faq-section";
 import AISection from "@/page-components/ai-section";
 import WorkingProcess from "@/page-components/working-process";
+import { JsonLdScript, faqSchemaFromData } from "@/components/seo/json-ld";
+import { LANDING_PAGE_FAQ } from "@/lib/faq-data";
 type Props = {
   params: Promise<{
     locale: string;
@@ -43,14 +45,17 @@ export default async function Home({ params }: Props) {
   }
 
   return (
-    <main className="bg-background">
-      <HeroSection />
-      <Team />
-      <WorkingProcess />
-      <AISection />
-      <ProjectsLanding />
-      <TechnologiesLanding />
-      <FAQSection />
-    </main>
+    <>
+      <JsonLdScript data={faqSchemaFromData(locale, LANDING_PAGE_FAQ)} />
+      <main className="bg-background">
+        <HeroSection />
+        <Team />
+        <WorkingProcess />
+        <AISection />
+        <ProjectsLanding />
+        <TechnologiesLanding />
+        <FAQSection />
+      </main>
+    </>
   );
 }

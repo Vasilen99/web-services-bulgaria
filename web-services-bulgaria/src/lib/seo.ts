@@ -1,64 +1,31 @@
+/**
+ * @deprecated Use `generatePageMetadata` from "@/utility/metadata/helpers".
+ * Kept as a thin wrapper so existing imports keep working.
+ * Supports both `createMetadata(options)` and `createMetadata(locale, options)`.
+ */
 import type { Metadata } from "next";
-import type { Locale } from "@/i18n/config";
+import { generatePageMetadata, type PageMetadataOptions } from "@/utility/metadata/helpers";
 
-const baseUrl =
-  process.env.NEXT_PUBLIC_BASE_URL || "https://www.webservicesbg.com";
-const defaultOgImage = `${baseUrl}/logos/logo_white_background.svg`;
+export { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE } from "@/utility/metadata/constants";
 
-export interface SeoMetadataOptions {
-  title: string;
-  description: string;
-  path: string;
-  ogType?: "website" | "article" | "profile";
-  canonical?: string;
-}
+type OptionsWithoutLocale = Omit<PageMetadataOptions, "locale" | "pathname"> & {
+  pathname?: string;
+  path?: string;
+};
 
+export function createMetadata(options: PageMetadataOptions): Metadata;
+export function createMetadata(locale: string, options: OptionsWithoutLocale): Metadata;
 export function createMetadata(
-  locale: Locale,
-  options: SeoMetadataOptions,
+  localeOrOptions: string | PageMetadataOptions,
+  maybeOptions?: OptionsWithoutLocale,
 ): Metadata {
-  const { title, description, path, ogType = "website", canonical } = options;
-
-  const url = canonical || `${baseUrl}/${locale}${path}`;
-  const bgUrl = `${baseUrl}/bg${path}`;
-  const enUrl = `${baseUrl}/en${path}`;
-
-  const localeCode = locale === "bg" ? "bg_BG" : "en_US";
-
-  return {
-    title,
-    description,
-    icons: {
-      icon: "/favicon.png",
-      apple: "/favicon.png",
-    },
-    alternates: {
-      canonical: url,
-      languages: {
-        bg: bgUrl,
-        en: enUrl,
-      },
-    },
-    openGraph: {
-      title,
-      description,
-      url,
-      type: ogType,
-      locale: localeCode,
-      images: [
-        {
-          url: defaultOgImage,
-          width: 1200,
-          height: 630,
-          alt: title,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [defaultOgImage],
-    },
-  };
+  if (typeof localeOrOptions === "string") {
+    const { path, pathname, ...rest } = maybeOptions ?? ({} as OptionsWithoutLocale);
+    return generatePageMetadata({
+      ...rest,
+      locale: localeOrOptions,
+      pathname: pathname ?? path ?? "",
+    } as PageMetadataOptions);
+  }
+  return generatePageMetadata(localeOrOptions);
 }

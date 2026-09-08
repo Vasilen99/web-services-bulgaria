@@ -9,15 +9,15 @@ interface GlobeInstance {
   update: (config: Record<string, unknown>) => void;
 }
 
-export function Globe({ isContactPage = false }: { isContactPage?: boolean }) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const globeRef = useRef<GlobeInstance | null>(null);
-  const animationIdRef = useRef<number | undefined>(undefined);
-  const isMobile = useIsTouchable(1024);
-  const theme = useTheme();
-  const isDarkTheme = theme?.resolvedTheme === "dark";
+interface Marker {
+  location: [number, number];
+  size?: number;
+  color: [number, number, number];
+  id: string;
+  label: string;
+}
 
-  const markers = [
+const MARKERS: Marker[] = [
     {
       location: [37.78, -122.44] as [number, number],
       color: [1, 0, 0] as [number, number, number],
@@ -101,7 +101,15 @@ export function Globe({ isContactPage = false }: { isContactPage?: boolean }) {
       id: "buenos-aires",
       label: "Buenos Aires",
     },
-  ];
+];
+
+export function Globe({ isContactPage = false }: { isContactPage?: boolean }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const globeRef = useRef<GlobeInstance | null>(null);
+  const animationIdRef = useRef<number | undefined>(undefined);
+  const isMobile = useIsTouchable(1024);
+  const theme = useTheme();
+  const isDarkTheme = theme?.resolvedTheme === "dark";
 
   // Initialize and update globe based on theme
   useEffect(() => {
@@ -139,7 +147,7 @@ export function Globe({ isContactPage = false }: { isContactPage?: boolean }) {
       baseColor: [0.9, 0.9, 0.9] as [number, number, number],
       markerColor: [0.0, 0.85, 1.0] as [number, number, number],
       glowColor: [0.15, 0.65, 1.0] as [number, number, number],
-      markers: markers.map((m) => ({
+      markers: MARKERS.map((m) => ({
         location: m.location,
         size: 0.05,
         id: m.id,
@@ -164,13 +172,13 @@ export function Globe({ isContactPage = false }: { isContactPage?: boolean }) {
         cancelAnimationFrame(animationIdRef.current);
       }
     };
-  }, [isDarkTheme, isMobile, markers, isContactPage]);
+  }, [isDarkTheme, isMobile, isContactPage]);
 
   return (
     <div
-      className={`relative flex items-center justify-center opacity-${isContactPage ? 50 : 100}`}
+      className={`relative flex items-center justify-center ${isContactPage ? "opacity-50" : "opacity-100"}`}
     >
-      {markers.map((m) => (
+      {MARKERS.map((m) => (
         <div
           key={m.id}
           className="marker-label z-5"

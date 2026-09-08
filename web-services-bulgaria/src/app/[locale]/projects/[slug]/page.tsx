@@ -4,6 +4,9 @@ import { PARTNERS_DATA } from "@/lib/partners-data";
 import ProjectsPage from "@/page-components/projects";
 import en from "../../../../../messages/en.json";
 import bg from "../../../../../messages/bg.json";
+import { generatePageMetadata } from "@/utility/metadata/helpers";
+import { projectsLink } from "@/utility/links";
+import { JsonLdScript, breadcrumbSchema } from "@/components/seo/json-ld";
 
 type Props = {
   params: Promise<{
@@ -23,42 +26,30 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug, locale } = await params;
-  const partner = PARTNERS_DATA[slug as keyof typeof PARTNERS_DATA];
+type PartnerSlug = keyof typeof PARTNERS_DATA;
 
-  if (!partner) {
-    return {
-      title: "Project Not Found",
-    };
-  }
-
-  const lang = locale as "bg" | "en";
-  const localeMessages = messages[lang] || messages.en;
-  const partnersData =
-    localeMessages.partners[slug as keyof typeof localeMessages.partners];
-
-  if (!partnersData) {
-    return notFound();
-  }
-
-  const projectName = partnersData.name;
-  const projectDesc = partnersData.description;
-
-  return {
-    title: projectName,
-    description: projectDesc || `Learn more about ${projectName}`,
-    openGraph: {
-      title: projectName,
-      description: projectDesc || `Learn more about ${projectName}`,
-      type: "website",
-    },
-  };
+function getProject(slug: string) {
+  return (PARTNERS_DATA as Record<string, (typeof PARTNERS_DATA)[PartnerSlug]>)[slug];
 }
 
-async function Page({ params }: Props) {
-  const { slug, locale } = await params;
-  const partner = PARTNERS_DATA[slug as keyof typeof PARTNERS_DATA];
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale, slug } = await params;
+  const project = getProject(slug);
+  if (!project) return {};
+
+  return generatePageMetadata({
+    locale,
+    pathname: `${projectsLink}/${slug}`,
+    title: project.id,
+    description: `${project.id} – ${project.technologies.join(", ")}`,
+    image: project.carouselImages[0]?.src ?? project.logo,
+    pageType: "Project",
+  });
+}
+
+export default async function ProjectPage({ params }: Props) {
+  const { locale, slug } = await params;
+  const partner = getProject(slug);
 
   if (!partner) {
     notFound();
@@ -88,7 +79,16 @@ async function Page({ params }: Props) {
     },
   };
 
-  return <ProjectsPage partner={enrichedPartner} />;
+  return (
+    <>
+      <JsonLdScript
+        data={breadcrumbSchema(locale, [
+          { name: "Home", path: "" },
+          { name: "Projects", path: projectsLink },
+          { name: partner.id, path: `${projectsLink}/${slug}` },
+        ])}
+      />
+      <ProjectsPage partner={enrichedPartner} />
+    </>
+  );
 }
-
-export default Page;

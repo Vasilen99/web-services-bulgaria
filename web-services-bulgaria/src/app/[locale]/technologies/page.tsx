@@ -53,7 +53,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ],
     },
     category: { bg: "Технология", en: "Technology" },
-    pathname: `/${technologiesMainLink}`,
+    pathname: technologiesMainLink,
     imageAlt: {
       bg: "Web Services Bulgaria - Технологии за уеб разработка",
       en: "Web Services Bulgaria - Web Development Technologies",

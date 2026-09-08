@@ -6,10 +6,15 @@ import { getMessages, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import type { Locale } from "@/i18n/config";
 import { createMetadata } from "@/lib/seo";
-import "../../../globals.css";
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
 import { ScrollToTop } from "@/app/components/scroll-to-top";
+import { HtmlLang } from "@/app/components/html-lang";
+import {
+  JsonLdScript,
+  organizationSchema,
+  websiteSchema,
+} from "@/components/seo/json-ld";
 
 type Props = {
   children: React.ReactNode;
@@ -42,7 +47,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   });
 }
 
-export default async function RootLayout({ children, params }: Props) {
+export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params;
 
   if (!routing.locales.includes(locale as Locale)) {
@@ -55,13 +60,13 @@ export default async function RootLayout({ children, params }: Props) {
   const messages = await getMessages();
 
   return (
-    <>
-      <NextIntlClientProvider locale={locale} messages={messages}>
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <ScrollToTop />
-      </NextIntlClientProvider>
-    </>
+    <NextIntlClientProvider locale={locale} messages={messages}>
+      <HtmlLang locale={locale} />
+      <JsonLdScript data={[organizationSchema(locale), websiteSchema(locale)]} />
+      <Header />
+      <main className="flex-1">{children}</main>
+      <Footer />
+      <ScrollToTop />
+    </NextIntlClientProvider>
   );
 }

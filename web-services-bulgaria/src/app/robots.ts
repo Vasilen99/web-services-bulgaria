@@ -1,14 +1,14 @@
 import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/utility/metadata/constants";
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/api", "/_next"],
+      disallow: ["/api/"],
     },
-    sitemap:
-      (process.env.NEXT_PUBLIC_BASE_URL ||
-        "https://web-services-bulgaria.com") + "/sitemap.xml",
+    sitemap: `${SITE_URL}/sitemap.xml`,
+    host: SITE_URL,
   };
 }

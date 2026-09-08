@@ -1,19 +1,16 @@
 // Common metadata constants for Web Services Bulgaria
-export const SITE_NAME = "Web Services Bulgaria";
 export const SITE_URL = "https://www.webservicesbg.com";
+export const SITE_NAME = "Web Services Bulgaria";
+export const DEFAULT_OG_IMAGE = `${SITE_URL}/web_services_white_background.png`;
+export const LOGO_URL = `${SITE_URL}/web_services_white_background.png`;
+export const LOCALES = ["bg", "en"] as const;
+export const DEFAULT_HREFLANG_LOCALE = "en";
 export const SITE_LOCALE = "bg_BG";
 export const SITE_COUNTRY = "България";
 export const GEO_REGION = "BG";
 
 // Social media
 export const TWITTER_HANDLE = "@webservicesbg";
-
-// Common images
-export const DEFAULT_OG_IMAGE = {
-  url: "https://www.web-services-bulgaria.com/og-image.png",
-  width: 1200,
-  height: 630,
-};
 
 // Common author info
 export const DEFAULT_AUTHORS = [{ name: "Web Services Bulgaria" }];

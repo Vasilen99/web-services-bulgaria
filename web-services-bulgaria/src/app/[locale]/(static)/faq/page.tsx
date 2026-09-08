@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { FAQMain } from "../../../components/faq-main";
 import { generatePageMetadata } from "@/utility/metadata";
 import { locales, type Locale } from "@/i18n/config";
+import { JsonLdScript, faqSchema } from "@/components/seo/json-ld";
+import { FULL_FAQ } from "@/lib/faq-data";
 
 type Props = {
   params: Promise<{
@@ -82,5 +84,19 @@ export default async function FAQPage({ params }: Props) {
     notFound();
   }
 
-  return <FAQMain />;
+  return (
+    <>
+      <JsonLdScript
+        data={faqSchema(
+          FULL_FAQ.flatMap((category) =>
+            category.items.map((item) => ({
+              question: locale === "bg" ? item.questionBg : item.questionEn,
+              answer: locale === "bg" ? item.answerBg : item.answerEn,
+            })),
+          ),
+        )}
+      />
+      <FAQMain />
+    </>
+  );
 }

@@ -83,7 +83,7 @@ export default function AISection() {
               </div>
 
               <LiquidButton
-                onClick={() => router.push(`/${locale}/${aiWorkflowsLink}`)}
+                onClick={() => router.push(`/${locale}${aiWorkflowsLink}`)}
                 className="w-50 lg:h-15 h-10"
               >
                 <span>{t("exploreWorkflows")}</span>

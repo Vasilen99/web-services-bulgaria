@@ -2,6 +2,9 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { TECHNOLOGIES_DATA } from "@/utility/constants";
 import SingleTechnology from "@/page-components/singletechnology";
+import { JsonLdScript, breadcrumbSchema } from "@/components/seo/json-ld";
+import { generatePageMetadata } from "@/utility/metadata/helpers";
+import { technologiesMainLink } from "@/utility/links";
 
 type Props = {
   params: Promise<{
@@ -36,15 +39,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ? tech.description
       : tech.description?.[lang] || tech.description?.["en"];
 
-  return {
+  return generatePageMetadata({
+    locale,
+    pathname: `${technologiesMainLink}/${slug}`,
     title: techName,
     description: techDesc || `Learn more about ${techName}`,
-    openGraph: {
-      title: techName,
-      description: techDesc || `Learn more about ${techName}`,
-      type: "website",
-    },
-  };
+    pageType: "Technology",
+  });
 }
 
 async function Page({ params }: Props) {
@@ -55,7 +56,20 @@ async function Page({ params }: Props) {
     notFound();
   }
 
-  return <SingleTechnology slug={slug} />;
+  const { locale } = await params;
+
+  return (
+    <>
+      <JsonLdScript
+        data={breadcrumbSchema(locale, [
+          { name: "Home", path: "" },
+          { name: "Technologies", path: technologiesMainLink },
+          { name: tech.name, path: `${technologiesMainLink}/${slug}` },
+        ])}
+      />
+      <SingleTechnology slug={slug} />
+    </>
+  );
 }
 
 export default Page;
