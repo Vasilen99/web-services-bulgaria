@@ -42,7 +42,10 @@ export const ContactCtaBottom = () => {
       variants={containerVariants}
     >
       <div className="grid grid-cols-1 lg:gap-12 gap-4 items-center">
-        <motion.div className="flex flex-col gap-3 items-center" variants={itemVariants}>
+        <motion.div
+          className="flex flex-col gap-3 items-center"
+          variants={itemVariants}
+        >
           <motion.h3
             className="text-3xl font-bold lg:text-start text-center text-primary"
             variants={itemVariants}
@@ -61,7 +64,7 @@ export const ContactCtaBottom = () => {
           variants={itemVariants}
         >
           <LiquidButton
-            onClick={() => router.push(`/${locale}/${contactUsLinks}`)}
+            onClick={() => router.push(`/${locale}${contactUsLinks}`)}
             variant={"foreground"}
             size={"lg"}
             className="w-full sm:w-[200px] h-[50px] items-center gap-2 px-6 py-3 text-primary-foreground"
