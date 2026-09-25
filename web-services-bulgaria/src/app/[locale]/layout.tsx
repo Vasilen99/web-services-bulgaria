@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages, setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 
 import { routing } from "@/i18n/routing";
 import type { Locale } from "@/i18n/config";
@@ -15,6 +15,8 @@ import {
   organizationSchema,
   websiteSchema,
 } from "@/components/seo/json-ld";
+import bgMessages from "../../../messages/bg.json";
+import enMessages from "../../../messages/en.json";
 
 type Props = {
   children: React.ReactNode;
@@ -54,15 +56,23 @@ export default async function LocaleLayout({ children, params }: Props) {
     notFound();
   }
 
-  // Tell next-intl what locale is being used in this request
+  // CRITICAL: This MUST be called before any client components render
+  // It ensures the i18n context is initialized with the correct locale
   setRequestLocale(locale);
 
-  const messages = await getMessages();
+  // Load messages for this locale using static imports
+  const messageMap = {
+    bg: bgMessages,
+    en: enMessages,
+  };
+  const messages = messageMap[locale as Locale];
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
       <HtmlLang locale={locale} />
-      <JsonLdScript data={[organizationSchema(locale), websiteSchema(locale)]} />
+      <JsonLdScript
+        data={[organizationSchema(locale), websiteSchema(locale)]}
+      />
       <Header />
       <main className="flex-1">{children}</main>
       <Footer />
