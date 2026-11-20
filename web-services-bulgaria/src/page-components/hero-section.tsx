@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 import { Globe } from "@/app/components/globe";
 import { StarsBackground } from "@/components/animate-ui/components/backgrounds/stars";
 import { LiquidButton } from "@/components/animate-ui/components/buttons/liquid";
-import { redirect } from "next/navigation";
+import Link from "next/link";
 import { contactUsLinks } from "@/utility/links";
 export default function HeroSection() {
   const t = useTranslations();
@@ -63,12 +63,14 @@ export default function HeroSection() {
                 viewport={{ once: true, amount: 0.3 }}
               >
                 <LiquidButton
+                  asChild
                   variant={"foreground"}
                   className="w-full"
                   size={"lg"}
-                  onClick={() => redirect(`/${locale}/${contactUsLinks}`)}
                 >
-                  {t("letsTalk")}
+                  <Link href={`/${locale}${contactUsLinks}`}>
+                    {t("letsTalk")}
+                  </Link>
                 </LiquidButton>
               </motion.div>
             </div>

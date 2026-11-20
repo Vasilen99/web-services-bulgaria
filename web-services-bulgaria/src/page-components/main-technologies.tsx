@@ -9,9 +9,9 @@ import {
 } from "@/components/animate-ui/primitives/effects/tilt";
 import { LiquidButton } from "@/components/animate-ui/components/buttons/liquid";
 import { technologiesMainLink } from "@/utility/links";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { HeadingSection } from "@/app/components/heading-section";
-import { TECHNOLOGIES } from "@/utility/constants";
+import { TECHNOLOGIES, TECHNOLOGIES_DATA } from "@/utility/constants";
 import { innerPageMainSectionStyles } from "@/utility/constants";
 
 // Lazy load the heavy CTA component - this won't block initial render
@@ -24,7 +24,6 @@ const ContactCtaBottom = lazy(() =>
 export default function MainTechnologies() {
   const locale = useLocale();
   const t = useTranslations();
-  const router = useRouter();
 
   return (
     <div className="px-4">
@@ -123,20 +122,21 @@ export default function MainTechnologies() {
                     </TiltContent>
                   </div>
                 </Tilt>
-                <div
-                  className="pt-4 border-t border-primary/10 w-full flex justify-center"
-                  style={{ transformStyle: "flat" }}
-                >
-                  <LiquidButton
-                    onClick={() =>
-                      router.push(
-                        `/${locale}/${technologiesMainLink}/${tech.slug}`,
-                      )
-                    }
+                {/* Only link technologies that have a detail page */}
+                {tech.slug in TECHNOLOGIES_DATA && (
+                  <div
+                    className="pt-4 border-t border-primary/10 w-full flex justify-center"
+                    style={{ transformStyle: "flat" }}
                   >
-                    {t("learnMore")} {tech.name}
-                  </LiquidButton>
-                </div>
+                    <LiquidButton asChild>
+                      <Link
+                        href={`/${locale}${technologiesMainLink}/${tech.slug}`}
+                      >
+                        {t("learnMore")} {tech.name}
+                      </Link>
+                    </LiquidButton>
+                  </div>
+                )}
               </motion.div>
             );
           })}

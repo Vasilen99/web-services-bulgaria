@@ -15,7 +15,7 @@ export default function TeamDetailsPage() {
   const t = useTranslations();
 
   return (
-    <main className="px-4 bg-background">
+    <div className="px-4 bg-background">
       {/* Hero Section */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -160,6 +160,6 @@ export default function TeamDetailsPage() {
       </section>
 
       <ContactCtaBottom />
-    </main>
+    </div>
   );
 }

@@ -3,7 +3,7 @@
 import { useTranslations, useLocale } from "next-intl";
 import { HeadingSection } from "@/app/components/heading-section";
 import { LiquidButton } from "@/components/animate-ui/components/buttons/liquid";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { teamLink } from "@/utility/links";
 import LottieAnimation from "@/app/components/lottie-animation";
 import { useEffect, useState } from "react";
@@ -37,7 +37,6 @@ const TEAM_ROLES: TeamMember[] = [
 export default function Team() {
   const t = useTranslations();
   const locale = useLocale();
-  const router = useRouter();
   const [visibleAnimations, setVisibleAnimations] = useState<Set<string>>(
     new Set(),
   );
@@ -164,8 +163,8 @@ export default function Team() {
 
       {/* CTA Button */}
       <div className="flex items-center justify-center mt-16">
-        <LiquidButton onClick={() => router.push(`/${locale}${teamLink}`)}>
-          {t("learnMoreAboutTeam")}
+        <LiquidButton asChild>
+          <Link href={`/${locale}${teamLink}`}>{t("learnMoreAboutTeam")}</Link>
         </LiquidButton>
       </div>
     </section>

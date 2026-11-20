@@ -6,4 +6,9 @@ export const routing = defineRouting({
 
   // Used when no locale matches
   defaultLocale: "bg",
+
+  // hreflang is emitted via page metadata and the sitemap. The middleware's
+  // `Link` header pointed x-default at unprefixed (redirecting) URLs and
+  // contradicted those signals.
+  alternateLinks: false,
 });

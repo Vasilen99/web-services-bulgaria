@@ -1,9 +1,12 @@
 "use client";
 
 import { notFound } from "next/navigation";
-import { useLocale } from "next-intl";
+import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
 import { motion } from "motion/react";
 import { TECHNOLOGIES_DATA } from "@/utility/constants";
+import { PARTNERS_DATA } from "@/lib/partners-data";
+import { projectsLink } from "@/utility/links";
 import { ContactCtaBottom } from "@/app/components/contact-cta-bottom";
 
 type SingleTechnologyProps = {
@@ -12,11 +15,16 @@ type SingleTechnologyProps = {
 
 export default function SingleTechnology({ slug }: SingleTechnologyProps) {
   const locale = useLocale() as "bg" | "en";
+  const t = useTranslations();
   const tech = TECHNOLOGIES_DATA[slug as keyof typeof TECHNOLOGIES_DATA];
 
   if (!tech) {
     notFound();
   }
+
+  const relatedProjects = Object.entries(PARTNERS_DATA)
+    .filter(([, project]) => project.technologies.includes(slug))
+    .map(([projectSlug]) => projectSlug);
 
   const Icon = tech.icon;
 
@@ -170,6 +178,35 @@ export default function SingleTechnology({ slug }: SingleTechnologyProps) {
             </ul>
           </motion.section>
         </motion.div>
+
+        {/* Projects built with this technology */}
+        {relatedProjects.length > 0 && (
+          <>
+            <div className="h-px bg-linear-to-r from-foreground/0 via-foreground/10 to-foreground/0 mb-16" />
+            <section className="mb-16">
+              <h2 className="text-sm font-semibold text-foreground/60 uppercase tracking-wider mb-6">
+                {t("projects")}
+              </h2>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr gap-6">
+                {relatedProjects.map((projectSlug) => (
+                  <li key={projectSlug} className="flex mt-0">
+                    <Link
+                      href={`/${locale}${projectsLink}/${projectSlug}`}
+                      className="flex flex-col gap-1 w-full p-4 rounded-lg bg-foreground/5 border border-foreground/10 hover:bg-foreground/10 transition-colors"
+                    >
+                      <span className="text-base font-semibold text-foreground">
+                        {t(`partners.${projectSlug}.name`)}
+                      </span>
+                      <span className="text-sm text-foreground/70">
+                        {t(`partners.${projectSlug}.shortDescription`)}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          </>
+        )}
 
         {/* Divider */}
         <div className="h-px bg-linear-to-r from-foreground/0 via-foreground/10 to-foreground/0" />

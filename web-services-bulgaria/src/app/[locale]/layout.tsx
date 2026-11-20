@@ -5,11 +5,13 @@ import { setRequestLocale } from "next-intl/server";
 
 import { routing } from "@/i18n/routing";
 import type { Locale } from "@/i18n/config";
-import { createMetadata } from "@/lib/seo";
+import { SITE_URL, SITE_NAME } from "@/utility/metadata";
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
 import { ScrollToTop } from "@/app/components/scroll-to-top";
-import { HtmlLang } from "@/app/components/html-lang";
+import { ThemeProvider } from "@/app/components/theme-provider";
+import { LenisProvider } from "@/app/components/lenis-provider";
+import { NavigationScrollReset } from "@/app/components/scrollReset";
 import {
   JsonLdScript,
   organizationSchema,
@@ -29,25 +31,18 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { locale } = await params;
-
-  if (!routing.locales.includes(locale as Locale)) {
-    notFound();
-  }
-
-  const isBulgarian = locale === "bg";
-
-  return createMetadata(locale as Locale, {
-    title: isBulgarian
-      ? "Web Services Bulgaria | Дигитални решения"
-      : "Web Services Bulgaria | Digital Solutions",
-    description: isBulgarian
-      ? "Имате идея за бизнес? Ние я превръщаме в работещ уеб сайт, SaaS продукт или вътрешна система, която ви спестява време и носи клиенти. От първата среща до стартирането - партнираме си с вас на всяка стъпка."
-      : "Have a business idea? We turn it into a working website, SaaS product, or internal system that saves you time and brings in customers. From the first call to launch, we partner with you every step of the way.",
-    path: "",
-  });
-}
+// Only site-wide defaults live here. Every page sets its own title, description,
+// canonical, hreflang, Open Graph and Twitter tags via generatePageMetadata, so
+// nothing page-specific (e.g. the homepage canonical) can leak into other routes.
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  title: SITE_NAME,
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
+};
 
 export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params;
@@ -68,15 +63,25 @@ export default async function LocaleLayout({ children, params }: Props) {
   const messages = messageMap[locale as Locale];
 
   return (
-    <NextIntlClientProvider locale={locale} messages={messages}>
-      <HtmlLang locale={locale} />
-      <JsonLdScript
-        data={[organizationSchema(locale), websiteSchema(locale)]}
-      />
-      <Header />
-      <main className="flex-1">{children}</main>
-      <Footer />
-      <ScrollToTop />
-    </NextIntlClientProvider>
+    <html lang={locale} suppressHydrationWarning>
+      <body suppressHydrationWarning>
+        <LenisProvider>
+          <NavigationScrollReset />
+          <ThemeProvider>
+            <div className="flex flex-col min-h-screen w-full overflow-x-hidden">
+              <NextIntlClientProvider locale={locale} messages={messages}>
+                <JsonLdScript
+                  data={[organizationSchema(locale), websiteSchema(locale)]}
+                />
+                <Header />
+                <main className="flex-1">{children}</main>
+                <Footer />
+                <ScrollToTop />
+              </NextIntlClientProvider>
+            </div>
+          </ThemeProvider>
+        </LenisProvider>
+      </body>
+    </html>
   );
 }

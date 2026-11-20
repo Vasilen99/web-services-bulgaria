@@ -6,7 +6,11 @@ import en from "../../../../../messages/en.json";
 import bg from "../../../../../messages/bg.json";
 import { generatePageMetadata } from "@/utility/metadata/helpers";
 import { projectsLink } from "@/utility/links";
-import { JsonLdScript, breadcrumbSchema } from "@/components/seo/json-ld";
+import {
+  JsonLdScript,
+  breadcrumbSchema,
+  breadcrumbLabel,
+} from "@/components/seo/json-ld";
 
 type Props = {
   params: Promise<{
@@ -32,18 +36,23 @@ function getProject(slug: string) {
   return (PARTNERS_DATA as Record<string, (typeof PARTNERS_DATA)[PartnerSlug]>)[slug];
 }
 
+function getProjectMessages(locale: string, slug: string) {
+  const localeMessages = messages[locale as "bg" | "en"] || messages.en;
+  return localeMessages.partners[slug as keyof typeof localeMessages.partners];
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   const project = getProject(slug);
-  if (!project) return {};
+  const projectMessages = getProjectMessages(locale, slug);
+  if (!project || !projectMessages) return {};
 
   return generatePageMetadata({
     locale,
     pathname: `${projectsLink}/${slug}`,
-    title: project.id,
-    description: `${project.id} – ${project.technologies.join(", ")}`,
+    title: `${projectMessages.name} – ${projectMessages.shortDescription} | Web Services Bulgaria`,
+    description: projectMessages.metaDescription,
     image: project.carouselImages[0]?.src ?? project.logo,
-    pageType: "Project",
   });
 }
 
@@ -55,10 +64,7 @@ export default async function ProjectPage({ params }: Props) {
     notFound();
   }
 
-  const lang = locale as "bg" | "en";
-  const localeMessages = messages[lang] || messages.en;
-  const partnersData =
-    localeMessages.partners[slug as keyof typeof localeMessages.partners];
+  const partnersData = getProjectMessages(locale, slug);
 
   if (!partnersData) {
     notFound();
@@ -79,13 +85,13 @@ export default async function ProjectPage({ params }: Props) {
     },
   };
 
+  // No `/projects` index page exists, so the trail is Home › project.
   return (
     <>
       <JsonLdScript
         data={breadcrumbSchema(locale, [
-          { name: "Home", path: "" },
-          { name: "Projects", path: projectsLink },
-          { name: partner.id, path: `${projectsLink}/${slug}` },
+          { name: breadcrumbLabel("home", locale), path: "" },
+          { name: partnersData.name, path: `${projectsLink}/${slug}` },
         ])}
       />
       <ProjectsPage partner={enrichedPartner} />

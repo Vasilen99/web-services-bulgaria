@@ -2,7 +2,11 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { TECHNOLOGIES_DATA } from "@/utility/constants";
 import SingleTechnology from "@/page-components/singletechnology";
-import { JsonLdScript, breadcrumbSchema } from "@/components/seo/json-ld";
+import {
+  JsonLdScript,
+  breadcrumbSchema,
+  breadcrumbLabel,
+} from "@/components/seo/json-ld";
 import { generatePageMetadata } from "@/utility/metadata/helpers";
 import { technologiesMainLink } from "@/utility/links";
 
@@ -42,9 +46,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return generatePageMetadata({
     locale,
     pathname: `${technologiesMainLink}/${slug}`,
-    title: techName,
+    title: {
+      bg: `Разработка с ${techName} | Web Services Bulgaria`,
+      en: `${techName} Development | Web Services Bulgaria`,
+    },
     description: techDesc || `Learn more about ${techName}`,
-    pageType: "Technology",
   });
 }
 
@@ -62,8 +68,11 @@ async function Page({ params }: Props) {
     <>
       <JsonLdScript
         data={breadcrumbSchema(locale, [
-          { name: "Home", path: "" },
-          { name: "Technologies", path: technologiesMainLink },
+          { name: breadcrumbLabel("home", locale), path: "" },
+          {
+            name: breadcrumbLabel("technologies", locale),
+            path: technologiesMainLink,
+          },
           { name: tech.name, path: `${technologiesMainLink}/${slug}` },
         ])}
       />

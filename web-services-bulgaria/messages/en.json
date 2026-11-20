@@ -225,6 +225,7 @@
       "name": "BFT Results",
       "shortDescription": "Results tracking and analytics platform",
       "description": "BFT Results is a comprehensive web platform designed to track, analyze, and visualize results across various competitions and events. The platform provides real-time data updates, advanced filtering capabilities, and intuitive dashboards for event organizers and participants.",
+      "metaDescription": "BFT Results tracks, analyzes and visualizes competition and event results with real-time data, advanced filtering and intuitive dashboards for organizers.",
       "longDescription": "Built with modern web technologies, BFT Results delivers a fast, responsive, and user-friendly experience. The platform handles complex data aggregation, real-time updates, and sophisticated reporting features. It serves as a central hub for event management, result publication, and participant engagement.",
       "whatItDoes": [
         "Real-time result tracking and updates for competitions",
@@ -248,6 +249,7 @@
       "name": "Servify",
       "shortDescription": "Service management and booking platform",
       "description": "Servify is an innovative service management platform that connects service providers with customers. It streamlines the booking process, provides service tracking, and facilitates seamless communication between providers and clients.",
+      "metaDescription": "Servify is a service management platform that connects providers with customers through simple booking, service tracking and seamless communication.",
       "longDescription": "Servify leverages modern web technologies to create a smooth, reliable platform for service management. The application provides both providers and customers with intuitive interfaces for managing bookings, tracking services, and maintaining communication. Built with scalability in mind, Servify can handle growing user bases and complex service workflows.",
       "whatItDoes": [
         "Seamless online booking and scheduling system",
@@ -271,6 +273,7 @@
       "name": "MM Building",
       "shortDescription": "Construction and real estate development",
       "description": "MM Building is a leading company in the construction and real estate development sector. They specialize in creating high-quality residential and commercial properties, ensuring sustainable and innovative solutions.",
+      "metaDescription": "MM Building is a construction and real estate developer creating high-quality residential and commercial properties with sustainable, innovative solutions.",
       "longDescription": "MM Building leverages modern construction techniques and project management practices to deliver exceptional results. The company provides comprehensive services from initial planning and design to construction and final handover. With a focus on quality, safety, and sustainability, MM Building is committed to exceeding client expectations.",
       "whatItDoes": [
         "End-to-end project planning and design",

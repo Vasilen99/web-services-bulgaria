@@ -192,6 +192,18 @@ export function faqSchemaFromData(
   );
 }
 
+const BREADCRUMB_LABELS = {
+  home: { bg: "Начало", en: "Home" },
+  technologies: { bg: "Технологии", en: "Technologies" },
+} as const;
+
+export function breadcrumbLabel(
+  key: keyof typeof BREADCRUMB_LABELS,
+  locale: string,
+): string {
+  return BREADCRUMB_LABELS[key][locale === "bg" ? "bg" : "en"];
+}
+
 export function breadcrumbSchema(
   locale: string,
   items: { name: string; path: string }[],

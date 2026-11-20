@@ -84,25 +84,23 @@ export default function Header() {
           {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-2 relative z-10">
             {NAVIGATION_DATA.map((item) => (
-              <FlipButton variant="link" key={item.name}>
-                <FlipButtonFront size={"lg"}>
-                  <Link
+              // asChild renders the flip root as the link itself (one <a>, no <button>)
+              <FlipButton asChild variant="link" key={item.name}>
+                <Link
+                  aria-label={`Navigate to page ${t(item.name)}`}
+                  href={`/${locale}${item.href}`}
+                >
+                  <FlipButtonFront size={"lg"} className="text-primary text-base">
+                    {t(item.name)}
+                  </FlipButtonFront>
+                  <FlipButtonBack
+                    size={"lg"}
                     className="text-primary text-base"
-                    aria-label={`Navigate to page ${t(item.name)}`}
-                    href={`/${locale}${item.href}`}
+                    aria-hidden
                   >
                     {t(item.name)}
-                  </Link>
-                </FlipButtonFront>
-                <FlipButtonBack size={"lg"}>
-                  <Link
-                    className="text-primary text-base"
-                    aria-label={`Navigate to page ${t(item.name)}`}
-                    href={`/${locale}${item.href}`}
-                  >
-                    {t(item.name)}
-                  </Link>
-                </FlipButtonBack>
+                  </FlipButtonBack>
+                </Link>
               </FlipButton>
             ))}
           </div>

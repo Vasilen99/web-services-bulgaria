@@ -47,32 +47,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         "help",
       ],
     },
-    category: { bg: "Поддръжка", en: "Support" },
     pathname: "/faq",
     imageAlt: {
       bg: "Web Services Bulgaria - Често задавани въпроси",
       en: "Web Services Bulgaria - Frequently Asked Questions",
-    },
-    articleSection: { bg: "Помощ и поддръжка", en: "Help and Support" },
-    articleTags: {
-      bg: "FAQ, помощ, поддръжка, въпроси, отговори",
-      en: "FAQ, help, support, questions, answers",
-    },
-    aiPurpose: {
-      bg: "Предоставя отговори на често задавани въпроси относно услугите и продуктите на Web Services Bulgaria. Помощна ресурс за клиенти.",
-      en: "Provides answers to frequently asked questions about Web Services Bulgaria services and products. Customer support resource.",
-    },
-    aiAudience: {
-      bg: "Потребители на услугите на Web Services Bulgaria",
-      en: "Users of Web Services Bulgaria services",
-    },
-    aiContentType: { bg: "помощ_faq", en: "help_faq" },
-    aiEntityType: { bg: "помощна_информация", en: "help_information" },
-    aiPageType: "faq",
-    schemaPageType: "FAQPage",
-    additionalMetadata: {
-      "ai:page_function": "help_support",
-      "ai:user_action": "seek_help",
     },
   });
 }

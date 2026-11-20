@@ -5,12 +5,11 @@ import { ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
 import { contactUsLinks } from "@/utility/links";
 import { LiquidButton } from "@/components/animate-ui/components/buttons/liquid";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export const ContactCtaBottom = () => {
   const locale = useLocale();
   const t = useTranslations();
-  const router = useRouter();
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -64,13 +63,15 @@ export const ContactCtaBottom = () => {
           variants={itemVariants}
         >
           <LiquidButton
-            onClick={() => router.push(`/${locale}${contactUsLinks}`)}
+            asChild
             variant={"foreground"}
             size={"lg"}
             className="w-full sm:w-[200px] h-[50px] items-center gap-2 px-6 py-3 text-primary-foreground"
           >
-            {t("letsTalk")}{" "}
-            <ArrowRight size={16} className="stroke-primary-foreground" />
+            <Link href={`/${locale}${contactUsLinks}`}>
+              {t("letsTalk")}{" "}
+              <ArrowRight size={16} className="stroke-primary-foreground" />
+            </Link>
           </LiquidButton>
         </motion.div>
       </div>

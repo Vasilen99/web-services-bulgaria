@@ -52,30 +52,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         "full-stack",
       ],
     },
-    category: { bg: "Технология", en: "Technology" },
     pathname: technologiesMainLink,
     imageAlt: {
       bg: "Web Services Bulgaria - Технологии за уеб разработка",
       en: "Web Services Bulgaria - Web Development Technologies",
-    },
-    articleSection: { bg: "Технологии", en: "Technologies" },
-    articleTags: "React, Next.js, TypeScript, Tailwind, web development",
-    aiPurpose: {
-      bg: "Представя технологиите, които Web Services Bulgaria използва за разработка на модерни дигитални решения.",
-      en: "Showcases the technologies used by Web Services Bulgaria for building modern digital solutions.",
-    },
-    aiAudience: {
-      bg: "Разработчици и бизнеси, интересуващи се от използваните технологии и техния стек",
-      en: "Developers and businesses interested in the technologies and tech stack we use",
-    },
-    aiContentType: { bg: "технологичен_преглед", en: "technology_overview" },
-    aiEntityType: { bg: "технологичен_стек", en: "technology_stack" },
-    aiPageType: "technology_stack",
-    schemaPageType: "WebPage",
-    additionalMetadata: {
-      "ai:page_function": "technology_showcase",
-      "ai:user_action": "explore_technologies",
-      "tech:main_framework": "nextjs",
     },
   });
 }

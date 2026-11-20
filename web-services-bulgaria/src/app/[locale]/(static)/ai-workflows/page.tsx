@@ -49,33 +49,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         "automation processes",
       ],
     },
-    category: { bg: "Технология", en: "Technology" },
     pathname: "/ai-workflows",
     imageAlt: {
       bg: "Web Services Bulgaria - AI Workflows и Интелигентна Автоматизация",
       en: "Web Services Bulgaria - AI Workflows and Intelligent Automation",
-    },
-    articleSection: { bg: "Технология и AI", en: "Technology and AI" },
-    articleTags: {
-      bg: "AI, workflows, автоматизация, OpenAI, Anthropic, машинно обучение",
-      en: "AI, workflows, automation, OpenAI, Anthropic, machine learning",
-    },
-    aiPurpose: {
-      bg: "Представя AI-управлявани работни процеси и интелигентни решения за автоматизация на бизнес процеси. Демонстрира интеграции с водещи AI платформи.",
-      en: "Presents AI-powered workflows and intelligent solutions for business process automation. Demonstrates integrations with leading AI platforms.",
-    },
-    aiAudience: {
-      bg: "Бизнеси и организации, които искат да автоматизират своите процеси чрез AI технологии",
-      en: "Businesses and organizations looking to automate their processes through AI technologies",
-    },
-    aiContentType: { bg: "ai_решения_демонстрация", en: "ai_solutions_demo" },
-    aiEntityType: { bg: "технологично_решение", en: "technology_solution" },
-    aiPageType: "product_showcase",
-    schemaPageType: "WebPage",
-    additionalMetadata: {
-      "ai:page_function": "technology_showcase",
-      "ai:user_action": "explore_features",
-      "tech:ai_integration": "openai,anthropic",
     },
   });
 }

@@ -7,8 +7,9 @@ import {
   AI_MODELS,
   innerPageMainSectionStyles,
 } from "@/utility/constants";
-import dynamic from "next/dynamic";
 import { motion } from "motion/react";
+import ModelSection from "@/app/components/ai-model-section";
+import WorkflowItem from "@/app/components/ai-workflow-item";
 import { HeadingSection } from "@/app/components/heading-section";
 
 const Divider = () => {
@@ -24,19 +25,6 @@ const Divider = () => {
     </motion.div>
   );
 };
-const ModelSection = dynamic(
-  () => import("@/app/components/ai-model-section"),
-  {
-    ssr: false,
-  },
-);
-
-const WorkflowItem = dynamic(
-  () => import("@/app/components/ai-workflow-item"),
-  {
-    ssr: false,
-  },
-);
 export type AIWorkflow = {
   id: string;
   titleKey: string;
@@ -79,7 +67,7 @@ export default function AIWorkflowsPage() {
   };
 
   return (
-    <main id="team" className="bg-primary-foreground px-4">
+    <div id="team" className="bg-primary-foreground px-4">
       {/* Workflows Section */}
       <motion.section
         initial="hidden"
@@ -174,6 +162,6 @@ export default function AIWorkflowsPage() {
       >
         <ContactCtaBottom />
       </motion.div>
-    </main>
+    </div>
   );
 }

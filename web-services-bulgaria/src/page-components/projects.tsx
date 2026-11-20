@@ -14,7 +14,7 @@ import {
 } from "@/utility/icons";
 import { ContactCtaBottom } from "@/app/components/contact-cta-bottom";
 import { technologiesMainLink } from "@/utility/links";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 const TECH_ICONS: Record<
   string,
   React.ComponentType<React.SVGProps<SVGSVGElement>>
@@ -70,7 +70,6 @@ interface ProjectsPageProps {
 
 export default function ProjectsPage({ partner }: ProjectsPageProps) {
   const t = useTranslations();
-  const router = useRouter();
   const locale = useLocale();
   return (
     <div className="min-h-screen bg-background mt-36 px-4">
@@ -203,17 +202,20 @@ export default function ProjectsPage({ partner }: ProjectsPageProps) {
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.4 + idx * 0.05 }}
-                  className="flex flex-col items-center gap-3 p-4 rounded-lg bg-foreground/5 border border-foreground/10 hover:bg-foreground/10 transition-colors hover:cursor-pointer"
-                  onClick={() => router.push(`/${locale}${techDetailsHref}`)}
                 >
-                  {Icon && (
-                    <div className="w-10 h-10 flex items-center justify-center">
-                      <Icon className="w-8 h-8 fill-primary" />
-                    </div>
-                  )}
-                  <span className="text-sm font-medium text-center">
-                    {techName}
-                  </span>
+                  <Link
+                    href={`/${locale}${techDetailsHref}`}
+                    className="flex flex-col items-center gap-3 p-4 rounded-lg bg-foreground/5 border border-foreground/10 hover:bg-foreground/10 transition-colors hover:cursor-pointer h-full"
+                  >
+                    {Icon && (
+                      <div className="w-10 h-10 flex items-center justify-center">
+                        <Icon className="w-8 h-8 fill-primary" />
+                      </div>
+                    )}
+                    <span className="text-sm font-medium text-center">
+                      {techName}
+                    </span>
+                  </Link>
                 </motion.div>
               );
             })}

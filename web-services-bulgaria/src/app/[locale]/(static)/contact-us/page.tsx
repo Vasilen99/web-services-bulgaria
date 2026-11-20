@@ -47,32 +47,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         "get in touch",
       ],
     },
-    category: { bg: "Поддръжка", en: "Support" },
     pathname: "/contact-us",
     imageAlt: {
       bg: "Web Services Bulgaria - Контактна информация",
       en: "Web Services Bulgaria - Contact Information",
-    },
-    articleSection: { bg: "Свързване", en: "Contact" },
-    articleTags: {
-      bg: "контакт, поддръжка, форма, информация",
-      en: "contact, support, form, information",
-    },
-    aiPurpose: {
-      bg: "Предоставя контактна форма и информация за връзка с Web Services Bulgaria за консултации и поддръжка.",
-      en: "Provides contact form and connection information for reaching out to Web Services Bulgaria for consultations and support.",
-    },
-    aiAudience: {
-      bg: "Клиенти и потенциални партньори, които искат да се свържат с Web Services Bulgaria",
-      en: "Clients and potential partners who want to reach out to Web Services Bulgaria",
-    },
-    aiContentType: { bg: "контактна_информация", en: "contact_information" },
-    aiEntityType: { bg: "контактна_форма", en: "contact_form" },
-    aiPageType: "contact",
-    schemaPageType: "ContactPage",
-    additionalMetadata: {
-      "ai:page_function": "contact_support",
-      "ai:user_action": "submit_contact_form",
     },
   });
 }

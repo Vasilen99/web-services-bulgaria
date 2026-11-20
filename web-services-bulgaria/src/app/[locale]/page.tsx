@@ -47,7 +47,7 @@ export default async function Home({ params }: Props) {
   return (
     <>
       <JsonLdScript data={faqSchemaFromData(locale, LANDING_PAGE_FAQ)} />
-      <main className="bg-background">
+      <div className="bg-background">
         <HeroSection />
         <Team />
         <WorkingProcess />
@@ -55,7 +55,7 @@ export default async function Home({ params }: Props) {
         <ProjectsLanding />
         <TechnologiesLanding />
         <FAQSection />
-      </main>
+      </div>
     </>
   );
 }

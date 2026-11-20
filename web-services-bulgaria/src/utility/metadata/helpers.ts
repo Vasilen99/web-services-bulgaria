@@ -5,7 +5,6 @@ import {
   DEFAULT_OG_IMAGE,
   LOCALES,
   DEFAULT_HREFLANG_LOCALE,
-  COMMON_GEO_METADATA,
 } from "./constants";
 
 type Locale = (typeof LOCALES)[number];
@@ -20,18 +19,10 @@ export interface PageMetadataOptions {
   keywords?: Localized<string[]>;
   image?: string;
   imageAlt?: Localized<string>;
-  pageType?: string;
-  category?: Localized<string>;
-  articleSection?: Localized<string>;
   noIndex?: boolean;
-  /** Any additional `<meta name="…">` entries to emit. */
-  extra?: Record<string, string>;
-  /** Tolerate legacy/unknown options from older call sites. */
-  [key: string]: unknown;
 }
 
 const OG_LOCALE: Record<string, string> = { bg: "bg_BG", en: "en_US" };
-const LANGUAGE_NAME: Record<string, string> = { bg: "Bulgarian", en: "English" };
 
 function pick<T>(value: Localized<T> | undefined, locale: string): T | undefined {
   if (value === undefined) return undefined;
@@ -62,14 +53,11 @@ export function generatePageMetadata(options: PageMetadataOptions): Metadata {
     locale,
     pathname,
     image = DEFAULT_OG_IMAGE,
-    pageType,
     noIndex = false,
   } = options;
   const title = pick(options.title, locale) ?? SITE_NAME;
   const description = pick(options.description, locale) ?? "";
   const keywords = pick(options.keywords, locale);
-  const category = pick(options.category, locale);
-  const articleSection = pick(options.articleSection, locale);
   const imageAlt = pick(options.imageAlt, locale) ?? title;
 
   const path = normalizePath(pathname);
@@ -113,15 +101,6 @@ export function generatePageMetadata(options: PageMetadataOptions): Metadata {
       title,
       description,
       images: [image],
-    },
-    other: {
-      ...COMMON_GEO_METADATA,
-      "ai:language": LANGUAGE_NAME[locale] ?? "English",
-      "schema:inLanguage": ogLocale,
-      ...(pageType ? { "schema:pageType": pageType } : {}),
-      ...(category ? { "schema:category": category } : {}),
-      ...(articleSection ? { "article:section": articleSection } : {}),
-      ...(options.extra ?? {}),
     },
   };
 }

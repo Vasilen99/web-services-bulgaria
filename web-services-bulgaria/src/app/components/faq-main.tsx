@@ -29,7 +29,7 @@ export const FAQMain = () => {
   }, []);
 
   return (
-    <main className={`w-full bg-background ${commonInnerPageSectionStyles}`}>
+    <div className={`w-full bg-background ${commonInnerPageSectionStyles}`}>
       <div className="mx-auto max-w-7xl">
         <HeadingSection
           type="inner"
@@ -86,6 +86,6 @@ export const FAQMain = () => {
           <ContactCtaBottom />
         </motion.div>
       </div>
-    </main>
+    </div>
   );
 };

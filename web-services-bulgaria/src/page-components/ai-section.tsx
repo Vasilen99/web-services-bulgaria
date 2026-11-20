@@ -7,7 +7,7 @@ import { AIFeatureItem } from "@/app/components/ai-feature-item";
 import type { AIFeature } from "@/app/components/ai-feature-item";
 import { aiWorkflowsLink } from "@/utility/links";
 import { LiquidButton } from "@/components/animate-ui/components/buttons/liquid";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { HexagonBackground } from "@/components/animate-ui/components/backgrounds/hexagon";
 const AI_FEATURES: AIFeature[] = [
   {
@@ -33,7 +33,6 @@ const AI_FEATURES: AIFeature[] = [
 export default function AISection() {
   const t = useTranslations();
   const locale = useLocale();
-  const router = useRouter();
   return (
     <section id="ai" className="relative h-full bg-primary">
       <HexagonBackground
@@ -82,12 +81,11 @@ export default function AISection() {
                 </p>
               </div>
 
-              <LiquidButton
-                onClick={() => router.push(`/${locale}${aiWorkflowsLink}`)}
-                className="w-50 lg:h-15 h-10"
-              >
-                <span>{t("exploreWorkflows")}</span>
-                <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+              <LiquidButton asChild className="w-50 lg:h-15 h-10">
+                <Link href={`/${locale}${aiWorkflowsLink}`}>
+                  <span>{t("exploreWorkflows")}</span>
+                  <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+                </Link>
               </LiquidButton>
             </div>
           </div>
